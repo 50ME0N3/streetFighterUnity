@@ -9,7 +9,11 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public groundSensor groundSensor;
+    private Rigidbody2D rgbd;
+
+    public float jumpForce = 1F;
     void Start()
     {
         Debug.Log("TKT FRERO");
@@ -18,6 +22,9 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!groundSensor.Grounded)
+        {
+            rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
+        }
     }
 }
