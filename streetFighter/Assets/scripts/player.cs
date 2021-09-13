@@ -7,15 +7,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
-
-    public groundSensor groundSensor;
+    public GroundSensor groundSensor;
     private Rigidbody2D rgbd;
     private Healthbar healthbar;
 
     public float speed;
     public float jumpForce;
+
     void Start()
     {
         rgbd = gameObject.GetComponent<Rigidbody2D>();
@@ -30,7 +30,6 @@ public class player : MonoBehaviour
         healthbar.SetMaxHealth(100);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float jumpInput = Input.GetAxis("Jump" + this.name);
