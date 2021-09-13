@@ -7,9 +7,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class player : MonoBehaviour
 {
-    public GroundSensor groundSensor;
+    public groundSensor groundSensor;
     private Rigidbody2D rgbd;
     private Healthbar healthbar;
 
