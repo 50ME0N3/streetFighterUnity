@@ -27,7 +27,6 @@ public class player : MonoBehaviour
         float direction = Input.GetAxis("Horizontal" + this.name);
         if (groundSensor.Grounded && jumpInput > 0)
         {
-            Debug.Log("test");
             rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
         }
 
