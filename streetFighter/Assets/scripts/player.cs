@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grï¿½goire, Antoine, Rï¿½my
  */
 
 using System.Collections;
@@ -13,10 +13,10 @@ public class player : MonoBehaviour
     public groundSensor groundSensor;
     private Rigidbody2D rgbd;
 
-    public float jumpForce = 1F;
+    public float speed;
+    public float jumpForce;
     void Start()
     {
-        Debug.Log("TKT FRERO");
         rgbd = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -24,11 +24,25 @@ public class player : MonoBehaviour
     void Update()
     {
         float jumpInput = Input.GetAxis("Jump");
-        Debug.Log(jumpInput);
-        Debug.Log(groundSensor.Grounded);
-        if (groundSensor.Grounded && jumpInput>0)
+        float direction = Input.GetAxis("Horizontal" + this.name);
+        Debug.Log("Horizontal" + this.name);
+        if (groundSensor.Grounded && jumpInput > 0)
         {
+            Debug.Log("test");
             rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
+        }
+
+        if (direction > 0)
+        {
+            rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+        }
+        else if (direction < 0)
+        {
+            rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+        }
+        else
+        {
+            rgbd.velocity = new Vector2(0,rgbd.velocity.y);
         }
     }
 }

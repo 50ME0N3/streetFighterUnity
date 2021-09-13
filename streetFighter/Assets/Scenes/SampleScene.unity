@@ -213,6 +213,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3016378648384700291, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4106931837544825568, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
       propertyPath: m_Color.g
       value: 0.5019608
@@ -267,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106931837544825573, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
       propertyPath: m_Name
-      value: Player 2
+      value: Player2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
@@ -389,7 +393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3016378648384700291, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
       propertyPath: jumpForce
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4106931837544825568, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
       propertyPath: m_Color.b
@@ -445,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106931837544825573, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
       propertyPath: m_Name
-      value: Player 1
+      value: Player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a8cc1abcdfea84b86dfed331980c59, type: 3}
