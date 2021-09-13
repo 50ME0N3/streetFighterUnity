@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 {
     public GroundSensor groundSensor;
     private Rigidbody2D rgbd;
+    private Healthbar healthbar;
 
     public float speed;
     public float jumpForce;
@@ -18,12 +19,26 @@ public class Player : MonoBehaviour
     void Start()
     {
         rgbd = gameObject.GetComponent<Rigidbody2D>();
+        if(this.name == "Player1")
+        {
+            healthbar = GameObject.FindGameObjectWithTag("SliderP1").GetComponent<Healthbar>();
+        }
+        else if(this.name == "Player2")
+        {
+            healthbar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
+        }
+        healthbar.SetMaxHealth(100);
     }
 
     void Update()
     {
-        float jumpInput = Input.GetAxis("Jump" + name);
-        float direction = Input.GetAxis("Horizontal" + name);
+        float jumpInput = Input.GetAxis("Jump" + this.name);
+        float direction = Input.GetAxis("Horizontal" + this.name);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            healthbar.takeDamage(10);
+        }
 
         if (groundSensor.Grounded && jumpInput > 0)
         {
