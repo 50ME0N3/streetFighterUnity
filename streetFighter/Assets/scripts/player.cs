@@ -23,9 +23,8 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float jumpInput = Input.GetAxis("Jump");
+        float jumpInput = Input.GetAxis("Jump" + this.name);
         float direction = Input.GetAxis("Horizontal" + this.name);
-        Debug.Log("Horizontal" + this.name);
         if (groundSensor.Grounded && jumpInput > 0)
         {
             Debug.Log("test");
