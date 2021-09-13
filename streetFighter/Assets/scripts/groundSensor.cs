@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class groundSensor : MonoBehaviour
+public class GroundSensor : MonoBehaviour
 {
     private bool grounded = true;
 
