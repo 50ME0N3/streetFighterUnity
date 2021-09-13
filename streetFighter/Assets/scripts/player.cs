@@ -17,12 +17,16 @@ public class player : MonoBehaviour
     void Start()
     {
         Debug.Log("TKT FRERO");
+        rgbd = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!groundSensor.Grounded)
+        float jumpInput = Input.GetAxis("Jump");
+        Debug.Log(jumpInput);
+        Debug.Log(groundSensor.Grounded);
+        if (groundSensor.Grounded && jumpInput>0)
         {
             rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
         }
