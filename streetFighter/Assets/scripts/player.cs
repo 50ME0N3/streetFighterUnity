@@ -52,29 +52,33 @@ public class player : MonoBehaviour
             {
                 rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
 				anim.SetBool("Grounded", false);
-				anim.SetFloat("AirSpeed", rgbd.velocity.y);
-				anim.SetBool("Jump", true);
             }
 
             if (groundSensor.Grounded)
             {
-				anim.SetBool("Grounded", true);
-				anim.SetFloat("AirSpeed", rgbd.velocity.y);
-				anim.SetBool("Jump", false);
+				anim.SetBool("Grounded", groundSensor.Grounded);
 			}
+            else
+            {
+				anim.SetBool("Grounded", false);
+			}
+			anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 			if (direction > 0)
 			{
 				SpriteRenderer.flipX = true;
+				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else if (direction < 0)
 			{
-				SpriteRenderer.flipX = false; 
+				SpriteRenderer.flipX = false;
+				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else
 			{
+				anim.SetInteger("AnimState", 0);
 				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 			}
 		}
