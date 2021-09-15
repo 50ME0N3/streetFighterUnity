@@ -251,7 +251,7 @@ PlatformEffector2D:
   m_SurfaceArc: 146
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 0
+  m_SideArc: 35
 --- !u!1 &44513487
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ PlatformEffector2D:
   m_SurfaceArc: 146
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 0
+  m_SideArc: 35
 --- !u!1 &575388376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1032,7 @@ PlatformEffector2D:
   m_SurfaceArc: 146
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 0
+  m_SideArc: 35
 --- !u!1 &782090805
 GameObject:
   m_ObjectHideFlags: 0
