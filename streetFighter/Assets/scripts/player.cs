@@ -34,6 +34,7 @@ public class player : MonoBehaviour
 	{
 		float jumpInput = Input.GetAxis("Jump" + name);
 		float direction = Input.GetAxis("Horizontal" + name);
+		float attackInput = Input.GetAxis("Attack" + name);
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
@@ -44,6 +45,11 @@ public class player : MonoBehaviour
 
 		if (health > 0)
 		{
+			if(attackInput > 0)
+            {
+				anim.SetBool("Attack", true);
+            }
+
 			if (groundSensor.Grounded && jumpInput > 0)
 			{
 				rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
