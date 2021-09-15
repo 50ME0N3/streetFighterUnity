@@ -58,4 +58,9 @@ public class player : MonoBehaviour
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 		}
 	}
+
+    public void Pause()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 }
