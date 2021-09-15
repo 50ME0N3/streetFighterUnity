@@ -42,11 +42,6 @@ public class player : MonoBehaviour
 		float direction = Input.GetAxis("Horizontal" + name);
 		float attackInput = Input.GetAxis("Attack" + name);
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			healthbar.takeDamage(10);
-		}
-
 		health = healthbar.getHealth();
 
 		if (health > 0)
