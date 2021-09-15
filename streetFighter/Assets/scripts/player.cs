@@ -16,6 +16,7 @@ public class player : MonoBehaviour
 	public float speed;
 	public float jumpForce;
 	private int health;
+
 	void Start()
 	{
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
@@ -31,6 +32,7 @@ public class player : MonoBehaviour
 		{
 			healthbar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
 		}
+
 		healthbar.SetMaxHealth(100);
 	}
 
@@ -73,12 +75,17 @@ public class player : MonoBehaviour
 			if (direction > 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z,transform.rotation.w);
+				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
+				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
+
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else if (direction < 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
+				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
