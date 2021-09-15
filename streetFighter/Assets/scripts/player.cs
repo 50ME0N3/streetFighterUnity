@@ -13,7 +13,7 @@ public class player : MonoBehaviour
 
 	public float speed;
 	public float jumpForce;
-
+	private int health;
 	void Start()
 	{
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
@@ -40,23 +40,32 @@ public class player : MonoBehaviour
 			healthbar.takeDamage(10);
 		}
 
-		if (groundSensor.Grounded && jumpInput > 0)
-		{
-			rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
-		}
+		health = healthbar.getHealth();
 
-		if (direction > 0)
+		if (health > 0)
 		{
-			rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+			if (groundSensor.Grounded && jumpInput > 0)
+			{
+				rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
+			}
+
+			if (direction > 0)
+			{
+				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+			}
+			else if (direction < 0)
+			{
+				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+			}
+			else
+			{
+				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
+			}
 		}
-		else if (direction < 0)
+        else
 		{
-			rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
-		}
-		else
-		{
-			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-		}
+			rgbd.velocity = new Vector2(0, rgbd.velocity.y);	
+        }
 	}
 
     public void Pause()
