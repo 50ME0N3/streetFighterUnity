@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Menu : MonoBehaviour
 
 	public void QuitButton()
 	{
-		Application.Quit();
+        Application.Quit();
 	}
 
     public void ReturnToGame()
@@ -51,10 +52,16 @@ public class Menu : MonoBehaviour
         gameIsPaused = false;
     }
 
-    void Paused()
+    public void Paused()
     {
         Pause.SetActive(true);
         Time.timeScale = 0;
         gameIsPaused = true;
+    }
+
+    public void BackMainMenu()
+    {
+        //DontDestroyOnLoadScene.instance.RemoveFromDontDestroyOnload();
+        SceneManager.LoadScene("Title Screen");
     }
 }
