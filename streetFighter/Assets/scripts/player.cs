@@ -3,59 +3,59 @@
  * Authors : Jordan, Gr�goire, Antoine, R�my
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    public groundSensor groundSensor;
-    private Rigidbody2D rgbd;
-    private Healthbar healthbar;
+	public groundSensor groundSensor;
+	private Rigidbody2D rgbd;
+	private Healthbar healthbar;
 
-    public float speed;
-    public float jumpForce;
+	public float speed;
+	public float jumpForce;
 
-    void Start()
-    {
-        rgbd = gameObject.GetComponent<Rigidbody2D>();
-        if(this.name == "Player1")
-        {
-            healthbar = GameObject.FindGameObjectWithTag("SliderP1").GetComponent<Healthbar>();
-        }
-        else if(this.name == "Player2")
-        {
-            healthbar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
-        }
-        healthbar.SetMaxHealth(100);
-    }
+	void Start()
+	{
+		rgbd = gameObject.GetComponent<Rigidbody2D>();
 
-    void Update()
-    {
-        float jumpInput = Input.GetAxis("Jump" + this.name);
-        float direction = Input.GetAxis("Horizontal" + this.name);
+		if (name == "Player1")
+		{
+			healthbar = GameObject.FindGameObjectWithTag("SliderP1").GetComponent<Healthbar>();
+		}
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            healthbar.takeDamage(10);
-        }
+		else if (name == "Player2")
+		{
+			healthbar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
+		}
+		healthbar.SetMaxHealth(100);
+	}
 
-        if (groundSensor.Grounded && jumpInput > 0)
-        {
-            rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
-        }
+	void Update()
+	{
+		float jumpInput = Input.GetAxis("Jump" + name);
+		float direction = Input.GetAxis("Horizontal" + name);
 
-        if (direction > 0)
-        {
-            rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
-        }
-        else if (direction < 0)
-        {
-            rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
-        }
-        else
-        {
-            rgbd.velocity = new Vector2(0,rgbd.velocity.y);
-        }
-    }
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			healthbar.takeDamage(10);
+		}
+
+		if (groundSensor.Grounded && jumpInput > 0)
+		{
+			rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
+		}
+
+		if (direction > 0)
+		{
+			rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+		}
+		else if (direction < 0)
+		{
+			rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+		}
+		else
+		{
+			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
+		}
+	}
 }
