@@ -26,7 +26,8 @@ public class Menu : MonoBehaviour
 
     public void StartButton()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
 	}
 
     public void SettingsButton()
