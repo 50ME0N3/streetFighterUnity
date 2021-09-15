@@ -9,7 +9,7 @@ public class player : MonoBehaviour
 {
 	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
-	private Healthbar healthbar;
+	public Healthbar healthbar;
 	private SpriteRenderer SpriteRenderer;
 	private Animator anim;
 
@@ -72,13 +72,13 @@ public class player : MonoBehaviour
 
 			if (direction > 0)
 			{
-				SpriteRenderer.flipX = true;
+				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z,transform.rotation.w);
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else if (direction < 0)
 			{
-				SpriteRenderer.flipX = false;
+				transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}

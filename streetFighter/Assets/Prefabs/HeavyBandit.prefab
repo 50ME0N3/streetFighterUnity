@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundSensor: {fileID: 114204724084870448}
+  healthbar: {fileID: 0}
   speed: 13
   jumpForce: 20
 --- !u!95 &95734438044755836
@@ -249,6 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3944965056501936752}
   - component: {fileID: 8402960346264639592}
+  - component: {fileID: 5223913856231662148}
   m_Layer: 0
   m_Name: HitDetection
   m_TagString: Untagged
@@ -277,7 +279,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161560239235111477}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -296,3 +298,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22240192, y: 0.41048512}
   m_EdgeRadius: 0
+--- !u!114 &5223913856231662148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161560239235111477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a9eeed1edb3fb48a77c83ce5e7b8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
