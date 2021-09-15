@@ -10,8 +10,6 @@ public class player : MonoBehaviour
 	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
 	private Healthbar healthbar;
-	private SpriteRenderer SpriteRenderer;
-	private Animator anim;
 
 	public float speed;
 	public float jumpForce;
@@ -19,8 +17,6 @@ public class player : MonoBehaviour
 	void Start()
 	{
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
-		SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-		anim = gameObject.GetComponent<Animator>();
 
 		if (name == "Player1")
 		{
@@ -49,42 +45,25 @@ public class player : MonoBehaviour
 		if (health > 0)
 		{
 			if (groundSensor.Grounded && jumpInput > 0)
-            {
-                rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
-				anim.SetBool("Grounded", false);
-            }
-
-            if (groundSensor.Grounded)
-            {
-				anim.SetBool("Grounded", groundSensor.Grounded);
+			{
+				rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
 			}
-            else
-            {
-				anim.SetBool("Grounded", false);
-			}
-			anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 			if (direction > 0)
 			{
-				SpriteRenderer.flipX = true;
-				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else if (direction < 0)
 			{
-				SpriteRenderer.flipX = false;
-				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 			}
 			else
 			{
-				anim.SetInteger("AnimState", 0);
 				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 			}
 		}
         else
 		{
-			anim.SetBool("Death", true);
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);	
         }
 	}
