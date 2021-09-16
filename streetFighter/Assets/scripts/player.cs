@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Gr�goire, Antoine, R�my
+ * Authors : Jordan, Grégoire, Antoine, Rémy
  */
 
 using UnityEngine;
@@ -11,7 +11,7 @@ public class player : MonoBehaviour
 	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
 	public Healthbar healthbar;
-	private SpriteRenderer SpriteRenderer;
+	private SpriteRenderer spriteRenderer;
 	private Animator anim;
 
 	public float speed;
@@ -22,7 +22,7 @@ public class player : MonoBehaviour
 	{
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
-		SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
 		if (name == "Player1")
 		{
@@ -95,11 +95,11 @@ public class player : MonoBehaviour
 		{
 			anim.SetBool("Death", true);
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("EcranWin");
-        }
+			SceneManager.LoadScene("EcranWin");
+		}
 	}
 
 	public void Pause()
-    {
-    }
+	{
+	}
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoDamage : MonoBehaviour
@@ -8,7 +6,6 @@ public class DoDamage : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            //TODO: ajout du kb
             collision.GetComponent<player>().healthbar.takeDamage(10);
             collision.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 20);
         }

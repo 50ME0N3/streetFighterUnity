@@ -9,10 +9,10 @@ public class SettingsMenu : MonoBehaviour
 
 
 
-    public void Start()
-    {
+	public void Start()
+	{
 
-    }
+	}
 	public void SetVolume(float volume)
 	{
 		audioMixer.SetFloat("volume", volume);

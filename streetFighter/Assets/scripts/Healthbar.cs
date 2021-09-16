@@ -25,8 +25,8 @@ public class Healthbar : MonoBehaviour
 	}
 
 	public int getHealth()
-    {
+	{
 		return Convert.ToInt32(slider.value);
-    }
+	}
 
 }
