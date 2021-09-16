@@ -64,5 +64,8 @@ public class Menu : MonoBehaviour
     {
         //DontDestroyOnLoadScene.instance.RemoveFromDontDestroyOnload();
         SceneManager.LoadScene("Title Screen");
+        Pause.SetActive(false);
+        Time.timeScale = 1;
+        gameIsPaused = false;
     }
 }
