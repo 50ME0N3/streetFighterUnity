@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -94,11 +95,11 @@ public class player : MonoBehaviour
 		{
 			anim.SetBool("Death", true);
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-		}
+            UnityEngine.SceneManagement.SceneManager.LoadScene("EcranWin");
+        }
 	}
 
 	public void Pause()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
