@@ -1,3 +1,8 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ */
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

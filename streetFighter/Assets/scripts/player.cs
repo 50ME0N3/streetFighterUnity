@@ -11,18 +11,18 @@ public class player : MonoBehaviour
 	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
 	public Healthbar healthbar;
-	private SpriteRenderer spriteRenderer;
 	private Animator anim;
 
-	public float speed;
-	public float jumpForce;
 	private int health;
+
+	public float speed = 13;
+	public float jumpForce = 20;
+	public float fastFallSpeed = 1.2f;
 
 	void Start()
 	{
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
-		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
 		if (name == "Player1")
 		{
@@ -42,6 +42,7 @@ public class player : MonoBehaviour
 		float jumpInput = Input.GetAxis("Jump" + name);
 		float direction = Input.GetAxis("Horizontal" + name);
 		float attackInput = Input.GetAxis("Attack" + name);
+		float fastFallInput = Input.GetAxis("FastFall" + name);
 
 		health = healthbar.getHealth();
 
@@ -65,7 +66,13 @@ public class player : MonoBehaviour
 			else
 			{
 				anim.SetBool("Grounded", false);
+				
+				if (fastFallInput > 0 && rgbd.velocity.y <= 0)
+				{
+					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
+				}
 			}
+
 			anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 			if (direction > 0)
@@ -97,9 +104,5 @@ public class player : MonoBehaviour
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 			SceneManager.LoadScene("EcranWin");
 		}
-	}
-
-	public void Pause()
-	{
 	}
 }

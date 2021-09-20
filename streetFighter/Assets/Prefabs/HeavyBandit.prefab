@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4532010589869964}
-  - component: {fileID: 114204724084870448}
   - component: {fileID: 61751993304262736}
+  - component: {fileID: 114204724084870448}
   m_Layer: 0
   m_Name: GroundSensor
   m_TagString: Untagged
@@ -32,18 +32,6 @@ Transform:
   m_Father: {fileID: 4588935210562790}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114204724084870448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287205349689962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5e9e3b8981d65d439afe80df91f67e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &61751993304262736
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70,6 +58,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2655139, y: 0.03}
   m_EdgeRadius: 0
+--- !u!114 &114204724084870448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287205349689962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e9e3b8981d65d439afe80df91f67e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1463392086428580
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,11 +79,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4588935210562790}
-  - component: {fileID: 114999745408315450}
   - component: {fileID: 95734438044755836}
   - component: {fileID: 212652212501150786}
   - component: {fileID: 50959880312528810}
   - component: {fileID: 61346583712760016}
+  - component: {fileID: 114999745408315450}
   m_Layer: 0
   m_Name: HeavyBandit
   m_TagString: Player
@@ -108,22 +108,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114999745408315450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463392086428580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757408666c92a1c49bb96fde4b52a1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundSensor: {fileID: 114204724084870448}
-  healthbar: {fileID: 0}
-  speed: 13
-  jumpForce: 20
 --- !u!95 &95734438044755836
 Animator:
   serializedVersion: 3
@@ -213,7 +197,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61346583712760016
 BoxCollider2D:
@@ -241,6 +225,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43503684, y: 0.7939787}
   m_EdgeRadius: 0
+--- !u!114 &114999745408315450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463392086428580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757408666c92a1c49bb96fde4b52a1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSensor: {fileID: 114204724084870448}
+  healthbar: {fileID: 0}
+  speed: 13
+  jumpForce: 20
+  fastFallSpeed: 1.2
 --- !u!1 &1161560239235111477
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,8 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a9eeed1edb3fb48a77c83ce5e7b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 1000000000
-  y: 2000000000
+  damage: 10
+  knockback: {x: 10, y: 20}
 --- !u!1 &1268754579812098364
 GameObject:
   m_ObjectHideFlags: 0

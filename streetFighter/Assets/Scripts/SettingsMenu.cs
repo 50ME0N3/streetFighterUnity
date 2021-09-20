@@ -1,13 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine.Audio;
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ */
+
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
 	public AudioMixer audioMixer;
-
-
 
 	public void Start()
 	{

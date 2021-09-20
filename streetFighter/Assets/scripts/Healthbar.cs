@@ -1,4 +1,9 @@
-﻿using System;
+﻿/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ */
+
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,5 +33,4 @@ public class Healthbar : MonoBehaviour
 	{
 		return Convert.ToInt32(slider.value);
 	}
-
 }
