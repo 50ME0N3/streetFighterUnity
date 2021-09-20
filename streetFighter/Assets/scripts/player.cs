@@ -4,7 +4,7 @@
  */
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class player : MonoBehaviour
 	private Rigidbody2D rgbd;
 	public Healthbar healthbar;
 	private Animator anim;
+	public GameObject ecranWin;
 
 	private int health;
 
@@ -101,8 +102,19 @@ public class player : MonoBehaviour
 		else
 		{
 			anim.SetBool("Death", true);
+
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-			SceneManager.LoadScene("EcranWin");
+
+			GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+
+			if (name[name.Length - 1] == '1')
+			{
+				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
+			}
+			else
+			{
+				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
+			}
 		}
 	}
 }

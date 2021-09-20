@@ -31,8 +31,7 @@ public class Menu : MonoBehaviour
 
 	public void StartButton()
 	{
-		
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Battle");
+		SceneManager.LoadScene("Battle");
 	}
 
 	public void SettingsButton()
@@ -45,7 +44,6 @@ public class Menu : MonoBehaviour
 		settingsWindow.SetActive(false);
 	}
 	
-
 	public void QuitButton()
 	{
 		Application.Quit();
@@ -67,10 +65,6 @@ public class Menu : MonoBehaviour
 
 	public void BackMainMenu()
 	{
-		//DontDestroyOnLoadScene.instance.RemoveFromDontDestroyOnload();
 		SceneManager.LoadScene("Title Screen");
-		Pause.SetActive(false);
-		Time.timeScale = 1;
-		gameIsPaused = false;
 	}
 }
