@@ -12,16 +12,21 @@ public class player : MonoBehaviour
 	private Rigidbody2D rgbd;
 	public Healthbar healthbar;
 	private Animator anim;
+	private BoxCollider2D coll;
 	public GameObject ecranWin;
+
+	public PhysicMaterial noFriction;
 
 	private int health;
 
 	public float speed = 13;
 	public float jumpForce = 20;
 	public float fastFallSpeed = 1.2f;
+	bool wasMoving = false;
 
 	void Start()
 	{
+		coll = gameObject.GetComponent<BoxCollider2D>();
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
 
@@ -75,15 +80,17 @@ public class player : MonoBehaviour
 			}
 
 			anim.SetFloat("AirSpeed", rgbd.velocity.y);
-
+			
 			if (direction > 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z,transform.rotation.w);
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
-
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+				wasMoving = true;
+				coll.sharedMaterial.friction = 0.4f;
+
 			}
 			else if (direction < 0)
 			{
@@ -92,19 +99,21 @@ public class player : MonoBehaviour
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+				wasMoving = true;
+				coll.sharedMaterial.friction = 0.4f;
 			}
-			else
+			else if(wasMoving)
 			{
 				anim.SetInteger("AnimState", 0);
 				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
+				wasMoving = false;
+				coll.sharedMaterial.friction = 0.0f;
 			}
 		}
 		else
 		{
 			anim.SetBool("Death", true);
-
 			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-
 			GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
 			if (name[name.Length - 1] == '1')
