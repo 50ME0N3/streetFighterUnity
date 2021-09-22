@@ -65,6 +65,9 @@ public class Menu : MonoBehaviour
 
 	public void BackMainMenu()
 	{
-		SceneManager.LoadScene("Title Screen");
+        Pause.SetActive(false);
+        Time.timeScale = 1;
+        gameIsPaused = false;
+        SceneManager.LoadScene("Title Screen");
 	}
 }
