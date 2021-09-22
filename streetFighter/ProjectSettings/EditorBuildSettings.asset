@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title Screen.unity
     guid: eead33b7c6363fd46816a31110a989cd
   - enabled: 1
+    path: Assets/Scenes/Character Selection.unity
+    guid: 96e1a526b4bb16442a68092637431450
+  - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

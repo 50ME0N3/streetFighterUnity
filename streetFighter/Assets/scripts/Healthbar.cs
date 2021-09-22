@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ */
+
+using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
@@ -21,5 +27,10 @@ public class Healthbar : MonoBehaviour
 	{
 		slider.value -= health;
 		fill.color = gradient.Evaluate(slider.normalizedValue);
+	}
+
+	public int getHealth()
+	{
+		return Convert.ToInt32(slider.value);
 	}
 }

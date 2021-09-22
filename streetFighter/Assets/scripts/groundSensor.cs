@@ -1,3 +1,8 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ */
+
 using UnityEngine;
 
 public class groundSensor : MonoBehaviour
@@ -6,7 +11,7 @@ public class groundSensor : MonoBehaviour
 
 	public bool Grounded { get => grounded; set => grounded = value; }
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerStay2D(Collider2D collision)
 	{
 		Grounded = true;
 	}
