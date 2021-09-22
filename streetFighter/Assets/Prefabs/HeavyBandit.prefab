@@ -239,6 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundSensor: {fileID: 114204724084870448}
   healthbar: {fileID: 0}
+  ecranWin: {fileID: 0}
+  noFriction: {fileID: 6200000, guid: f30ac91cb52ca954fa9eb6d1be27ad8c, type: 2}
+  normal: {fileID: 6200000, guid: fc43b846cdd338e40b90717a334964e2, type: 2}
   speed: 13
   jumpForce: 20
   fastFallSpeed: 1.2

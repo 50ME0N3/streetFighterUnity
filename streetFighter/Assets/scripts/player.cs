@@ -15,7 +15,8 @@ public class player : MonoBehaviour
 	private BoxCollider2D coll;
 	public GameObject ecranWin;
 
-	public PhysicMaterial noFriction;
+	public PhysicsMaterial2D noFriction;
+	public PhysicsMaterial2D normal;
 
 	private int health;
 
@@ -89,7 +90,7 @@ public class player : MonoBehaviour
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 				wasMoving = true;
-				coll.sharedMaterial.friction = 0.4f;
+				coll.sharedMaterial = noFriction;
 
 			}
 			else if (direction < 0)
@@ -100,14 +101,14 @@ public class player : MonoBehaviour
 				anim.SetInteger("AnimState", 2);
 				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
 				wasMoving = true;
-				coll.sharedMaterial.friction = 0.4f;
+				coll.sharedMaterial = noFriction;
 			}
 			else if(wasMoving)
 			{
 				anim.SetInteger("AnimState", 0);
 				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 				wasMoving = false;
-				coll.sharedMaterial.friction = 0.0f;
+				coll.sharedMaterial = normal;
 			}
 		}
 		else
