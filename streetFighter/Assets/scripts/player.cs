@@ -8,17 +8,17 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
-	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
-	public Healthbar healthbar;
 	private Animator anim;
+	public groundSensor groundSensor;
+	public Healthbar healthbar;
 	public GameObject ecranWin;
 
 	private int health;
 
-	public float speed = 13;
-	public float jumpForce = 20;
-	public float fastFallSpeed = 1.2f;
+	private float speed = 13;
+	private float jumpForce = 20;
+	private float fastFallSpeed = 1.2f;
 
 	void Start()
 	{

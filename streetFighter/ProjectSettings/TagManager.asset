@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SliderP1
   - SliderP2
+  - Character
   layers:
   - Default
   - TransparentFX

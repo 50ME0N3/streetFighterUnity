@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour
 
 	public void StartButton()
 	{
-		SceneManager.LoadScene("Battle");
+		SceneManager.LoadScene("Character Selection");
 	}
 
 	public void SettingsButton()
