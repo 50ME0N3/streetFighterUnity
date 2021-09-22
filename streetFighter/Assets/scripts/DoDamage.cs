@@ -16,17 +16,15 @@ public class DoDamage : MonoBehaviour
         if (collision.tag == "Player")
         {
             Transform player = collision.gameObject.transform;
-            if (this.gameObject.transform.position.y > player.position.y)
+            if (gameObject.transform.position.y > player.position.y)
             {
                 collision.GetComponent<player>().healthbar.takeDamage(damage);
                 collision.attachedRigidbody.velocity = knockbackLeft;
-                Debug.Log("left");
             }
             else
             {
                 collision.GetComponent<player>().healthbar.takeDamage(damage);
                 collision.attachedRigidbody.velocity = knockbackRight;
-                Debug.Log("Right");
             }
         }
     }

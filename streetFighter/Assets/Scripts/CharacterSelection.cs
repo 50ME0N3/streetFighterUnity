@@ -27,8 +27,7 @@ public class CharacterSelection : MonoBehaviour
 		{
 			selection.CheckInputs();
 			selection.Move(characters.Length - 1);
-			selection.GetSelect();
-
+			selection.Select();
 			Selection.BlendColors();
 		}
 
@@ -52,7 +51,7 @@ class Selection
 
 	byte _number;
 	byte _characterIndex;
-	bool _pressedLeft = false, _pressedRight = false, _pressedSelect = false;
+	public bool _pressedLeft = false, _pressedRight = false, _pressedSelect = false;
 	bool _selected = false;
 	float _direction;
 	float _select;
@@ -95,70 +94,78 @@ class Selection
 
 	public void Move(int nbCharacters)
 	{
-		if (_direction > 0 && CharacterIndex < nbCharacters)
+		if (!_selected)
 		{
-			_pressedLeft = false;
-			_pressedRight = true;
-		}
-		else if (_direction < 0 && CharacterIndex > 0)
-		{
-			_pressedLeft = true;
-			_pressedRight = false;
-		}
-		else if (_direction == 0)
-		{
-			if (_pressedLeft)
+			if (_direction != 0)
 			{
-				CharacterIndex--;
-				_pressedLeft = false;
+				if (!_pressedLeft && !_pressedRight)
+				{
+					if (_direction > 0 && CharacterIndex < nbCharacters)
+					{
+						_pressedLeft = false;
+						_pressedRight = true;
+
+						CharacterIndex++;
+					}
+					else if (_direction < 0 && CharacterIndex > 0)
+					{
+						_pressedLeft = true;
+						_pressedRight = false;
+
+						CharacterIndex--;
+					}
+				}
 			}
-			else if (_pressedRight)
+			else
 			{
-				CharacterIndex++;
+				_pressedLeft = false;
 				_pressedRight = false;
 			}
 		}
 	}
 
-	public void GetSelect()
+	public void Select()
 	{
 		if (_select > 0)
 		{
-			_pressedSelect = true;
-		}
-		else if (_pressedSelect)
-		{
-			_pressedSelect = false;
-
-			if (Color.a == 128)
+			if (!_pressedSelect)
 			{
-				_color.a = 255;
-				_selected = true;
+				_pressedSelect = true;
 
-				bool allSelected = true;
-
-				foreach (Selection selection in Selections)
+				if (Color.a == 128)
 				{
-					if (!selection._selected)
+					_color.a = 255;
+					_selected = true;
+
+					bool allSelected = true;
+
+					foreach (Selection selection in Selections)
 					{
-						allSelected = false;
+						if (!selection._selected)
+						{
+							allSelected = false;
+						}
+					}
+
+					if (allSelected)
+					{
+						Countdown.SetBool("Interrupt", false);
+						Countdown.SetTrigger("Selected");
 					}
 				}
-
-				if (allSelected)
+				else
 				{
-					Countdown.SetBool("Interrupt", false);
-					Countdown.SetTrigger("Selected");
+					_color.a = 128;
+					_selected = false;
+
+					Countdown.ResetTrigger("Selected");
+					Countdown.SetBool("Interrupt", true);
 				}
 			}
-			else
-			{
-				_color.a = 128;
-				_selected = false;
-
-				Countdown.ResetTrigger("Selected");
-				Countdown.SetBool("Interrupt", true);
-			}
+		}
+		else
+		{
+			_pressedSelect = false;
 		}
 	}
 }
