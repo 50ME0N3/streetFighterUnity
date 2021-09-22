@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
-	public groundSensor groundSensor;
 	private Rigidbody2D rgbd;
-	public Healthbar healthbar;
 	private Animator anim;
+	public groundSensor groundSensor;
+	public Healthbar healthbar;
 	private BoxCollider2D coll;
 	public GameObject ecranWin;
 
