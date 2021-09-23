@@ -9,8 +9,7 @@ public class DoDamage : MonoBehaviour
 {
 	byte damage = 10;
 
-	Vector2 knockbackLeft = new Vector2(10, 20);
-	Vector2 knockbackRight = new Vector2(-10, 20);
+	Vector2 knockback = new Vector2(10, 20);
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -18,17 +17,15 @@ public class DoDamage : MonoBehaviour
 		{
 			Transform player = collision.gameObject.transform;
 
-			if (gameObject.transform.position.y > player.position.y)
+			if (gameObject.transform.position.x < player.position.x)
 			{
 				collision.GetComponent<player>().healthbar.takeDamage(damage);
-				//collision.attachedRigidbody.velocity = knockbackLeft;
-				collision.GetComponent<player>().knockback = knockbackLeft;
+				collision.GetComponent<player>().knockback = knockback;
 			}
 			else
 			{
 				collision.GetComponent<player>().healthbar.takeDamage(damage);
-				//collision.attachedRigidbody.velocity = knockbackRight;
-				collision.GetComponent<player>().knockback = knockbackRight;
+				collision.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
 			}
 		}
 	}
