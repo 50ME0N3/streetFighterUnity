@@ -6,12 +6,16 @@ public class CharacterSelection : MonoBehaviour
 {
 	GameObject[] characters;
 
+	Color32 defaultColor;
+
 	void Start()
 	{
 		characters = GameObject.FindGameObjectsWithTag("Character");
 
-		new Selection(1, new Color32(255, 64, 64, 128)); // Red
-		new Selection(2, new Color32(64, 64, 255, 128)); // Blue
+		defaultColor = characters[0].GetComponent<Outline>().effectColor;
+
+		new Selection(1, new Color32(255, 64, 64, Selection.GetAlpha(SelectionState.NotSelected))); // Red
+		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Blue
 
 		Selection.Countdown = gameObject.GetComponent<Animator>();
 	}
@@ -20,26 +24,25 @@ public class CharacterSelection : MonoBehaviour
 	{
 		foreach (GameObject character in characters)
 		{
-			character.GetComponent<Image>().color = Color.white;
+			character.GetComponent<Outline>().effectColor = defaultColor;
 		}
 
 		foreach (Selection selection in Selection.Selections)
 		{
 			selection.CheckInputs();
 			selection.Move(characters.Length - 1);
-			selection.GetSelect();
-
+			selection.Select();
 			Selection.BlendColors();
 		}
 
 		if (Selection.Selections[0].CharacterIndex == Selection.Selections[1].CharacterIndex)
 		{
-			characters[Selection.Selections[0].CharacterIndex].GetComponent<Image>().color = Selection.BlendedColor;
+			characters[Selection.Selections[0].CharacterIndex].GetComponent<Outline>().effectColor = Selection.BlendedColor;
 		}
 		else
 		{
-			characters[Selection.Selections[0].CharacterIndex].GetComponent<Image>().color = Selection.Selections[0].Color;
-			characters[Selection.Selections[1].CharacterIndex].GetComponent<Image>().color = Selection.Selections[1].Color;
+			characters[Selection.Selections[0].CharacterIndex].GetComponent<Outline>().effectColor = Selection.Selections[0].Color;
+			characters[Selection.Selections[1].CharacterIndex].GetComponent<Outline>().effectColor = Selection.Selections[1].Color;
 		}
 	}
 }
@@ -47,12 +50,12 @@ public class CharacterSelection : MonoBehaviour
 class Selection
 {
 	public static List<Selection> Selections = new List<Selection>();
-	public static Color32 BlendedColor = new Color32(160, 64, 160, 128); // Purple
+	public static Color32 BlendedColor = new Color32(160, 64, 160, GetAlpha(SelectionState.NotSelected)); // Purple
 	public static Animator Countdown;
 
 	byte _number;
 	byte _characterIndex;
-	bool _pressedLeft = false, _pressedRight = false, _pressedSelect = false;
+	public bool _pressedLeft = false, _pressedRight = false, _pressedSelect = false;
 	bool _selected = false;
 	float _direction;
 	float _select;
@@ -71,19 +74,24 @@ class Selection
 		Selections.Add(this);
 	}
 
+	public static byte GetAlpha(SelectionState state)
+	{
+		return (byte)(255 * ((float)state / 100));
+	}
+
 	public static void BlendColors()
 	{
-		if (Selections[0].Color.a == 255 && Selections[1].Color.a == 255)
+		if (Selections[0].Color.a == GetAlpha(SelectionState.Selected) && Selections[1].Color.a == GetAlpha(SelectionState.Selected))
 		{
-			BlendedColor.a = 255;
+			BlendedColor.a = GetAlpha(SelectionState.Selected);
 		}
-		else if (Selections[0].Color.a == 128 && Selections[1].Color.a == 128)
+		else if (Selections[0].Color.a == GetAlpha(SelectionState.NotSelected) && Selections[1].Color.a == GetAlpha(SelectionState.NotSelected))
 		{
-			BlendedColor.a = 128;
+			BlendedColor.a = GetAlpha(SelectionState.NotSelected);
 		}
 		else
 		{
-			BlendedColor.a = 192;
+			BlendedColor.a = GetAlpha(SelectionState.HalfSelected);
 		}
 	}
 
@@ -95,70 +103,85 @@ class Selection
 
 	public void Move(int nbCharacters)
 	{
-		if (_direction > 0 && CharacterIndex < nbCharacters)
+		if (!_selected)
 		{
-			_pressedLeft = false;
-			_pressedRight = true;
-		}
-		else if (_direction < 0 && CharacterIndex > 0)
-		{
-			_pressedLeft = true;
-			_pressedRight = false;
-		}
-		else if (_direction == 0)
-		{
-			if (_pressedLeft)
+			if (_direction != 0)
 			{
-				CharacterIndex--;
-				_pressedLeft = false;
+				if (!_pressedLeft && !_pressedRight)
+				{
+					if (_direction > 0 && CharacterIndex < nbCharacters)
+					{
+						_pressedLeft = false;
+						_pressedRight = true;
+
+						CharacterIndex++;
+					}
+					else if (_direction < 0 && CharacterIndex > 0)
+					{
+						_pressedLeft = true;
+						_pressedRight = false;
+
+						CharacterIndex--;
+					}
+				}
 			}
-			else if (_pressedRight)
+			else
 			{
-				CharacterIndex++;
+				_pressedLeft = false;
 				_pressedRight = false;
 			}
 		}
 	}
 
-	public void GetSelect()
+	public void Select()
 	{
 		if (_select > 0)
 		{
-			_pressedSelect = true;
-		}
-		else if (_pressedSelect)
-		{
-			_pressedSelect = false;
-
-			if (Color.a == 128)
+			if (!_pressedSelect)
 			{
-				_color.a = 255;
-				_selected = true;
+				_pressedSelect = true;
 
-				bool allSelected = true;
-
-				foreach (Selection selection in Selections)
+				if (Color.a == GetAlpha(SelectionState.NotSelected))
 				{
-					if (!selection._selected)
+					_color.a = GetAlpha(SelectionState.Selected);
+					_selected = true;
+
+					bool allSelected = true;
+
+					foreach (Selection selection in Selections)
 					{
-						allSelected = false;
+						if (!selection._selected)
+						{
+							allSelected = false;
+						}
+					}
+
+					if (allSelected)
+					{
+						Countdown.SetBool("Interrupt", false);
+						Countdown.SetTrigger("Selected");
 					}
 				}
-
-				if (allSelected)
+				else
 				{
-					Countdown.SetBool("Interrupt", false);
-					Countdown.SetTrigger("Selected");
+					_color.a = GetAlpha(SelectionState.NotSelected);
+					_selected = false;
+
+					Countdown.ResetTrigger("Selected");
+					Countdown.SetBool("Interrupt", true);
 				}
 			}
-			else
-			{
-				_color.a = 128;
-				_selected = false;
-
-				Countdown.ResetTrigger("Selected");
-				Countdown.SetBool("Interrupt", true);
-			}
+		}
+		else
+		{
+			_pressedSelect = false;
 		}
 	}
+}
+
+public enum SelectionState : byte
+{
+	NotSelected = 40,
+	HalfSelected = 70,
+	Selected = 100
 }

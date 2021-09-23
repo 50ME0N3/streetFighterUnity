@@ -1,10 +1,14 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -12,22 +16,24 @@ public class player : MonoBehaviour
 	private Animator anim;
 	public groundSensor groundSensor;
 	public Healthbar healthbar;
-	private BoxCollider2D coll;
 	public GameObject ecranWin;
-
-	public PhysicsMaterial2D noFriction;
-	public PhysicsMaterial2D normal;
 
 	private int health;
 
-	public float speed = 13;
+	float maxSpeed = 15;
+
+	float speed = 0.75f;
 	public float jumpForce = 20;
-	public float fastFallSpeed = 1.2f;
+	public float fastFallSpeed = 1.05f;
 	bool wasMoving = false;
+	bool dead = false;
+
+	bool cheating = false;
+
+	public Vector2 knockback = Vector2.zero;
 
 	void Start()
 	{
-		coll = gameObject.GetComponent<BoxCollider2D>();
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
 
@@ -51,6 +57,18 @@ public class player : MonoBehaviour
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
 
+		float cheat = Input.GetAxis("Cheat");
+
+		if (cheat == 1)
+		{
+			cheating = !cheating;
+		}
+
+		if (cheating)
+		{
+			healthbar.takeDamage(-1);
+		}
+
 		health = healthbar.getHealth();
 
 		if (health > 0)
@@ -73,7 +91,7 @@ public class player : MonoBehaviour
 			else
 			{
 				anim.SetBool("Grounded", false);
-				
+
 				if (fastFallInput > 0 && rgbd.velocity.y <= 0)
 				{
 					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
@@ -81,17 +99,20 @@ public class player : MonoBehaviour
 			}
 
 			anim.SetFloat("AirSpeed", rgbd.velocity.y);
-			
+
 			if (direction > 0)
 			{
-				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z,transform.rotation.w);
+				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
-				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
-				wasMoving = true;
-				coll.sharedMaterial = noFriction;
 
+				if (rgbd.velocity.x < maxSpeed)
+				{
+					rgbd.velocity += new Vector2(direction * speed, 0);
+				}
+
+				wasMoving = true;
 			}
 			else if (direction < 0)
 			{
@@ -99,32 +120,56 @@ public class player : MonoBehaviour
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
-				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+
+				if (rgbd.velocity.x > -maxSpeed)
+				{
+					rgbd.velocity += new Vector2(direction * speed, 0);
+				}
+
 				wasMoving = true;
-				coll.sharedMaterial = noFriction;
 			}
-			else if(wasMoving)
+			else if (wasMoving)
 			{
 				anim.SetInteger("AnimState", 0);
-				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 				wasMoving = false;
-				coll.sharedMaterial = normal;
+			}
+
+			if (knockback != Vector2.zero)
+			{
+				rgbd.velocity = knockback;
+				knockback = Vector2.zero;
 			}
 		}
 		else
 		{
-			anim.SetBool("Death", true);
-			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-			GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+			if (!dead)
+			{
+				dead = true;
+				anim.SetTrigger("Death");
+				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
-			if (name[name.Length - 1] == '1')
-			{
-				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
-			}
-			else
-			{
-				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
-			}
+                
+
+                if (name[name.Length - 1] == '1')
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
+				}
+				else
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
+				}
+
+                StartCoroutine(goMainMenu());
+                IEnumerator goMainMenu()
+                {
+                    yield return new WaitForSeconds(10.0f);
+                    SceneManager.LoadScene("Title Screen");
+                    
+                }
+
+                
+            }
 		}
 	}
 }

@@ -1,10 +1,12 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -61,13 +63,14 @@ public class Menu : MonoBehaviour
 		Pause.SetActive(true);
 		Time.timeScale = 0;
 		gameIsPaused = true;
+		GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 	}
 
 	public void BackMainMenu()
 	{
-        Pause.SetActive(false);
-        Time.timeScale = 1;
-        gameIsPaused = false;
-        SceneManager.LoadScene("Title Screen");
+		Pause.SetActive(false);
+		Time.timeScale = 1;
+		gameIsPaused = false;
+		SceneManager.LoadScene("Title Screen");
 	}
 }
