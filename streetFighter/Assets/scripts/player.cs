@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class player : MonoBehaviour
@@ -24,6 +25,7 @@ public class player : MonoBehaviour
 	public float jumpForce = 20;
 	public float fastFallSpeed = 1.2f;
 	bool wasMoving = false;
+	bool dead = false;
 
 	void Start()
 	{
@@ -73,7 +75,7 @@ public class player : MonoBehaviour
 			else
 			{
 				anim.SetBool("Grounded", false);
-				
+
 				if (fastFallInput > 0 && rgbd.velocity.y <= 0)
 				{
 					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
@@ -81,10 +83,10 @@ public class player : MonoBehaviour
 			}
 
 			anim.SetFloat("AirSpeed", rgbd.velocity.y);
-			
+
 			if (direction > 0)
 			{
-				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z,transform.rotation.w);
+				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
@@ -103,7 +105,7 @@ public class player : MonoBehaviour
 				wasMoving = true;
 				coll.sharedMaterial = noFriction;
 			}
-			else if(wasMoving)
+			else if (wasMoving)
 			{
 				anim.SetInteger("AnimState", 0);
 				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
@@ -113,17 +115,21 @@ public class player : MonoBehaviour
 		}
 		else
 		{
-			anim.SetBool("Death", true);
-			rgbd.velocity = new Vector2(0, rgbd.velocity.y);
-			GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+			if (!dead)
+			{
+				dead = true;
+				anim.SetTrigger("Death");
+				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
-			if (name[name.Length - 1] == '1')
-			{
-				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
-			}
-			else
-			{
-				GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
+				if (name[name.Length - 1] == '1')
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
+				}
+				else
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
+				}
 			}
 		}
 	}
