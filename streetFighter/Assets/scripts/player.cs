@@ -13,23 +13,24 @@ public class player : MonoBehaviour
 	private Animator anim;
 	public groundSensor groundSensor;
 	public Healthbar healthbar;
-	private BoxCollider2D coll;
 	public GameObject ecranWin;
-
-	public PhysicsMaterial2D noFriction;
-	public PhysicsMaterial2D normal;
 
 	private int health;
 
-	public float speed = 13;
+	float maxSpeed = 15;
+
+	float speed = 0.75f;
 	public float jumpForce = 20;
-	public float fastFallSpeed = 1.2f;
+	public float fastFallSpeed = 1.05f;
 	bool wasMoving = false;
 	bool dead = false;
 
+	bool cheating = false;
+
+	public Vector2 knockback = Vector2.zero;
+
 	void Start()
 	{
-		coll = gameObject.GetComponent<BoxCollider2D>();
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
 
@@ -52,6 +53,18 @@ public class player : MonoBehaviour
 		float direction = Input.GetAxis("Horizontal" + name);
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
+
+		float cheat = Input.GetAxis("Cheat");
+
+		if (cheat == 1)
+		{
+			cheating = !cheating;
+		}
+
+		if (cheating)
+		{
+			healthbar.takeDamage(-1);
+		}
 
 		health = healthbar.getHealth();
 
@@ -90,10 +103,13 @@ public class player : MonoBehaviour
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
-				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
-				wasMoving = true;
-				coll.sharedMaterial = noFriction;
 
+				if (rgbd.velocity.x < maxSpeed)
+				{
+					rgbd.velocity += new Vector2(direction * speed, 0);
+				}
+
+				wasMoving = true;
 			}
 			else if (direction < 0)
 			{
@@ -101,16 +117,24 @@ public class player : MonoBehaviour
 				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
 				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
-				rgbd.velocity = new Vector2(direction * speed, rgbd.velocity.y);
+
+				if (rgbd.velocity.x > -maxSpeed)
+				{
+					rgbd.velocity += new Vector2(direction * speed, 0);
+				}
+
 				wasMoving = true;
-				coll.sharedMaterial = noFriction;
 			}
 			else if (wasMoving)
 			{
 				anim.SetInteger("AnimState", 0);
-				rgbd.velocity = new Vector2(0, rgbd.velocity.y);
 				wasMoving = false;
-				coll.sharedMaterial = normal;
+			}
+
+			if (knockback != Vector2.zero)
+			{
+				rgbd.velocity = knockback;
+				knockback = Vector2.zero;
 			}
 		}
 		else

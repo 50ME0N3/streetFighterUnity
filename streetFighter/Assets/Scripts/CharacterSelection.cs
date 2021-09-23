@@ -6,12 +6,16 @@ public class CharacterSelection : MonoBehaviour
 {
 	GameObject[] characters;
 
+	Color32 defaultColor;
+
 	void Start()
 	{
 		characters = GameObject.FindGameObjectsWithTag("Character");
 
-		new Selection(1, new Color32(255, 64, 64, 128)); // Red
-		new Selection(2, new Color32(64, 64, 255, 128)); // Blue
+		defaultColor = characters[0].GetComponent<Outline>().effectColor;
+
+		new Selection(1, new Color32(255, 64, 64, Selection.GetAlpha(SelectionState.NotSelected))); // Red
+		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Blue
 
 		Selection.Countdown = gameObject.GetComponent<Animator>();
 	}
@@ -20,7 +24,7 @@ public class CharacterSelection : MonoBehaviour
 	{
 		foreach (GameObject character in characters)
 		{
-			character.GetComponent<Image>().color = Color.white;
+			character.GetComponent<Outline>().effectColor = defaultColor;
 		}
 
 		foreach (Selection selection in Selection.Selections)
@@ -33,12 +37,12 @@ public class CharacterSelection : MonoBehaviour
 
 		if (Selection.Selections[0].CharacterIndex == Selection.Selections[1].CharacterIndex)
 		{
-			characters[Selection.Selections[0].CharacterIndex].GetComponent<Image>().color = Selection.BlendedColor;
+			characters[Selection.Selections[0].CharacterIndex].GetComponent<Outline>().effectColor = Selection.BlendedColor;
 		}
 		else
 		{
-			characters[Selection.Selections[0].CharacterIndex].GetComponent<Image>().color = Selection.Selections[0].Color;
-			characters[Selection.Selections[1].CharacterIndex].GetComponent<Image>().color = Selection.Selections[1].Color;
+			characters[Selection.Selections[0].CharacterIndex].GetComponent<Outline>().effectColor = Selection.Selections[0].Color;
+			characters[Selection.Selections[1].CharacterIndex].GetComponent<Outline>().effectColor = Selection.Selections[1].Color;
 		}
 	}
 }
@@ -46,7 +50,7 @@ public class CharacterSelection : MonoBehaviour
 class Selection
 {
 	public static List<Selection> Selections = new List<Selection>();
-	public static Color32 BlendedColor = new Color32(160, 64, 160, 128); // Purple
+	public static Color32 BlendedColor = new Color32(160, 64, 160, GetAlpha(SelectionState.NotSelected)); // Purple
 	public static Animator Countdown;
 
 	byte _number;
@@ -70,19 +74,24 @@ class Selection
 		Selections.Add(this);
 	}
 
+	public static byte GetAlpha(SelectionState state)
+	{
+		return (byte)(255 * ((float)state / 100));
+	}
+
 	public static void BlendColors()
 	{
-		if (Selections[0].Color.a == 255 && Selections[1].Color.a == 255)
+		if (Selections[0].Color.a == GetAlpha(SelectionState.Selected) && Selections[1].Color.a == GetAlpha(SelectionState.Selected))
 		{
-			BlendedColor.a = 255;
+			BlendedColor.a = GetAlpha(SelectionState.Selected);
 		}
-		else if (Selections[0].Color.a == 128 && Selections[1].Color.a == 128)
+		else if (Selections[0].Color.a == GetAlpha(SelectionState.NotSelected) && Selections[1].Color.a == GetAlpha(SelectionState.NotSelected))
 		{
-			BlendedColor.a = 128;
+			BlendedColor.a = GetAlpha(SelectionState.NotSelected);
 		}
 		else
 		{
-			BlendedColor.a = 192;
+			BlendedColor.a = GetAlpha(SelectionState.HalfSelected);
 		}
 	}
 
@@ -132,9 +141,9 @@ class Selection
 			{
 				_pressedSelect = true;
 
-				if (Color.a == 128)
+				if (Color.a == GetAlpha(SelectionState.NotSelected))
 				{
-					_color.a = 255;
+					_color.a = GetAlpha(SelectionState.Selected);
 					_selected = true;
 
 					bool allSelected = true;
@@ -155,7 +164,7 @@ class Selection
 				}
 				else
 				{
-					_color.a = 128;
+					_color.a = GetAlpha(SelectionState.NotSelected);
 					_selected = false;
 
 					Countdown.ResetTrigger("Selected");
@@ -168,4 +177,11 @@ class Selection
 			_pressedSelect = false;
 		}
 	}
+}
+
+public enum SelectionState : byte
+{
+	NotSelected = 40,
+	HalfSelected = 70,
+	Selected = 100
 }
