@@ -21,7 +21,7 @@ public class PickUpObject : MonoBehaviour
             // attend 0.3 seconde pour detruire la pièce
             IEnumerator CoinDestroy()
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.7f);
                 Destroy(gameObject);
             }
             
