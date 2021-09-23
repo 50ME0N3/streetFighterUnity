@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class PickUpObject : MonoBehaviour
 {
     public GameObject pickupEffect;
-
+    Animator myAnimation;
     public float multiplier = 2f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Quand le joueur touche la pièce 
         if (collision.CompareTag("Player"))
         {
-            // Remove power up object 
-            Destroy(gameObject);
             PickUp(collision);
+
+            StartCoroutine(CoinDestroy());
+            // Remove power up object 
+            // attend 0.3 seconde pour detruire la pièce
+            IEnumerator CoinDestroy()
+            {
+                yield return new WaitForSeconds(0.5f);
+                Destroy(gameObject);
+            }
+            
+            
         }
     }
 
     void PickUp(Collider2D Player)
     {
+
         // Spawn a cool effect 
-        Instantiate(pickupEffect, transform.position, transform.rotation);
+        
+        myAnimation.SetBool("estToucher", true);
 
         // Apply effect to the player
 
@@ -31,12 +44,17 @@ public class PickUpObject : MonoBehaviour
     
         
     }
-    
+    private void Start()
+    {
+        
+        myAnimation = GetComponent<Animator>();
+    }
 
 
-   
 
-    
+
+
+
 }
 
 
