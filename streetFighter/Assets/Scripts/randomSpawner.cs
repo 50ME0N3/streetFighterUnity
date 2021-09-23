@@ -10,14 +10,6 @@ public class randomSpawner : MonoBehaviour
     private void Update()
     {
         
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                SpawnObjectAtRandom();
-                Debug.Log("+1 pieces");
-
-
-            }
-        
     }
     private void Start()
     {
@@ -30,21 +22,28 @@ public class randomSpawner : MonoBehaviour
         // Quand le joueur touche la pièce 
         if (collision.CompareTag("Player"))
         {
-           
-            // Remove power up object 
-            // attend 0.3 seconde pour detruire la pièce
             
             SpawnObjectAtRandom();
-            
-           
         }
     }
 
     void SpawnObjectAtRandom()
     {
-         Vector3 randomPos = Random.insideUnitCircle * Radius;
-         
-         Instantiate(ItemPrefab, randomPos, Quaternion.identity);
+        //  Vector3 randomPos = Random.insideUnitCircle * Radius;
+        StartCoroutine(goMainMenu());
+        IEnumerator goMainMenu()
+        {
+            yield return new WaitForSeconds(3.0f);
+           // ItemPrefab.SetActive(true);
+           
+            
+        }
+
+            Vector3 randomPos = new Vector3(Random.Range(-10f, +10f), Random.Range(-2f, +7f));
+            Debug.Log("x =" + randomPos.x + "y =" + randomPos.y + "z =" + randomPos.z);
+
+            Instantiate(ItemPrefab, randomPos, Quaternion.identity);
+
     }
 
     private void OnDrawGizmos()

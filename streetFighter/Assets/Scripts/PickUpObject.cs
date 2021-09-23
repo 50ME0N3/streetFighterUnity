@@ -8,7 +8,7 @@ public class PickUpObject : MonoBehaviour
 {
     
     Animator myAnimation;
-    public float multiplier = 2f;
+    public float multiplier = 3f;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,11 +24,13 @@ public class PickUpObject : MonoBehaviour
             IEnumerator CoinDestroy()
             {
                 yield return new WaitForSeconds(0.7f);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
             
         }
     }
+
+    
 
     void PickUp(Collider2D Player)
     {
@@ -37,20 +39,23 @@ public class PickUpObject : MonoBehaviour
         
         myAnimation.SetBool("estToucher", true);
 
+        
+        // Remove power up object 
+        // attend 0.3 seconde pour detruire la pièce
+       
+
         // Apply effect to the player
         // - Grandit
-        Player.transform.localScale *= multiplier;
-
-        
-        
+        //Player.transform.localScale = multiplier;
     }
     private void Start()
     {
         
         myAnimation = GetComponent<Animator>();
     }
-
     
+
+
 
 
 
