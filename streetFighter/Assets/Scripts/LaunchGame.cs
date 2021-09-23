@@ -15,6 +15,7 @@ public class LaunchGame : StateMachineBehaviour
 	{
 		if (!animator.GetBool("Interrupt"))
 		{
+			Selection.Selections = new List<Selection>();
 			SceneManager.LoadScene("Battle");
 		}
 	}

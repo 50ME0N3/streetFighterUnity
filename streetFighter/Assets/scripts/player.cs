@@ -161,12 +161,11 @@ public class player : MonoBehaviour
 				}
 
                 StartCoroutine(goMainMenu());
+
                 IEnumerator goMainMenu()
                 {
                     yield return new WaitForSeconds(10.0f);
                     SceneManager.LoadScene("Title Screen");
-
-                    
                 }
             }
 		}

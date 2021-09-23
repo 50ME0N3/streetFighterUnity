@@ -18,6 +18,8 @@ public class CharacterSelection : MonoBehaviour
 		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Blue
 
 		Selection.Countdown = gameObject.GetComponent<Animator>();
+
+		Debug.Log(name);
 	}
 
 	void Update()
@@ -158,7 +160,7 @@ class Selection
 
 					if (allSelected)
 					{
-						Countdown.SetBool("Interrupt", false);
+						Countdown.ResetTrigger("Interrupt");
 						Countdown.SetTrigger("Selected");
 					}
 				}
@@ -168,7 +170,7 @@ class Selection
 					_selected = false;
 
 					Countdown.ResetTrigger("Selected");
-					Countdown.SetBool("Interrupt", true);
+					Countdown.SetTrigger("Interrupt");
 				}
 			}
 		}
