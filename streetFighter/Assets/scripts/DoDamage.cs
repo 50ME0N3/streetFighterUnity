@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
 using UnityEngine;

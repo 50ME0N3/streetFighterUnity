@@ -6,9 +6,11 @@ using UnityEngine.Animations;
 
 public class PickUpObject : MonoBehaviour
 {
-    public GameObject pickupEffect;
+    
     Animator myAnimation;
     public float multiplier = 2f;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Quand le joueur touche la pièce 
@@ -25,7 +27,6 @@ public class PickUpObject : MonoBehaviour
                 Destroy(gameObject);
             }
             
-            
         }
     }
 
@@ -37,11 +38,10 @@ public class PickUpObject : MonoBehaviour
         myAnimation.SetBool("estToucher", true);
 
         // Apply effect to the player
-
         // - Grandit
         Player.transform.localScale *= multiplier;
+
         
-    
         
     }
     private void Start()
@@ -49,6 +49,8 @@ public class PickUpObject : MonoBehaviour
         
         myAnimation = GetComponent<Animator>();
     }
+
+    
 
 
 

@@ -1,11 +1,14 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -122,7 +125,9 @@ public class player : MonoBehaviour
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
-				if (name[name.Length - 1] == '1')
+                
+
+                if (name[name.Length - 1] == '1')
 				{
 					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
 				}
@@ -130,7 +135,17 @@ public class player : MonoBehaviour
 				{
 					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 1 a gagne";
 				}
-			}
+
+                StartCoroutine(goMainMenu());
+                IEnumerator goMainMenu()
+                {
+                    yield return new WaitForSeconds(10.0f);
+                    SceneManager.LoadScene("Title Screen");
+                    
+                }
+
+                
+            }
 		}
 	}
 }
