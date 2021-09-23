@@ -4,7 +4,9 @@
  */
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -61,6 +63,7 @@ public class Menu : MonoBehaviour
 		Pause.SetActive(true);
 		Time.timeScale = 0;
 		gameIsPaused = true;
+		GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 	}
 
 	public void BackMainMenu()
