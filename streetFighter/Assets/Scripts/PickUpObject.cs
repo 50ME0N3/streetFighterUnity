@@ -9,6 +9,7 @@ public class PickUpObject : MonoBehaviour
     
     Animator myAnimation;
     public float multiplier = 2f;
+    public GameObject gameObject;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,6 +17,7 @@ public class PickUpObject : MonoBehaviour
         // Quand le joueur touche la pi�ce 
         if (collision.CompareTag("Player"))
         {
+            
             PickUp(collision);
 
             StartCoroutine(CoinDestroy());
@@ -24,8 +26,11 @@ public class PickUpObject : MonoBehaviour
             IEnumerator CoinDestroy()
             {
                 yield return new WaitForSeconds(0.7f);
+                
                 gameObject.SetActive(false);
+
             }
+
             
         }
     }
@@ -50,11 +55,18 @@ public class PickUpObject : MonoBehaviour
     }
     private void Start()
     {
-        
         myAnimation = GetComponent<Animator>();
     }
-    
 
+    IEnumerator respawn()
+    {
+        yield return new WaitForSeconds(3);
+        // ItemPrefab.SetActive(true);
+
+
+        gameObject.SetActive(true);
+
+    }
 
 
 

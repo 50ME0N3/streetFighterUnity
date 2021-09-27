@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,41 +9,42 @@ public class randomSpawner : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
     private void Start()
     {
-        
-        
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Quand le joueur touche la pi�ce 
+        // Quand le joueur touche la pièce 
         if (collision.CompareTag("Player"))
         {
-            
+
             SpawnObjectAtRandom();
+
         }
     }
 
     void SpawnObjectAtRandom()
     {
-        //  Vector3 randomPos = Random.insideUnitCircle * Radius;
-        StartCoroutine(goMainMenu());
-        IEnumerator goMainMenu()
+        StartCoroutine(respawn());
+        // Remove power up object 
+        // attend 0.3 seconde pour detruire la pi�ce
+        IEnumerator respawn()
         {
-            yield return new WaitForSeconds(3.0f);
-           // ItemPrefab.SetActive(true);
+            yield return new WaitForSeconds(3f);
+
            
-            
         }
 
-            Vector3 randomPos = new Vector3(Random.Range(-10f, +10f), Random.Range(-2f, +7f));
-            Debug.Log("x =" + randomPos.x + "y =" + randomPos.y + "z =" + randomPos.z);
+        Vector3 randomPos = new Vector3(Random.Range(-10f, +10f), Random.Range(-2f, +7f));
+        Debug.Log("x =" + randomPos.x + "y =" + randomPos.y + "z =" + randomPos.z);
 
-            Instantiate(ItemPrefab, randomPos, Quaternion.identity);
-
+        Instantiate(gameObject, randomPos, Quaternion.identity);
+        ItemPrefab.SetActive(true);
     }
 
     private void OnDrawGizmos()
@@ -52,3 +53,5 @@ public class randomSpawner : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, Radius);
     }
 }
+
+   
