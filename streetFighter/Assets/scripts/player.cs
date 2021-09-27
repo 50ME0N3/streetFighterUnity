@@ -165,8 +165,6 @@ public class player : MonoBehaviour
                 {
                     yield return new WaitForSeconds(10.0f);
                     SceneManager.LoadScene("Title Screen");
-
-                    
                 }
 
                 
