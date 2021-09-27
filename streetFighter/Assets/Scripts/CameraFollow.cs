@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	public float MULTIPLIER = 2.5f;
-	public int MIN = 5;
-	public int MAX = 9;
+	const float MULTIPLIER = 3.5f;
+	const int MIN = 1;
+	const int MAX = 2;
 
 	float zPosition = 0;
 
@@ -31,21 +31,55 @@ public class CameraFollow : MonoBehaviour
 
 		float distance = Vector2.Distance(positionPlayer1, positionPlayer2);
 
-		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
-
-		gameObject.transform.position = new Vector3(center.x, center.y, zPosition);
-
 		if (distance / MULTIPLIER <= MIN)
 		{
-			gameObject.GetComponent<Camera>().orthographicSize = MIN;
+			GetComponent<Camera>().orthographicSize = MIN;
 		}
 		else if (distance / MULTIPLIER >= MAX)
 		{
-			gameObject.GetComponent<Camera>().orthographicSize = MAX;
+			GetComponent<Camera>().orthographicSize = MAX;
 		}
 		else
 		{
-			gameObject.GetComponent<Camera>().orthographicSize = distance / MULTIPLIER;
+			GetComponent<Camera>().orthographicSize = distance / MULTIPLIER;
 		}
+
+		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
+		bool touchedBorder;
+		int antiInfinite = 0;
+
+		do
+		{
+			antiInfinite++;
+			touchedBorder = false;
+
+			foreach (RaycastHit2D hit in Physics2D.BoxCastAll(center, new Vector2(2 * GetComponent<Camera>().orthographicSize * GetComponent<Camera>().aspect, 2 * GetComponent<Camera>().orthographicSize), 0, Vector2.zero))
+			{
+				switch (hit.collider.name)
+				{
+					case "mur gauche":
+						center = new Vector2(center.x + 0.1f, center.y);
+						touchedBorder = true;
+						break;
+					case "mur droite":
+						center = new Vector2(center.x - 0.1f, center.y);
+						touchedBorder = true;
+						break;
+					case "toit":
+						center = new Vector2(center.x, center.y - 0.1f);
+						touchedBorder = true;
+						break;
+				}
+			}
+		}
+		while (touchedBorder && antiInfinite < 100);
+
+		transform.position = new Vector3(center.x, center.y, zPosition);
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireCube(transform.position, new Vector2(2 * GetComponent<Camera>().orthographicSize * GetComponent<Camera>().aspect, 2 * GetComponent<Camera>().orthographicSize));
 	}
 }
