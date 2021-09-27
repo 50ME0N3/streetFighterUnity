@@ -57,11 +57,13 @@ public class player : MonoBehaviour
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
 
-		float cheat = Input.GetAxis("Cheat");
+		bool cheat = Input.GetKeyDown(KeyCode.LeftControl);
 
-		if (cheat == 1)
+		if (cheat)
 		{
 			cheating = !cheating;
+
+			GameObject.Find("Canvas").transform.Find("Cheat").gameObject.SetActive(cheating);
 		}
 
 		if (cheating)
@@ -149,8 +151,6 @@ public class player : MonoBehaviour
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
-                
-
                 if (name[name.Length - 1] == '1')
 				{
 					GameObject.Find("Winner").GetComponent<Text>().text = "Le joueur 2 a gagne";
@@ -161,13 +161,12 @@ public class player : MonoBehaviour
 				}
 
                 StartCoroutine(goMainMenu());
+
                 IEnumerator goMainMenu()
                 {
                     yield return new WaitForSeconds(10.0f);
                     SceneManager.LoadScene("Title Screen");
                 }
-
-                
             }
 		}
 	}
