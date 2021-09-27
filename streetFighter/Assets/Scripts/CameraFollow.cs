@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	const float MULTIPLIER = 3.5f;
-	const int MIN = 1;
-	const int MAX = 2;
+	const float ZOOM = 3;
+	const float MIN = 1;
+	const float MAX = 1.5f;
 
 	float zPosition = 0;
 
@@ -31,17 +31,17 @@ public class CameraFollow : MonoBehaviour
 
 		float distance = Vector2.Distance(positionPlayer1, positionPlayer2);
 
-		if (distance / MULTIPLIER <= MIN)
+		if (distance / ZOOM <= MIN)
 		{
 			GetComponent<Camera>().orthographicSize = MIN;
 		}
-		else if (distance / MULTIPLIER >= MAX)
+		else if (distance / ZOOM >= MAX)
 		{
 			GetComponent<Camera>().orthographicSize = MAX;
 		}
 		else
 		{
-			GetComponent<Camera>().orthographicSize = distance / MULTIPLIER;
+			GetComponent<Camera>().orthographicSize = distance / ZOOM;
 		}
 
 		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
@@ -75,11 +75,5 @@ public class CameraFollow : MonoBehaviour
 		while (touchedBorder && antiInfinite < 100);
 
 		transform.position = new Vector3(center.x, center.y, zPosition);
-	}
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireCube(transform.position, new Vector2(2 * GetComponent<Camera>().orthographicSize * GetComponent<Camera>().aspect, 2 * GetComponent<Camera>().orthographicSize));
 	}
 }
