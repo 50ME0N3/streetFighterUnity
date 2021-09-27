@@ -18,8 +18,6 @@ public class CharacterSelection : MonoBehaviour
 		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Blue
 
 		Selection.Countdown = gameObject.GetComponent<Animator>();
-
-		Debug.Log(name);
 	}
 
 	void Update()

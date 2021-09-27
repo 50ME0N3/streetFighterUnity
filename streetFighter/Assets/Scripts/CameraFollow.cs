@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	const float MULTIPLIER = 2.5f;
-	const int MIN = 5;
-	const int MAX = 9;
+	const float MULTIPLIER = 1;
+	const float MIN = 0.75f;
+	const float MAX = 1.9f;
 
 	float zPosition = 0;
 
