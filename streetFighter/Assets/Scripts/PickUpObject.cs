@@ -9,7 +9,6 @@ public class PickUpObject : MonoBehaviour
     
     Animator myAnimation;
     public float multiplier = 2f;
-    public GameObject gameObject;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +49,8 @@ public class PickUpObject : MonoBehaviour
        
 
         // Apply effect to the player
+        
+
         // - Grandit
         //Player.transform.localScale *= multiplier;
     }
@@ -58,15 +59,7 @@ public class PickUpObject : MonoBehaviour
         myAnimation = GetComponent<Animator>();
     }
 
-    IEnumerator respawn()
-    {
-        yield return new WaitForSeconds(3);
-        // ItemPrefab.SetActive(true);
-
-
-        gameObject.SetActive(true);
-
-    }
+   
 
 
 

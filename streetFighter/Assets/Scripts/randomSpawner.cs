@@ -40,7 +40,7 @@ public class randomSpawner : MonoBehaviour
            
         }
 
-        Vector3 randomPos = new Vector3(Random.Range(-10f, +10f), Random.Range(-2f, +7f));
+        Vector3 randomPos = new Vector3(Random.Range(-3f, 3.52f), Random.Range(-1.44f, -0.782f));
         Debug.Log("x =" + randomPos.x + "y =" + randomPos.y + "z =" + randomPos.z);
 
         Instantiate(gameObject, randomPos, Quaternion.identity);

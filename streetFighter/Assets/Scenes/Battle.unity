@@ -902,9 +902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e04e615aa430994dbae99c43dcdcd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MULTIPLIER: 4.2
-  MIN: 1
-  MAX: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -9671,23 +9668,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.62
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.778
+      value: -1.44
       objectReference: {fileID: 0}
     - target: {fileID: 7517409481459593689, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9721,6 +9718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7517409481459593693, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
+      propertyPath: gameObject
+      value: 
+      objectReference: {fileID: 1676694775}
     - target: {fileID: 7517409481459593693, guid: 983d3e2c7688b984680fbef67a82f2b5, type: 3}
       propertyPath: pickupEffect
       value: 
