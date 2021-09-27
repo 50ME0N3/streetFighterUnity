@@ -20,11 +20,11 @@ public class player : MonoBehaviour
 
 	private int health;
 
-	float maxSpeed = 15;
+	float maxSpeed = 2.5f;
 
 	float speed = 0.15F;
-	public float jumpForce = 10;
-	public float fastFallSpeed = 1.05f;
+	float jumpForce = 9;
+	float fastFallSpeed = 1.2f;
 	bool wasMoving = false;
 	bool dead = false;
 
