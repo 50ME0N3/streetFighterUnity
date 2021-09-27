@@ -1,15 +1,15 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Grï¿½goire, Antoine, Rï¿½my, Gabriel
  */
 
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	const float MULTIPLIER = 1;
-	const float MIN = 0.75f;
-	const float MAX = 1.9f;
+	public float MULTIPLIER = 2.5f;
+	public int MIN = 5;
+	public int MAX = 9;
 
 	float zPosition = 0;
 
