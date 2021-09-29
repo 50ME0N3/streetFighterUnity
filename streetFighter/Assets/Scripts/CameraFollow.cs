@@ -1,15 +1,17 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Gr�goire, Antoine, R�my, Gabriel
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-	const float ZOOM = 3;
-	const float MIN = 1;
-	const float MAX = 1.5f;
+	const float SPEED = 3;
+
+	const float ZOOM = 1;
+	const float MIN = 0.75f;
+	const float MAX = 1.9f;
 
 	float zPosition = 0;
 
@@ -22,10 +24,7 @@ public class CameraFollow : MonoBehaviour
 
 		transformPlayer1 = GameObject.Find("Player1").transform;
 		transformPlayer2 = GameObject.Find("Player2").transform;
-	}
 
-	void Update()
-	{
 		Vector2 positionPlayer1 = transformPlayer1.position;
 		Vector2 positionPlayer2 = transformPlayer2.position;
 
@@ -43,37 +42,30 @@ public class CameraFollow : MonoBehaviour
 		{
 			GetComponent<Camera>().orthographicSize = distance / ZOOM;
 		}
+	}
+
+	void Update()
+	{
+		Vector2 positionPlayer1 = transformPlayer1.position;
+		Vector2 positionPlayer2 = transformPlayer2.position;
 
 		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
-		bool touchedBorder;
-		int antiInfinite = 0;
 
-		do
+		transform.position = Vector3.Lerp(transform.position, new Vector3(center.x, center.y, zPosition), Time.deltaTime * SPEED);
+
+		float distance = Vector2.Distance(positionPlayer1, positionPlayer2);
+
+		if (distance / ZOOM <= MIN)
 		{
-			antiInfinite++;
-			touchedBorder = false;
-
-			foreach (RaycastHit2D hit in Physics2D.BoxCastAll(center, new Vector2(2 * GetComponent<Camera>().orthographicSize * GetComponent<Camera>().aspect, 2 * GetComponent<Camera>().orthographicSize), 0, Vector2.zero))
-			{
-				switch (hit.collider.name)
-				{
-					case "mur gauche":
-						center = new Vector2(center.x + 0.1f, center.y);
-						touchedBorder = true;
-						break;
-					case "mur droite":
-						center = new Vector2(center.x - 0.1f, center.y);
-						touchedBorder = true;
-						break;
-					case "toit":
-						center = new Vector2(center.x, center.y - 0.1f);
-						touchedBorder = true;
-						break;
-				}
-			}
+			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, MIN, Time.deltaTime * SPEED);
 		}
-		while (touchedBorder && antiInfinite < 100);
-
-		transform.position = new Vector3(center.x, center.y, zPosition);
+		else if (distance / ZOOM >= MAX)
+		{
+			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, MAX, Time.deltaTime * SPEED);
+		}
+		else
+		{
+			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, distance / ZOOM, Time.deltaTime * SPEED);
+		}
 	}
 }

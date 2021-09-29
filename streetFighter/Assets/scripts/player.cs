@@ -22,8 +22,8 @@ public class player : MonoBehaviour
 
 	float maxSpeed = 2.5f;
 
-	float speed = 0.15F;
-	float jumpForce = 9;
+	float speed = 0.5F;
+	float jumpForce = 11;
 	float fastFallSpeed = 1.2f;
 	bool wasMoving = false;
 	bool dead = false;
