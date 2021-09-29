@@ -14,6 +14,7 @@ public class CharacterSelection : MonoBehaviour
 
 		defaultColor = characters[0].GetComponent<Outline>().effectColor;
 
+		Selection.Selections = new List<Selection>();
 		new Selection(1, new Color32(255, 64, 64, Selection.GetAlpha(SelectionState.NotSelected))); // Red
 		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Blue
 

@@ -28,8 +28,10 @@ public class player : MonoBehaviour
 	bool wasMoving = false;
 	bool dead = false;
 
+	// Cheats
 	bool invincible = false;
 	public bool suddenDeath = false;
+	bool fly = false;
 
 	public Vector2 knockback = Vector2.zero;
 
@@ -60,8 +62,9 @@ public class player : MonoBehaviour
 
 		bool invincibleKey = Input.GetKeyDown(KeyCode.Alpha1);
 		bool suddenDeathKey = Input.GetKeyDown(KeyCode.Alpha2);
+		bool flyKey = Input.GetKeyDown(KeyCode.Alpha3);
 
-		if (invincibleKey || suddenDeathKey)
+		if (invincibleKey || suddenDeathKey || flyKey)
 		{
 			if (invincibleKey)
 			{
@@ -71,6 +74,11 @@ public class player : MonoBehaviour
 			if (suddenDeathKey)
 			{
 				suddenDeath = !suddenDeath;
+			}
+
+			if (flyKey)
+			{
+				fly = !fly;
 			}
 
 			GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
@@ -84,7 +92,12 @@ public class player : MonoBehaviour
 
 			if (suddenDeath)
 			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Sudden Death";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Sudden Death\r\n";
+			}
+
+			if (fly)
+			{
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Fly";
 			}
 		}
 
@@ -102,7 +115,7 @@ public class player : MonoBehaviour
 				anim.SetBool("Attack", true);
 			}
 
-			if (groundSensor.Grounded && jumpInput > 0)
+			if ((groundSensor.Grounded || fly) && jumpInput > 0)
 			{
 				rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
 				anim.SetBool("Grounded", false);
@@ -110,7 +123,7 @@ public class player : MonoBehaviour
 
 			if (groundSensor.Grounded)
 			{
-				anim.SetBool("Grounded", groundSensor.Grounded);
+				anim.SetBool("Grounded", true);
 			}
 			else
 			{
