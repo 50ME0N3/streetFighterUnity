@@ -574,7 +574,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 2
-  gameObject: {fileID: 0}
 --- !u!4 &333230132
 Transform:
   m_ObjectHideFlags: 0
@@ -640,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 83ae2ffffdd71824b958e7382d36ffab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.092
+      value: -1.095
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 83ae2ffffdd71824b958e7382d36ffab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -903,10 +902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e04e615aa430994dbae99c43dcdcd21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 1
-  ZOOM: 1
-  MIN: 0.75
-  MAX: 1.9
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2945,7 +2940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1265002560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2978,7 +2973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.7490196, g: 0.2509804, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2987,18 +2982,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 6
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Cheat Mode
+  m_Text: 
 --- !u!222 &1265002562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8336,11 +8331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 83ae2ffffdd71824b958e7382d36ffab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.474
+      value: -2.726
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 83ae2ffffdd71824b958e7382d36ffab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.195
+      value: -0.776
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 83ae2ffffdd71824b958e7382d36ffab, type: 3}
       propertyPath: m_LocalPosition.z

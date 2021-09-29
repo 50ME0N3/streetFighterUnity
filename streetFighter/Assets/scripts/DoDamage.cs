@@ -19,12 +19,28 @@ public class DoDamage : MonoBehaviour
 
 			if (gameObject.transform.position.x < player.position.x)
 			{
-				collision.GetComponent<player>().healthbar.takeDamage(damage);
+				if (GetComponentInParent<player>().suddenDeath)
+				{
+					collision.GetComponent<player>().healthbar.takeDamage(100);
+				}
+				else
+				{
+					collision.GetComponent<player>().healthbar.takeDamage(damage);
+				}
+
 				collision.GetComponent<player>().knockback = knockback;
 			}
 			else
 			{
-				collision.GetComponent<player>().healthbar.takeDamage(damage);
+				if (GetComponentInParent<player>().suddenDeath)
+				{
+					collision.GetComponent<player>().healthbar.takeDamage(100);
+				}
+				else
+				{
+					collision.GetComponent<player>().healthbar.takeDamage(damage);
+				}
+
 				collision.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
 			}
 		}

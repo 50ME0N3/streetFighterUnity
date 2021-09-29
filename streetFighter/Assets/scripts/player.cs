@@ -28,7 +28,8 @@ public class player : MonoBehaviour
 	bool wasMoving = false;
 	bool dead = false;
 
-	bool cheating = false;
+	bool invincible = false;
+	public bool suddenDeath = false;
 
 	public Vector2 knockback = Vector2.zero;
 
@@ -57,16 +58,37 @@ public class player : MonoBehaviour
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
 
-		bool cheat = Input.GetKeyDown(KeyCode.LeftControl);
+		bool invincibleKey = Input.GetKeyDown(KeyCode.Alpha1);
+		bool suddenDeathKey = Input.GetKeyDown(KeyCode.Alpha2);
 
-		if (cheat)
+		if (invincibleKey || suddenDeathKey)
 		{
-			cheating = !cheating;
+			if (invincibleKey)
+			{
+				invincible = !invincible;
+			}
 
-			GameObject.Find("Canvas").transform.Find("Cheat").gameObject.SetActive(cheating);
+			if (suddenDeathKey)
+			{
+				suddenDeath = !suddenDeath;
+			}
+
+			GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
+
+			if (invincible)
+			{
+				healthbar.takeDamage(-1);
+
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Invincible\r\n";
+			}
+
+			if (suddenDeath)
+			{
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Sudden Death";
+			}
 		}
 
-		if (cheating)
+		if (invincible)
 		{
 			healthbar.takeDamage(-1);
 		}
