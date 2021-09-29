@@ -9,9 +9,9 @@ public class CameraFollow : MonoBehaviour
 {
 	const float SPEED = 3;
 
-	public float ZOOM = 1;
-	public float MIN = 0.75f;
-	public float MAX = 1.9f;
+	const float ZOOM = 1;
+	const float MIN = 0.75f;
+	const float MAX = 1.9f;
 
 	float zPosition = 0;
 

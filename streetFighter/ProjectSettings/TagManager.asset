@@ -7,6 +7,7 @@ TagManager:
   - SliderP1
   - SliderP2
   - Character
+  - coin
   layers:
   - Default
   - TransparentFX
