@@ -9,7 +9,7 @@ public class DoDamage : MonoBehaviour
 {
 	byte damage = 10;
 
-	Vector2 knockback = new Vector2(10, 20);
+	Vector2 knockback = new Vector2(4, 8);
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
