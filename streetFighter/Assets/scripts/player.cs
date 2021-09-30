@@ -3,12 +3,11 @@
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
@@ -85,7 +84,7 @@ public class player : MonoBehaviour
 
 			if (invincible)
 			{
-				healthbar.takeDamage(-1);
+				healthbar.heal(1);
 
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Invincible\r\n";
 			}
