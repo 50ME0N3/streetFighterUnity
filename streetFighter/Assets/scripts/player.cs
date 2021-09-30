@@ -110,6 +110,7 @@ public class player : MonoBehaviour
 
 		if (health > 0)
 		{
+			Debug.Log(groundSensor.Grounded);
 			if (attackInput > 0)
 			{
 				anim.SetBool("Attack", true);
@@ -140,8 +141,8 @@ public class player : MonoBehaviour
 			if (direction > 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
-				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
+				//gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
+				//gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
 
 				if (rgbd.velocity.x < maxSpeed)
@@ -154,8 +155,8 @@ public class player : MonoBehaviour
 			else if (direction < 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
-				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
+				//gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
+				//gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
 
 				if (rgbd.velocity.x > -maxSpeed)
