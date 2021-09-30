@@ -3,17 +3,20 @@
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
-using System.Collections;
+#region using
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+#endregion
+
 public class player : MonoBehaviour
 {
-	private Rigidbody2D rgbd;
+    private Rigidbody2D rgbd;
 	private Animator anim;
-	public groundSensor groundSensor;
+
+    public groundSensor groundSensor;
 	public Healthbar healthbar;
 	public GameObject ecranWin;
 
@@ -51,7 +54,9 @@ public class player : MonoBehaviour
 
 		healthbar.SetMaxHealth(100);
 	}
-
+	/// <summary>
+    /// Tout
+    /// </summary>
 	void Update()
 	{
 		float jumpInput = Input.GetAxis("Jump" + name);
@@ -59,13 +64,13 @@ public class player : MonoBehaviour
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
 
-		bool invincibleKey = Input.GetKeyDown(KeyCode.Alpha1);
+		bool invincibleKeyDown = Input.GetKeyDown(KeyCode.Alpha1);
 		bool suddenDeathKey = Input.GetKeyDown(KeyCode.Alpha2);
 		bool flyKey = Input.GetKeyDown(KeyCode.Alpha3);
 
-		if (invincibleKey || suddenDeathKey || flyKey)
+		if (invincibleKeyDown || suddenDeathKey || flyKey)
 		{
-			if (invincibleKey)
+			if (invincibleKeyDown)
 			{
 				invincible = !invincible;
 			}
