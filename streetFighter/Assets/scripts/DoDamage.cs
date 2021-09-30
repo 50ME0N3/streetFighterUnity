@@ -8,6 +8,8 @@ using UnityEngine;
 public class DoDamage : MonoBehaviour
 {
 	byte damage = 10;
+	public byte kbx = 10;
+	public byte kby = 20;
 
 	Vector2 knockback = new Vector2(4, 8);
 

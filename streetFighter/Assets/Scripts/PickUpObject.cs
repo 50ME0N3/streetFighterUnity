@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 public class PickUpObject : MonoBehaviour
 {
-    
+    public Healthbar healthbar;
     Animator myAnimation;
     public float multiplier = 2f;
 
@@ -42,7 +42,6 @@ public class PickUpObject : MonoBehaviour
         // Spawn a cool effect 
         
         myAnimation.SetBool("estToucher", true);
-
         
         // Remove power up object 
         // attend 0.3 seconde pour detruire la pi�ce
