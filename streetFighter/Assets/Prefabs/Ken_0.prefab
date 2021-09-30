@@ -42,7 +42,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.005199909, y: -0.39080656}
@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 5023583219865195288}
   - component: {fileID: -5852720441542953244}
   - component: {fileID: 3084385768199438953}
+  - component: {fileID: 7474171552889383994}
   m_Layer: 0
   m_Name: Ken_0
   m_TagString: Untagged
@@ -190,6 +191,7 @@ MonoBehaviour:
   groundSensor: {fileID: 2239711758673206550}
   healthbar: {fileID: 0}
   ecranWin: {fileID: 0}
+  suddenDeath: 0
   knockback: {x: 0, y: 0}
 --- !u!70 &3084385768199438953
 CapsuleCollider2D:
@@ -204,6 +206,27 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.020762205}
-  m_Size: {x: 0.42, y: 0.76847565}
+  m_Offset: {x: 0, y: 0.012948036}
+  m_Size: {x: 0.42, y: 0.784104}
   m_Direction: 0
+--- !u!50 &7474171552889383994
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5023583219865195289}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 2
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 5
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
