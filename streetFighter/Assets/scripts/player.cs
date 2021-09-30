@@ -3,13 +3,11 @@
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
-#region using
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-#endregion
 
 public class player : MonoBehaviour
 {
@@ -54,9 +52,7 @@ public class player : MonoBehaviour
 
 		healthbar.SetMaxHealth(100);
 	}
-	/// <summary>
-    /// Tout
-    /// </summary>
+
 	void Update()
 	{
 		float jumpInput = Input.GetAxis("Jump" + name);
