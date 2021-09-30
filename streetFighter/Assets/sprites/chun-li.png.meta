@@ -1,0 +1,1644 @@
+fileFormatVersion: 2
+guid: 69b34d0bee5192647af49f4eba3475b5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6649894805183642524
+    second: Chun-Li_0
+  - first:
+      213: 2011690235854923610
+    second: Chun-Li_1
+  - first:
+      213: -6290594929069299946
+    second: Chun-Li_2
+  - first:
+      213: -113401139081289949
+    second: Chun-Li_3
+  - first:
+      213: -6461822370345410592
+    second: Chun-Li_4
+  - first:
+      213: 5912639448462759338
+    second: Chun-Li_5
+  - first:
+      213: -230919645174664682
+    second: Chun-Li_6
+  - first:
+      213: 1939598377413262834
+    second: Chun-Li_7
+  - first:
+      213: 4163667919975360377
+    second: Chun-Li_8
+  - first:
+      213: 3284170957538108425
+    second: Chun-Li_9
+  - first:
+      213: 7933076445755922853
+    second: Chun-Li_10
+  - first:
+      213: -4467252034452537444
+    second: Chun-Li_11
+  - first:
+      213: 1154077559936795570
+    second: Chun-Li_12
+  - first:
+      213: 4442059374040279571
+    second: Chun-Li_13
+  - first:
+      213: 2988066290020382603
+    second: Chun-Li_14
+  - first:
+      213: -3580805756237052481
+    second: Chun-Li_15
+  - first:
+      213: 5903163851634606304
+    second: Chun-Li_16
+  - first:
+      213: -583650177278119271
+    second: Chun-Li_17
+  - first:
+      213: 3333357208500291361
+    second: Chun-Li_18
+  - first:
+      213: 5405821268476952011
+    second: Chun-Li_19
+  - first:
+      213: 5496985436124826884
+    second: Chun-Li_20
+  - first:
+      213: -7061271539952508875
+    second: Chun-Li_21
+  - first:
+      213: -349083218885436672
+    second: Chun-Li_22
+  - first:
+      213: 737084096579636938
+    second: Chun-Li_23
+  - first:
+      213: 6726171072755409851
+    second: Chun-Li_24
+  - first:
+      213: 8218902243527629245
+    second: Chun-Li_25
+  - first:
+      213: -5288788218633055109
+    second: Chun-Li_26
+  - first:
+      213: 5406130344540632009
+    second: Chun-Li_27
+  - first:
+      213: 8154376797152394555
+    second: Chun-Li_28
+  - first:
+      213: -455954800735769859
+    second: Chun-Li_29
+  - first:
+      213: 3175725307658172543
+    second: Chun-Li_30
+  - first:
+      213: -7342688597537779094
+    second: Chun-Li_31
+  - first:
+      213: 6909060693328291859
+    second: Chun-Li_32
+  - first:
+      213: -8168047479933571142
+    second: Chun-Li_33
+  - first:
+      213: 5059906136064545247
+    second: Chun-Li_34
+  - first:
+      213: -3735766701035610024
+    second: Chun-Li_35
+  - first:
+      213: 5174012390747850656
+    second: Chun-Li_36
+  - first:
+      213: -8028457814012829874
+    second: Chun-Li_37
+  - first:
+      213: 3064440597028203297
+    second: Chun-Li_38
+  - first:
+      213: 7053548661152133209
+    second: Chun-Li_39
+  - first:
+      213: 7750702466616991242
+    second: Chun-Li_40
+  - first:
+      213: -8006458100795200987
+    second: Chun-Li_41
+  - first:
+      213: 3950624897050867715
+    second: Chun-Li_42
+  - first:
+      213: -43574884523713275
+    second: Chun-Li_43
+  - first:
+      213: 4318074637306033036
+    second: Chun-Li_44
+  - first:
+      213: -3714216079226139806
+    second: Chun-Li_45
+  - first:
+      213: -2835185173407157715
+    second: Chun-Li_46
+  - first:
+      213: 8275243565847898906
+    second: Chun-Li_47
+  - first:
+      213: -8669644955433609024
+    second: Chun-Li_48
+  - first:
+      213: -6931173469901250398
+    second: Chun-Li_49
+  - first:
+      213: 7503966658864945262
+    second: Chun-Li_50
+  - first:
+      213: 4731256874705478064
+    second: Chun-Li_51
+  - first:
+      213: 730876844954217265
+    second: Chun-Li_52
+  - first:
+      213: -4349577788271399745
+    second: Chun-Li_53
+  - first:
+      213: -1820955757652779195
+    second: Chun-Li_54
+  - first:
+      213: 2307193584463800921
+    second: Chun-Li_55
+  - first:
+      213: -7621168486506573966
+    second: Chun-Li_56
+  - first:
+      213: -1996884938415188990
+    second: Chun-Li_57
+  - first:
+      213: -5354969688468559884
+    second: Chun-Li_58
+  - first:
+      213: -7148383802924039333
+    second: Chun-Li_59
+  - first:
+      213: 1851129725514235729
+    second: Chun-Li_60
+  - first:
+      213: -4743640413753759150
+    second: Chun-Li_61
+  - first:
+      213: 6585285060012748267
+    second: Chun-Li_62
+  - first:
+      213: -5179300597273929283
+    second: Chun-Li_63
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chun-Li_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1110
+        width: 46
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464405748e3d6b3a0800000000000000
+      internalID: -6649894805183642524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1110
+        width: 46
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5721427c95faeb10800000000000000
+      internalID: 2011690235854923610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_2
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 1110
+        width: 46
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61763f2bd3153b8a0800000000000000
+      internalID: -6290594929069299946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_3
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 1110
+        width: 46
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f5febc34e1d6ef0800000000000000
+      internalID: -113401139081289949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_4
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1110
+        width: 48
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef93e55acef256a0800000000000000
+      internalID: -6461822370345410592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_5
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 1110
+        width: 49
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5959a704aed0250800000000000000
+      internalID: 5912639448462759338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_6
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 1110
+        width: 50
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61274b16ecb9bccf0800000000000000
+      internalID: -230919645174664682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_7
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 1110
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd34a4a276daea10800000000000000
+      internalID: 1939598377413262834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_8
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 1110
+        width: 51
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97722d4c9e158c930800000000000000
+      internalID: 4163667919975360377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_9
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 1110
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904a6b9e518b39d20800000000000000
+      internalID: 3284170957538108425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_10
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 1110
+        width: 50
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a9dc450ff2f71e60800000000000000
+      internalID: 7933076445755922853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_11
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1110
+        width: 49
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9fb05471f12102c0800000000000000
+      internalID: -4467252034452537444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_12
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 1146
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3484b1d6b140010800000000000000
+      internalID: 1154077559936795570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_13
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 1110
+        width: 46
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a6dd4377d55ad30800000000000000
+      internalID: 4442059374040279571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_14
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 998
+        width: 61
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b87fbf5957eb77920800000000000000
+      internalID: 2988066290020382603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_15
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 998
+        width: 52
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb501d9f22c6e4ec0800000000000000
+      internalID: -3580805756237052481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_16
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 998
+        width: 61
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e08b9b2f304ce150800000000000000
+      internalID: 5903163851634606304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 998
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9927e3e814576e7f0800000000000000
+      internalID: -583650177278119271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_18
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 998
+        width: 86
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127c52268b6724e20800000000000000
+      internalID: 3333357208500291361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_19
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 998
+        width: 66
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcdf1da6dc5550b40800000000000000
+      internalID: 5405821268476952011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_20
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 998
+        width: 62
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d47bf3127394c40800000000000000
+      internalID: 5496985436124826884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_21
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 998
+        width: 79
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5302e8652f2510e90800000000000000
+      internalID: -7061271539952508875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_22
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 998
+        width: 62
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b984579aec72bf0800000000000000
+      internalID: -349083218885436672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_23
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 998
+        width: 49
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace0832a416aa3a00800000000000000
+      internalID: 737084096579636938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_24
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 998
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3281234f8285d50800000000000000
+      internalID: 6726171072755409851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_25
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 881
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9102d7b086f0270800000000000000
+      internalID: 8218902243527629245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_26
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 881
+        width: 54
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b741b18e2237a96b0800000000000000
+      internalID: -5288788218633055109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_27
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 881
+        width: 82
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c3fdcbc7ee660b40800000000000000
+      internalID: 5406130344540632009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_28
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 881
+        width: 69
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3db4f64e7a2a2170800000000000000
+      internalID: 8154376797152394555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_29
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 881
+        width: 54
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfaa284468f1ca9f0800000000000000
+      internalID: -455954800735769859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_30
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 881
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f78fe237751721c20800000000000000
+      internalID: 3175725307658172543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_31
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 881
+        width: 54
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62137faf97891a90800000000000000
+      internalID: -7342688597537779094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_32
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 881
+        width: 76
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3186275481ae1ef50800000000000000
+      internalID: 6909060693328291859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_33
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 881
+        width: 63
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abfe80ad71445ae80800000000000000
+      internalID: -8168047479933571142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_34
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 881
+        width: 45
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd152fc72d5683640800000000000000
+      internalID: 5059906136064545247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_35
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 777
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8502a057af3e72cc0800000000000000
+      internalID: -3735766701035610024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_36
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 777
+        width: 83
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7cef53bd8cdc740800000000000000
+      internalID: 5174012390747850656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_37
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 777
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f5e8d9720359090800000000000000
+      internalID: -8028457814012829874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_38
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 777
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12be625ac74178a20800000000000000
+      internalID: 3064440597028203297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_39
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 777
+        width: 70
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950b7e1d22d33e160800000000000000
+      internalID: 7053548661152133209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_40
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 777
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0e137214d6009b60800000000000000
+      internalID: 7750702466616991242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_41
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 777
+        width: 47
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52aad0107c853e090800000000000000
+      internalID: -8006458100795200987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_42
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 777
+        width: 75
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308f78d996073d630800000000000000
+      internalID: 3950624897050867715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_43
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 777
+        width: 53
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50dd5d69fd0356ff0800000000000000
+      internalID: -43574884523713275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_44
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 777
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83ff362102eceb30800000000000000
+      internalID: 4318074637306033036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_45
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 777
+        width: 86
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b8eaa9724747cc0800000000000000
+      internalID: -3714216079226139806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_46
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 777
+        width: 54
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d22bc923b1667a8d0800000000000000
+      internalID: -2835185173407157715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_47
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 777
+        width: 34
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b6334dd2297d270800000000000000
+      internalID: 8275243565847898906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_48
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 777
+        width: 53
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c85f96c8db3fa780800000000000000
+      internalID: -8669644955433609024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_49
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 777
+        width: 53
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0ace9b3768fcf90800000000000000
+      internalID: -6931173469901250398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_50
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 777
+        width: 53
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6815042be1732860800000000000000
+      internalID: 7503966658864945262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_51
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 777
+        width: 34
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b1e1fd6f0dc8a140800000000000000
+      internalID: 4731256874705478064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_52
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 662
+        width: 36
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13bed0e3e98942a00800000000000000
+      internalID: 730876844954217265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_53
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 662
+        width: 50
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbc672feb0233a3c0800000000000000
+      internalID: -4349577788271399745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_54
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 662
+        width: 32
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f5761e26aaab6e0800000000000000
+      internalID: -1820955757652779195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_55
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 662
+        width: 50
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a660e475cc40020800000000000000
+      internalID: 2307193584463800921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_56
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 662
+        width: 36
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27fcf54e3ab2c3690800000000000000
+      internalID: -7621168486506573966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_57
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 662
+        width: 43
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2045f6c7ab3a944e0800000000000000
+      internalID: -1996884938415188990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_58
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 662
+        width: 51
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7e8dfa0735fa5b0800000000000000
+      internalID: -5354969688468559884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_59
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 689
+        width: 65
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b538e841ec6dbcc90800000000000000
+      internalID: -7148383802924039333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_60
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 664
+        width: 31
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15f317a7da880b910800000000000000
+      internalID: 1851129725514235729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_61
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 667
+        width: 64
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a25043d243b2eb0800000000000000
+      internalID: -4743640413753759150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_62
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 662
+        width: 51
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed2fba2fd1a36b50800000000000000
+      internalID: 6585285060012748267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chun-Li_63
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 4
+        width: 72
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9d4824c8d6f18b0800000000000000
+      internalID: -5179300597273929283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

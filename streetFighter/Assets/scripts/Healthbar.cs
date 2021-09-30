@@ -29,6 +29,12 @@ public class Healthbar : MonoBehaviour
 		fill.color = gradient.Evaluate(slider.normalizedValue);
 	}
 
+	public void heal(int health)
+    {
+		slider.value += health;
+		fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
 	public int getHealth()
 	{
 		return Convert.ToInt32(slider.value);
