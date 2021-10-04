@@ -60,7 +60,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse de chute rapide
 	/// </summary>
-	float fastFallSpeed = 1.2f;
+	float fastFallSpeed = 1.3f;
 
 	/// <summary>
 	/// Recul des attaques subies
@@ -207,18 +207,20 @@ public class player : MonoBehaviour
 			{
 				healthBar.heal(1);
 
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\r\n";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\n";
 			}
 
 			if (instantDeath)
 			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Instant Death\r\n";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Instant Death\n";
 			}
 
 			if (illimitedFly)
 			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly\n";
 			}
+
+			GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');
 		}
 
 		if (infiniteRegen)
