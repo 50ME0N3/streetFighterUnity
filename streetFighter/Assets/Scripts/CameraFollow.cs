@@ -7,65 +7,66 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+	/// <summary>
+	/// Vitesse de déplacement de la caméra
+	/// </summary>
 	const float SPEED = 3;
 
+	/// <summary>
+	/// Multiplicateur du zoom de la caméra
+	/// </summary>
 	const float ZOOM = 1;
-	const float MIN = 0.75f;
-	const float MAX = 1.9f;
 
+	/// <summary>
+	/// Taille minimale de la caméra
+	/// </summary>
+	const float MIN_SIZE = 0.75f;
+
+	/// <summary>
+	/// Taille maximale de la caméra
+	/// </summary>
+	const float MAX_SIZE = 1.9f;
+
+	/// <summary>
+	/// Position z de la caméra
+	/// </summary>
 	float zPosition = 0;
 
+	/// <summary>
+	/// Position du joueur 1
+	/// </summary>
 	Transform transformPlayer1;
+
+	/// <summary>
+	/// Position du joueur 2
+	/// </summary>
 	Transform transformPlayer2;
 
 	void Start()
 	{
+		// Initialisation des variables
 		zPosition = gameObject.transform.position.z;
 
 		transformPlayer1 = GameObject.Find("Player1").transform;
 		transformPlayer2 = GameObject.Find("Player2").transform;
 
-		Vector2 positionPlayer1 = transformPlayer1.position;
-		Vector2 positionPlayer2 = transformPlayer2.position;
-
-		float distance = Vector2.Distance(positionPlayer1, positionPlayer2);
-
-		if (distance / ZOOM <= MIN)
-		{
-			GetComponent<Camera>().orthographicSize = MIN;
-		}
-		else if (distance / ZOOM >= MAX)
-		{
-			GetComponent<Camera>().orthographicSize = MAX;
-		}
-		else
-		{
-			GetComponent<Camera>().orthographicSize = distance / ZOOM;
-		}
+		// Ajustement du zoom de la caméra par rapport à la distance entre les joueurs
+		GetComponent<Camera>().orthographicSize = Mathf.Clamp(Vector2.Distance(transformPlayer1.position, transformPlayer2.position) / ZOOM, MIN_SIZE, MAX_SIZE);
 	}
 
 	void Update()
 	{
+		// Mise en mémoire des positions des joueurs
 		Vector2 positionPlayer1 = transformPlayer1.position;
 		Vector2 positionPlayer2 = transformPlayer2.position;
-
+		
+		// Point équidistant entre les positions des joueurs
 		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
 
+		// La caméra se déplace lentement vers le centre
 		transform.position = Vector3.Lerp(transform.position, new Vector3(center.x, center.y, zPosition), Time.deltaTime * SPEED);
 
-		float distance = Vector2.Distance(positionPlayer1, positionPlayer2);
-
-		if (distance / ZOOM <= MIN)
-		{
-			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, MIN, Time.deltaTime * SPEED);
-		}
-		else if (distance / ZOOM >= MAX)
-		{
-			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, MAX, Time.deltaTime * SPEED);
-		}
-		else
-		{
-			GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, distance / ZOOM, Time.deltaTime * SPEED);
-		}
+		// Ajustement du zoom de la caméra par rapport à la distance entre les joueurs
+		GetComponent<Camera>().orthographicSize = Mathf.Clamp(Vector2.Distance(positionPlayer1, positionPlayer2) / ZOOM, MIN_SIZE, MAX_SIZE);
 	}
 }

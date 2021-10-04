@@ -1,5 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ */
+
+using System.Collections;
 using UnityEngine;
 using System;
 using System.Threading;

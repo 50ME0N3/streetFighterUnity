@@ -53,15 +53,6 @@ public class PickUpObject : MonoBehaviour
     {
         myAnimation = GetComponent<Animator>();
     }
-
-   
-
-
-
-
-
-
-
 }
 
 

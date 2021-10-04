@@ -3,18 +3,18 @@
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
-	private Rigidbody2D rgbd;
+    private Rigidbody2D rgbd;
 	private Animator anim;
-	public groundSensor groundSensor;
+
+    public groundSensor groundSensor;
 	public Healthbar healthbar;
 	public GameObject ecranWin; 
 
@@ -60,13 +60,13 @@ public class player : MonoBehaviour
 		float attackInput = Input.GetAxis("Attack" + name);
 		float fastFallInput = Input.GetAxis("FastFall" + name);
 
-		bool invincibleKey = Input.GetKeyDown(KeyCode.Alpha1);
+		bool invincibleKeyDown = Input.GetKeyDown(KeyCode.Alpha1);
 		bool suddenDeathKey = Input.GetKeyDown(KeyCode.Alpha2);
 		bool flyKey = Input.GetKeyDown(KeyCode.Alpha3);
 
-		if (invincibleKey || suddenDeathKey || flyKey)
+		if (invincibleKeyDown || suddenDeathKey || flyKey)
 		{
-			if (invincibleKey)
+			if (invincibleKeyDown)
 			{
 				invincible = !invincible;
 			}
@@ -85,7 +85,7 @@ public class player : MonoBehaviour
 
 			if (invincible)
 			{
-				healthbar.takeDamage(-1);
+				healthbar.heal(1);
 
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Invincible\r\n";
 			}
@@ -110,6 +110,7 @@ public class player : MonoBehaviour
 
 		if (health > 0)
 		{
+			Debug.Log(groundSensor.Grounded);
 			if (attackInput > 0)
 			{
 				anim.SetBool("Attack", true);
@@ -140,8 +141,8 @@ public class player : MonoBehaviour
 			if (direction > 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
-				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
+				//gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
+				//gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, 1);
 				anim.SetInteger("AnimState", 2);
 
 				if (rgbd.velocity.x < maxSpeed)
@@ -154,8 +155,8 @@ public class player : MonoBehaviour
 			else if (direction < 0)
 			{
 				transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = false;
-				gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
+				//gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().flipX = true;
+				//gameObject.transform.GetChild(2).transform.localPosition = new Vector3(gameObject.transform.GetChild(2).transform.localPosition.x, gameObject.transform.GetChild(2).transform.localPosition.y, -1);
 				anim.SetInteger("AnimState", 2);
 
 				if (rgbd.velocity.x > -maxSpeed)
