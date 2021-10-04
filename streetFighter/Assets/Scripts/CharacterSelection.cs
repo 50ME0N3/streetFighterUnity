@@ -306,7 +306,7 @@ public enum SelectionState : byte
 	/// Un seul joueur a validé
 	/// </summary>
 	HalfSelected = 70,
-	
+
 	/// <summary>
 	/// Validés
 	/// </summary>

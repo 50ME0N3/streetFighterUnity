@@ -59,7 +59,7 @@ public class CameraFollow : MonoBehaviour
 		// Mise en mémoire des positions des joueurs
 		Vector2 positionPlayer1 = transformPlayer1.position;
 		Vector2 positionPlayer2 = transformPlayer2.position;
-		
+
 		// Point équidistant entre les positions des joueurs
 		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
 
