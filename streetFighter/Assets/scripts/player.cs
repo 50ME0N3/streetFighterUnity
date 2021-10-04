@@ -144,6 +144,11 @@ public class player : MonoBehaviour
 	/// Moment où le joueur est mort
 	/// </summary>
 	float deathTime;
+
+	/// <summary>
+	/// Si le jeu est fini et que le menu de fin s'est affiché
+	/// </summary>
+	bool end = false;
 	#endregion
 
 	void Start()
@@ -232,81 +237,84 @@ public class player : MonoBehaviour
 
 		if (health > 0)
 		{
-			#region Actions
-			// Attaque
-			if (attackInput > 0)
+			if (!GameObject.Find("Player2").GetComponent<player>().dead)
 			{
-				anim.SetBool("Attack", true);
-			}
-
-			// Saut
-			if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
-			{
-				rgbd.velocity = new Vector2(rgbd.velocity.x, jumpHeight);
-				anim.SetBool("Grounded", false);
-			}
-
-			if (groundSensor.Grounded)
-			{
-				anim.SetBool("Grounded", true);
-			}
-			else
-			{
-				anim.SetBool("Grounded", false);
-
-				// Chute rapide
-				if (fastFallInput > 0 && rgbd.velocity.y <= 0)
+				#region Actions
+				// Attaque
+				if (attackInput > 0)
 				{
-					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
-				}
-			}
-			#endregion
-
-			anim.SetFloat("AirSpeed", rgbd.velocity.y);
-
-			const int PLAYER_TAG_INDEX = 2;
-
-			#region Course
-			if (direction > 0)
-			{
-				transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
-				gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
-				anim.SetInteger("AnimState", 2);
-
-				if (rgbd.velocity.x < MAX_SPEED)
-				{
-					rgbd.velocity += new Vector2(direction * speed, 0);
+					anim.SetBool("Attack", true);
 				}
 
-				wasMoving = true;
-			}
-			else if (direction < 0)
-			{
-				transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
-				gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
-				gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
-				anim.SetInteger("AnimState", 2);
-
-				if (rgbd.velocity.x > -MAX_SPEED)
+				// Saut
+				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
 				{
-					rgbd.velocity += new Vector2(direction * speed, 0);
+					rgbd.velocity = new Vector2(rgbd.velocity.x, jumpHeight);
+					anim.SetBool("Grounded", false);
 				}
 
-				wasMoving = true;
-			}
-			else if (wasMoving)
-			{
-				anim.SetInteger("AnimState", 0);
-				wasMoving = false;
-			}
-			#endregion
+				if (groundSensor.Grounded)
+				{
+					anim.SetBool("Grounded", true);
+				}
+				else
+				{
+					anim.SetBool("Grounded", false);
 
-			// Éjection du personnage
-			if (knockback != Vector2.zero)
-			{
-				rgbd.velocity = knockback;
-				knockback = Vector2.zero;
+					// Chute rapide
+					if (fastFallInput > 0 && rgbd.velocity.y <= 0)
+					{
+						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
+					}
+				}
+				#endregion
+
+				anim.SetFloat("AirSpeed", rgbd.velocity.y);
+
+				const int PLAYER_TAG_INDEX = 2;
+
+				#region Course
+				if (direction > 0)
+				{
+					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
+					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
+					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
+					anim.SetInteger("AnimState", 2);
+
+					if (rgbd.velocity.x < MAX_SPEED)
+					{
+						rgbd.velocity += new Vector2(direction * speed, 0);
+					}
+
+					wasMoving = true;
+				}
+				else if (direction < 0)
+				{
+					transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
+					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
+					anim.SetInteger("AnimState", 2);
+
+					if (rgbd.velocity.x > -MAX_SPEED)
+					{
+						rgbd.velocity += new Vector2(direction * speed, 0);
+					}
+
+					wasMoving = true;
+				}
+				else if (wasMoving)
+				{
+					anim.SetInteger("AnimState", 0);
+					wasMoving = false;
+				}
+				#endregion
+
+				// Éjection du personnage
+				if (knockback != Vector2.zero)
+				{
+					rgbd.velocity = knockback;
+					knockback = Vector2.zero;
+				}
 			}
 		}
 		else
@@ -337,15 +345,20 @@ public class player : MonoBehaviour
 		{
 			if (Time.time >= deathTime + WAIT_TIME)
 			{
-				GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = true;
-				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
-
-				StartCoroutine(goMainMenu());
-
-				IEnumerator goMainMenu()
+				if (!end)
 				{
-					yield return new WaitForSeconds(10.0f);
-					SceneManager.LoadScene("Title Screen");
+					end = true;
+
+					GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = true;
+					GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
+
+					StartCoroutine(goMainMenu());
+
+					IEnumerator goMainMenu()
+					{
+						yield return new WaitForSeconds(10);
+						SceneManager.LoadScene("Title Screen");
+					}
 				}
 			}
 			else
