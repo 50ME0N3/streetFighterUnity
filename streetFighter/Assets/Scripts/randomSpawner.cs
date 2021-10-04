@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Threading;
 
 public class randomSpawner : MonoBehaviour
 {
     public GameObject ItemPrefab;
     public float Radius = 1;
+    public static DateTime lastCreation;
+    private Semaphore sem;
 
     private void Update()
     {
@@ -13,8 +17,8 @@ public class randomSpawner : MonoBehaviour
     }
     private void Start()
     {
-
-
+        lastCreation = DateTime.Now;
+        sem = new Semaphore(0, 1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,29 +26,26 @@ public class randomSpawner : MonoBehaviour
         // Quand le joueur touche la pièce 
         if (collision.CompareTag("Player"))
         {
+            // Remove power up object 
+            // attend 0.3 seconde pour detruire la pi�ce
+            
+            sem.WaitOne(3);
 
-            SpawnObjectAtRandom();
-
+                Invoke("SpawnObjectAtRandom", 15);
+                sem.Release();         
+            
         }
     }
 
-    void SpawnObjectAtRandom()
+    public void SpawnObjectAtRandom()
     {
-        StartCoroutine(respawn());
-        // Remove power up object 
-        // attend 0.3 seconde pour detruire la pi�ce
-        IEnumerator respawn()
-        {
-            yield return new WaitForSeconds(3f);
 
-           
-        }
+        Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-3f, 3.52f), UnityEngine.Random.Range(-1.44f, -0.782f));
 
-        Vector3 randomPos = new Vector3(Random.Range(-3f, 3.52f), Random.Range(-1.44f, -0.782f));
-        Debug.Log("x =" + randomPos.x + "y =" + randomPos.y + "z =" + randomPos.z);
-
-        Instantiate(gameObject, randomPos, Quaternion.identity);
+        
+        ItemPrefab.transform.position = randomPos;
         ItemPrefab.SetActive(true);
+        
     }
 
     private void OnDrawGizmos()

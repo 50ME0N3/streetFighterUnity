@@ -16,7 +16,7 @@ public class player : MonoBehaviour
 	private Animator anim;
 	public groundSensor groundSensor;
 	public Healthbar healthbar;
-	public GameObject ecranWin;
+	public GameObject ecranWin; 
 
 	private int health;
 
