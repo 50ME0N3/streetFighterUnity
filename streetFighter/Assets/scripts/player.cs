@@ -139,6 +139,11 @@ public class player : MonoBehaviour
 	/// </summary>
 	bool dead = false;
 	#endregion
+
+	/// <summary>
+	/// Moment où le joueur est mort
+	/// </summary>
+	float deathTime;
 	#endregion
 
 	void Start()
@@ -202,17 +207,17 @@ public class player : MonoBehaviour
 			{
 				healthBar.heal(1);
 
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Invincible\r\n";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\r\n";
 			}
 
 			if (instantDeath)
 			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Sudden Death\r\n";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Instant Death\r\n";
 			}
 
 			if (illimitedFly)
 			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Fly";
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly";
 			}
 		}
 
@@ -308,9 +313,10 @@ public class player : MonoBehaviour
 			if (!dead)
 			{
 				dead = true;
+				deathTime = Time.time;
 				anim.SetTrigger("Death");
+
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
-				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
 				if (name[name.Length - 1] == '1')
 				{
@@ -320,6 +326,17 @@ public class player : MonoBehaviour
 				{
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
 				}
+			}
+		}
+
+		const float WAIT_TIME = 3;
+
+		if (dead)
+		{
+			if (Time.time >= deathTime + WAIT_TIME)
+			{
+				GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = true;
+				GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 
 				StartCoroutine(goMainMenu());
 
@@ -328,6 +345,10 @@ public class player : MonoBehaviour
 					yield return new WaitForSeconds(10.0f);
 					SceneManager.LoadScene("Title Screen");
 				}
+			}
+			else
+			{
+				GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
 			}
 		}
 	}
