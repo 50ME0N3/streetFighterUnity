@@ -272,7 +272,6 @@ public class player : MonoBehaviour
 				anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 				const int PLAYER_TAG_INDEX = 2;
-
 				#region Course
 				if (direction > 0)
 				{
