@@ -151,6 +151,7 @@ public class player : MonoBehaviour
 	bool end = false;
 	#endregion
 
+
 	void Start()
 	{
 		// Initialisation des variables
@@ -268,7 +269,6 @@ public class player : MonoBehaviour
 					}
 				}
 				#endregion
-
 				anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 				const int PLAYER_TAG_INDEX = 2;
