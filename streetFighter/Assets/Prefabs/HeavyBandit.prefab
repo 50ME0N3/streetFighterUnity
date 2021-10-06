@@ -237,12 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757408666c92a1c49bb96fde4b52a1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundSensor: {fileID: 114204724084870448}
-  healthbar: {fileID: 0}
-  ecranWin: {fileID: 0}
-  jumpForce: 20
-  fastFallSpeed: 1.2
+  healthBar: {fileID: 0}
   knockback: {x: 0, y: 0}
+  instantDeath: 0
 --- !u!1 &1161560239235111477
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a9eeed1edb3fb48a77c83ce5e7b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kbx: 10
+  kby: 20
 --- !u!61 &8661548567102020962
 BoxCollider2D:
   m_ObjectHideFlags: 0
