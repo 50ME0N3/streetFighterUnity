@@ -811,6 +811,173 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!251 &268649422
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268649418}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 120
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 0
+--- !u!19719996 &268649423
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268649418}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!66 &268649424
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268649418}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 268649423}
+    m_ColliderPaths:
+    - - X: -28800002
+        Y: -9600000
+      - X: -31999998
+        Y: -9600000
+      - X: -31999998
+        Y: -11200000
+      - X: -28800002
+        Y: -11200000
+    - - X: -25600002
+        Y: -9600000
+      - X: -28799998
+        Y: -9600000
+      - X: -28799998
+        Y: -11200000
+      - X: -25600002
+        Y: -11200000
+    - - X: -24000000
+        Y: -10300000
+      - X: -24000000
+        Y: -9600000
+      - X: -25600000
+        Y: -9600000
+      - X: -25600000
+        Y: -11200000
+      - X: -24400000
+        Y: -11200000
+    - - X: 7999999
+        Y: -11199999
+      - X: 0
+        Y: -11199999
+      - X: 0
+        Y: -12800000
+      - X: 7999999
+        Y: -12800000
+    - - X: 22399998
+        Y: -12799999
+      - X: 19200000
+        Y: -12799999
+      - X: 19200000
+        Y: -14399999
+      - X: 22399998
+        Y: -14399999
+    - - X: 25599998
+        Y: -12799999
+      - X: 22400000
+        Y: -12799999
+      - X: 22400000
+        Y: -14399999
+      - X: 25599998
+        Y: -14399999
+    - - X: 27199998
+        Y: -12799999
+      - X: 25600000
+        Y: -12799999
+      - X: 25600000
+        Y: -14399999
+      - X: 27199998
+        Y: -14399999
+    - - X: 30399998
+        Y: -12799999
+      - X: 27200000
+        Y: -12799999
+      - X: 27200000
+        Y: -14399999
+      - X: 30399998
+        Y: -14399999
+    - - X: 33599996
+        Y: -12799999
+      - X: 30400000
+        Y: -12799999
+      - X: 30400000
+        Y: -14399999
+      - X: 33599996
+        Y: -14399999
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -2.4400177, y: -1.12}
+      - {x: -2.4, y: -1.0299945}
+      - {x: -2.4000292, y: -0.96000004}
+      - {x: -3.1999998, y: -0.9600293}
+      - {x: -3.1999705, y: -1.12}
+    - - {x: 0.7999706, y: -1.28}
+      - {x: 0.7999706, y: -1.1199999}
+      - {x: 0, y: -1.1200292}
+      - {x: 0.000029300001, y: -1.28}
+    - - {x: 3.3599703, y: -1.4399999}
+      - {x: 3.3599703, y: -1.28}
+      - {x: 1.9200001, y: -1.2800292}
+      - {x: 1.9200292, y: -1.4399999}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &268649425
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268649418}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &299797101
 GameObject:
   m_ObjectHideFlags: 0
