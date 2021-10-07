@@ -251,8 +251,9 @@ GameObject:
   - component: {fileID: 3944965056501936752}
   - component: {fileID: 5223913856231662148}
   - component: {fileID: 8661548567102020962}
+  - component: {fileID: 2553264998915514398}
   m_Layer: 0
-  m_Name: HitDetection
+  m_Name: Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,8 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a9eeed1edb3fb48a77c83ce5e7b8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kbx: 10
-  kby: 20
 --- !u!61 &8661548567102020962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -312,6 +311,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5422351, y: 0.5193838}
   m_EdgeRadius: 0
+--- !u!114 &2553264998915514398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161560239235111477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44236fa12bb7e844db9f1555e2446182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1268754579812098364
 GameObject:
   m_ObjectHideFlags: 0
