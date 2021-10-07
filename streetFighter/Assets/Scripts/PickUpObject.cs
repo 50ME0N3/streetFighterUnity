@@ -45,8 +45,9 @@ public class PickUpObject : MonoBehaviour
         // Apply effect to the player :
 
         // -Rajoute de la vie
-          
+         
         healthbar.heal(50);
+        
         
     }
     private void Start()

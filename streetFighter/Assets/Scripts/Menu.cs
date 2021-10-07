@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour
 	public void SettingsButton()
 	{
 		settingsWindow.SetActive(true);
-	}
+	}   
 
 	public void ClosedSettingsWindows()
 	{
