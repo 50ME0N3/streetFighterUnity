@@ -170,7 +170,6 @@ public class player : MonoBehaviour
 
 		healthBar.SetMaxHealth(health);
 
-		//variable nom de deplacement
 		jumpAxis = "Jump" + name;
 		horizontalAxis = "Horizontal" + name;
 		attackAxis = "Attack" + name;
@@ -195,17 +194,17 @@ public class player : MonoBehaviour
 		{
 			if (invincibleKeyDown)
 			{
-				infiniteRegen = !infiniteRegen;//cheat de regen
+				infiniteRegen = !infiniteRegen;
 			}
 
 			if (suddenDeathKeyDown)
 			{
-				instantDeath = !instantDeath;//cheat de degas
+				instantDeath = !instantDeath;
 			}
 
 			if (flyKeyDown)
 			{
-				illimitedFly = !illimitedFly;//cheat de saut
+				illimitedFly = !illimitedFly;
 			}
 
 			GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
@@ -213,19 +212,17 @@ public class player : MonoBehaviour
 			if (infiniteRegen)
 			{
 				healthBar.heal(1);
-				//afficheage du text sur le jeux
+
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\n";
 			}
 
 			if (instantDeath)
 			{
-				//afficheage du text sur le jeux
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Instant Death\n";
 			}
 
 			if (illimitedFly)
 			{
-				//afficheage du text sur le jeux
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly\n";
 			}
 
