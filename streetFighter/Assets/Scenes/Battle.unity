@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 311669743}
   m_Layer: 0
   m_Name: mur gauche
-  m_TagString: Untagged
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3762,7 +3762,7 @@ GameObject:
   - component: {fileID: 782090807}
   m_Layer: 0
   m_Name: toit
-  m_TagString: Untagged
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4443,7 +4443,7 @@ GameObject:
   - component: {fileID: 1175573782}
   m_Layer: 0
   m_Name: mur droite
-  m_TagString: Untagged
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

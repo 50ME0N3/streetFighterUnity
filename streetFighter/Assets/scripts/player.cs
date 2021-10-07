@@ -229,7 +229,7 @@ public class player : MonoBehaviour
 			GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');
 		}
 
-		//donne de la regen a l'infinie
+		// Régénère a l'infini
 		if (infiniteRegen)
 		{
 			healthBar.heal(1);
@@ -327,7 +327,8 @@ public class player : MonoBehaviour
 				anim.SetTrigger("Death");
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
-				//selectionne le joueur tuer
+
+				// Sélectionne le joueur tué
 				if (name[name.Length - 1] == '1')
 				{
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
