@@ -10,7 +10,12 @@ public class CameraFollow : MonoBehaviour
 	/// <summary>
 	/// Vitesse de déplacement de la caméra
 	/// </summary>
-	const float SPEED = 3;
+	const float MOVE_SPEED = 3;
+
+	/// <summary>
+	/// Vitesse de zoom de la caméra
+	/// </summary>
+	const float ZOOM_SPEED = 3;
 
 	/// <summary>
 	/// Multiplicateur du zoom de la caméra
@@ -59,14 +64,15 @@ public class CameraFollow : MonoBehaviour
 		// Mise en mémoire des positions des joueurs
 		Vector2 positionPlayer1 = transformPlayer1.position;
 		Vector2 positionPlayer2 = transformPlayer2.position;
-		
+
 		// Point équidistant entre les positions des joueurs
 		Vector2 center = positionPlayer1 + (positionPlayer2 - positionPlayer1) / 2;
 
 		// La caméra se déplace lentement vers le centre
-		transform.position = Vector3.Lerp(transform.position, new Vector3(center.x, center.y, zPosition), Time.deltaTime * SPEED);
+		transform.position = Vector3.Lerp(transform.position, new Vector3(center.x, center.y, zPosition), Time.deltaTime * MOVE_SPEED);
 
 		// Ajustement du zoom de la caméra par rapport à la distance entre les joueurs
-		GetComponent<Camera>().orthographicSize = Mathf.Clamp(Vector2.Distance(positionPlayer1, positionPlayer2) / ZOOM, MIN_SIZE, MAX_SIZE);
+		float targetSize = Mathf.Clamp(Vector2.Distance(positionPlayer1, positionPlayer2) / ZOOM, MIN_SIZE, MAX_SIZE);
+		GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, targetSize, Time.deltaTime * ZOOM_SPEED);
 	}
 }

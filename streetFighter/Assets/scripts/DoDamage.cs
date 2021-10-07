@@ -7,44 +7,42 @@ using UnityEngine;
 
 public class DoDamage : MonoBehaviour
 {
-	byte damage = 10;
-	public byte kbx = 10;
-	public byte kby = 20;
-
-	Vector2 knockback = new Vector2(4, 8);
-
-	private void OnTriggerEnter2D(Collider2D collision)
+	/// <summary>
+	/// Donne un coup au joueur touché
+	/// </summary>
+	/// <param name="collider">hit box de la cible</param>
+	/// <param name="damage">dégâts de l'attaque</param>
+	/// <param name="knockback">Éjection</param>
+	/// <param name="hitBoxObject">Coup</param>
+	public static void Hit(Collider2D collider, byte damage, Vector2 knockback, GameObject hitBoxObject)
 	{
-		if (collision.tag == "Player")
+		Transform player = collider.gameObject.transform;
+
+		if (hitBoxObject.transform.position.x < player.position.x)
 		{
-			Transform player = collision.gameObject.transform;
-
-			if (gameObject.transform.position.x < player.position.x)
+			if (hitBoxObject.GetComponentInParent<player>().instantDeath)
 			{
-				if (GetComponentInParent<player>().suddenDeath)
-				{
-					collision.GetComponent<player>().healthbar.takeDamage(100);
-				}
-				else
-				{
-					collision.GetComponent<player>().healthbar.takeDamage(damage);
-				}
-
-				collision.GetComponent<player>().knockback = knockback;
+				collider.GetComponent<player>().healthBar.takeDamage(100);
 			}
 			else
 			{
-				if (GetComponentInParent<player>().suddenDeath)
-				{
-					collision.GetComponent<player>().healthbar.takeDamage(100);
-				}
-				else
-				{
-					collision.GetComponent<player>().healthbar.takeDamage(damage);
-				}
-
-				collision.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
+				collider.GetComponent<player>().healthBar.takeDamage(damage);
 			}
+
+			collider.GetComponent<player>().knockback = knockback;
+		}
+		else
+		{
+			if (hitBoxObject.GetComponentInParent<player>().instantDeath)
+			{
+				collider.GetComponent<player>().healthBar.takeDamage(100);
+			}
+			else
+			{
+				collider.GetComponent<player>().healthBar.takeDamage(damage);
+			}
+
+			collider.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
 		}
 	}
 }
