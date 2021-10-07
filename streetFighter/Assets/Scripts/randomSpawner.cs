@@ -23,6 +23,8 @@ public class randomSpawner : MonoBehaviour
     {
         lastCreation = DateTime.Now;
         sem = new Semaphore(0, 1);
+
+        Invoke("SpawnObjectAtRandom", 15);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
