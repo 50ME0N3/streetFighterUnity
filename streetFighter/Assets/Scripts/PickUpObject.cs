@@ -48,6 +48,7 @@ public class PickUpObject : MonoBehaviour
          
         healthbar.heal(50);
         
+        
     }
     private void Start()
     {
