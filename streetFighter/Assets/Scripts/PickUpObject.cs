@@ -25,7 +25,6 @@ public class PickUpObject : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.4f);
                 gameObject.SetActive(false);
-
             }
         }
     }
@@ -34,6 +33,7 @@ public class PickUpObject : MonoBehaviour
     {
         // Apply effect to the player :
         int applyEffect = Random.Range(0, 2);
+        
         Debug.Log(applyEffect);
         if (applyEffect == 0)
         {
@@ -62,7 +62,7 @@ public class PickUpObject : MonoBehaviour
     private void Start()
     {
         myAnimation = GetComponent<Animator>();
-    }
+    } 
 }
 
 
