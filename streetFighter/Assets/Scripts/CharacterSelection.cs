@@ -206,7 +206,7 @@ class Selection
 	public void CheckInputs()
 	{
 		_direction = Input.GetAxis("HorizontalPlayer" + _number);
-		_select = Input.GetAxis("AttackPlayer" + _number);
+		_select = Input.GetAxis("Attack1Player" + _number);
 	}
 
 	/// <summary>

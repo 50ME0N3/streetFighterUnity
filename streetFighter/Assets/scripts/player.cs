@@ -117,9 +117,9 @@ public class player : MonoBehaviour
 	string horizontalAxis;
 
 	/// <summary>
-	/// Appui sur la touche d'attaque
+	/// Appui sur la touche d'attaque 1
 	/// </summary>
-	string attackAxis;
+	string attack1Axis;
 
 	/// <summary>
 	/// Appui sur la touche de chute rapide
@@ -172,7 +172,7 @@ public class player : MonoBehaviour
 
 		jumpAxis = "Jump" + name;
 		horizontalAxis = "Horizontal" + name;
-		attackAxis = "Attack" + name;
+		attack1Axis = "Attack1" + name;
 		fastFallAxis = "FastFall" + name;
 	}
 
@@ -181,7 +181,7 @@ public class player : MonoBehaviour
 		#region Inputs
 		float jumpInput = Input.GetAxis(jumpAxis);
 		float direction = Input.GetAxis(horizontalAxis);
-		float attackInput = Input.GetAxis(attackAxis);
+		float attack1Input = Input.GetAxis(attack1Axis);
 		float fastFallInput = Input.GetAxis(fastFallAxis);
 
 		bool invincibleKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
@@ -243,7 +243,7 @@ public class player : MonoBehaviour
 			{
 				#region Actions
 				// Attaque
-				if (attackInput > 0)
+				if (attack1Input > 0)
 				{
 					anim.SetBool("Attack", true);
 				}
