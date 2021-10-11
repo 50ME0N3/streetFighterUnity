@@ -30,10 +30,10 @@ public class Healthbar : MonoBehaviour
 	}
 
 	public void heal(int health)
-    {
-        slider.value += health;
+	{
+		slider.value += health;
 		fill.color = gradient.Evaluate(slider.normalizedValue);
-    }
+	}
 
 	public int getHealth()
 	{

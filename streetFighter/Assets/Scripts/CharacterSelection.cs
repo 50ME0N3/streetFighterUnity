@@ -10,6 +10,11 @@ using UnityEngine.UI;
 public class CharacterSelection : MonoBehaviour
 {
 	/// <summary>
+	/// Les noms des personnages sélectionnés
+	/// </summary>
+	public static string[] chosenCharactersNames;
+
+	/// <summary>
 	/// Personnages jouables
 	/// </summary>
 	GameObject[] characters;
@@ -29,6 +34,7 @@ public class CharacterSelection : MonoBehaviour
 		Selection.Selections = new List<Selection>();
 		new Selection(1, new Color32(255, 64, 64, Selection.GetAlpha(SelectionState.NotSelected))); // Joueur 1 - Rouge
 		new Selection(2, new Color32(64, 64, 255, Selection.GetAlpha(SelectionState.NotSelected))); // Joueur 2 - Bleu
+		chosenCharactersNames = new string[Selection.Selections.Count];
 
 		Selection.Countdown = gameObject.GetComponent<Animator>();
 	}
@@ -41,7 +47,7 @@ public class CharacterSelection : MonoBehaviour
 			character.GetComponent<Outline>().effectColor = defaultColor;
 		}
 
-		// Appel des fonctions des curseur
+		// Appel des fonctions des curseurs
 		foreach (Selection selection in Selection.Selections)
 		{
 			selection.CheckInputs();
@@ -257,6 +263,7 @@ class Selection
 				{
 					_color.a = GetAlpha(SelectionState.Selected);
 					_validated = true;
+					CharacterSelection.chosenCharactersNames[_number - 1] = GameObject.FindGameObjectsWithTag("Character")[_characterIndex].name;
 
 					bool allSelected = true;
 
@@ -293,7 +300,7 @@ class Selection
 }
 
 /// <summary>
-/// Si les joueurs on validé leurs sélections
+/// Si les joueurs ont validé leurs sélections
 /// </summary>
 public enum SelectionState : byte
 {

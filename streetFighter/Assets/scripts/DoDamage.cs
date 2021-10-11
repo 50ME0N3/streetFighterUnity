@@ -10,8 +10,8 @@ public class DoDamage : MonoBehaviour
 	/// <summary>
 	/// Donne un coup au joueur touché
 	/// </summary>
-	/// <param name="collider">hit box de la cible</param>
-	/// <param name="damage">dégâts de l'attaque</param>
+	/// <param name="collider">Hit box de la cible</param>
+	/// <param name="damage">Dégâts de l'attaque</param>
 	/// <param name="knockback">Éjection</param>
 	/// <param name="hitBoxObject">Coup</param>
 	public static void Hit(Collider2D collider, byte damage, Vector2 knockback, GameObject hitBoxObject)

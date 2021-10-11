@@ -424,7 +424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Street Fighter
+  m_Text: CFPT Smash
 --- !u!222 &673941108
 CanvasRenderer:
   m_ObjectHideFlags: 0

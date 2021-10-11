@@ -802,6 +802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1126356359}
     m_Modifications:
+    - target: {fileID: 6674411657244120389, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 81850e4b77b8dd64fbe60a2d1966c8f6, type: 3}
     - target: {fileID: 6674411658564469652, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -900,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674411658564469659, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
       propertyPath: m_Name
-      value: Character 2
+      value: HeavyBandit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
@@ -916,6 +920,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1126356359}
     m_Modifications:
+    - target: {fileID: 6674411657244120389, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 81850e4b77b8dd64fbe60a2d1966c8f6, type: 3}
     - target: {fileID: 6674411658564469652, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1010,7 +1018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674411658564469659, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
       propertyPath: m_Name
-      value: Character 1
+      value: HeavyBandit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 532edc5ef3606284eab19e6b43dcef72, type: 3}
