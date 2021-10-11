@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewCharactersSelection : MonoBehaviour
 {
@@ -24,40 +25,44 @@ public class NewCharactersSelection : MonoBehaviour
 	Color32 VALIDATED_COLOR = new Color32(0, 255, 0, 255);
 
 	/// <summary>
+	/// Couleur de base des bordure des personnages
+	/// </summary>
+	Color32 defaultColor;
+
+	/// <summary>
 	/// Images des personnages jouables
 	/// </summary>
 	List<Texture2D> images = new List<Texture2D>();
 
 	/// <summary>
-	/// Noms des axes de validation du joueur 1
+	/// Noms des axes de validation des joueurs
 	/// </summary>
-	string[] validationAxisNames1 = new string[1]
+	List<string[]> validationAxisNames = new List<string[]>()
 	{
-		"Attack1Player1"
+		new string[1]
+		{
+			"Attack1Player1"
+		},
+		new string[1]
+		{
+			"Attack1Player2"
+		}
 	};
 
 	/// <summary>
-	/// Noms des axes de validation du joueur 2
+	/// Si les joueurs ont appuyé sur un bouton
 	/// </summary>
-	string[] validationAxisNames2 = new string[1]
+	bool[] pressed = new bool[]
 	{
-		"Attack1Player2"
+		false,
+		false
 	};
-
-	/// <summary>
-	/// Si le joueur 1 a appuyé sur un bouton
-	/// </summary>
-	bool pressed1 = false;
-
-	/// <summary>
-	/// Si le joueur 2 a appuyé sur un bouton
-	/// </summary>
-	bool pressed2 = false;
 
 	void Start()
 	{
 		// Initialisation des variables
 		players = GameObject.FindGameObjectsWithTag("Selection");
+		defaultColor = players[0].GetComponent<Outline>().effectColor;
 
 		foreach (Texture2D image in Resources.FindObjectsOfTypeAll(typeof(Texture2D)) as Texture2D[])
 		{
@@ -70,17 +75,41 @@ public class NewCharactersSelection : MonoBehaviour
 
 	void Update()
 	{
-		//foreach (string axisName in validationAxisNames1)
-		//{
-		//	if (Input.GetAxis(axisName) > )
-		//	{
+		for (int i = 0; i <= 1; i++)
+		{
+			foreach (string axisName in validationAxisNames[i])
+			{
+				if (Input.GetAxis(axisName) > 0)
+				{
+					pressed[i] = true;
+				}
+				else
+				{
+					if (pressed[i])
+					{
+						pressed[i] = false;
 
-		//	}
-		//}
+						if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
+						{
+							players[i].GetComponent<Outline>().effectColor = defaultColor;
 
-		//foreach (string axisName in validationAxisNames2)
-		//{
+							for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
+							{
+								players[i].transform.GetChild(iChild).gameObject.SetActive(true);
+							}
+						}
+						else
+						{
+							players[i].GetComponent<Outline>().effectColor = VALIDATED_COLOR;
 
-		//}
+							for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
+							{
+								players[i].transform.GetChild(iChild).gameObject.SetActive(false);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
