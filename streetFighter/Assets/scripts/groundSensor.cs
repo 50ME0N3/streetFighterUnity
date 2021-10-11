@@ -3,18 +3,24 @@
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  */
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class groundSensor : MonoBehaviour
 {
 	private bool grounded = true;
-	string INVISIBLE_WALL_TAG = "InvisibleWall";
+	List<string> ignoredTags = new List<string>()
+	{
+		"InvisibleWall",
+		"GroundSensor",
+		"Player"
+	};
 
 	public bool Grounded { get => grounded; set => grounded = value; }
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.tag != INVISIBLE_WALL_TAG)
+		if (!ignoredTags.Contains(collision.tag))
 		{
 			Grounded = true;
 		}
@@ -22,7 +28,7 @@ public class groundSensor : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.tag != INVISIBLE_WALL_TAG)
+		if (!ignoredTags.Contains(collision.tag))
 		{
 			Grounded = false;
 		}
