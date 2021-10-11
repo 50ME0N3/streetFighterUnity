@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 50959880312528810}
   - component: {fileID: 61346583712760016}
   - component: {fileID: 114999745408315450}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeavyBandit
   m_TagString: Player
   m_Icon: {fileID: 0}
