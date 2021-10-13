@@ -12,7 +12,7 @@ public class CharactersSelection : MonoBehaviour
 	/// <summary>
 	/// Noms des personnages sélectionnés
 	/// </summary>
-	public static string[] chosenCharactersNames = new string[2];
+	public static string[] chosenCharactersNames;
 
 	/// <summary>
 	/// GameObjects de sélection des personnages
@@ -93,6 +93,7 @@ public class CharactersSelection : MonoBehaviour
 		players = GameObject.FindGameObjectsWithTag("Selection");
 		defaultColor = players[0].GetComponent<Outline>().effectColor;
 		countdown = GameObject.Find("Countdown").GetComponent<Animator>();
+		chosenCharactersNames = new string[2];
 
 		foreach (Texture2D image in Resources.LoadAll<Texture2D>("Choices"))
 		{
@@ -128,15 +129,27 @@ public class CharactersSelection : MonoBehaviour
 					{
 						characterIndex[i]--;
 					}
+					else
+					{
+						characterIndex[i] = images.Count - 1;
+					}
+
+					players[i].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
 				}
 				else if (pressedRight[i])
 				{
 					pressedRight[i] = false;
 
-					if (characterIndex[i] < characterIndex.Length - 1)
+					if (characterIndex[i] < images.Count - 1)
 					{
 						characterIndex[i]++;
 					}
+					else
+					{
+						characterIndex[i] = 0;
+					}
+
+					players[i].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
 				}
 
 				players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
