@@ -12,8 +12,7 @@ public class groundSensor : MonoBehaviour
 	List<string> ignoredTags = new List<string>()
 	{
 		"InvisibleWall",
-		"GroundSensor",
-		"Player"
+		"GroundSensor"
 	};
 
 	public bool Grounded { get => grounded; set => grounded = value; }

@@ -10,18 +10,18 @@ public class SpawnPlayers : MonoBehaviour
 
 	void Start()
 	{
-		if (CharacterSelection.chosenCharactersNames == null)
+		if (CharactersSelection.chosenCharactersNames == null)
 		{
-			CharacterSelection.chosenCharactersNames = new string[]
+			CharactersSelection.chosenCharactersNames = new string[]
 			{
-				"HeavyBandit",
+				"Ken",
 				"HeavyBandit"
 			};
 		}
 
-		for (int i = 0; i < CharacterSelection.chosenCharactersNames.Length; i++)
+		for (int i = 0; i < CharactersSelection.chosenCharactersNames.Length; i++)
 		{
-			GameObject player = Resources.Load<GameObject>(CharacterSelection.chosenCharactersNames[i]);
+			GameObject player = Resources.Load<GameObject>(CharactersSelection.chosenCharactersNames[i]);
 			player.transform.position = spawnPoints[i];
 
 			player.transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("PlayerTag" + (i + 1));
