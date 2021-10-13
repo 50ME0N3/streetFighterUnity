@@ -73,10 +73,6 @@ public class randomSpawner : MonoBehaviour
                 }
             }
         }
-
-        
-        
-        
     }
 
     private void OnDrawGizmos()
