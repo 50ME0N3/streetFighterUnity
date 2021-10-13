@@ -46,11 +46,13 @@ public class CharactersSelection : MonoBehaviour
 	{
 		new string[]
 		{
-			"Attack1Player1"
+			"Attack1Player1",
+			"Attack2Player1"
 		},
 		new string[]
 		{
-			"Attack1Player2"
+			"Attack1Player2",
+			"Attack2Player2"
 		}
 	};
 
@@ -158,40 +160,47 @@ public class CharactersSelection : MonoBehaviour
 				}
 			}
 
+			bool validationKeyDown = false;
+
 			foreach (string axisName in validationAxisNames[i])
 			{
 				if (Input.GetAxis(axisName) > 0)
 				{
-					if (!pressedValidation[i])
+					validationKeyDown = true;
+				}
+			}
+
+			if (validationKeyDown)
+			{
+				if (!pressedValidation[i])
+				{
+					pressedValidation[i] = true;
+
+					if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
 					{
-						pressedValidation[i] = true;
+						players[i].GetComponent<Outline>().effectColor = defaultColor;
 
-						if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
+						for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
 						{
-							players[i].GetComponent<Outline>().effectColor = defaultColor;
-
-							for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
-							{
-								players[i].transform.GetChild(iChild).gameObject.SetActive(true);
-							}
-						}
-						else
-						{
-							players[i].GetComponent<Outline>().effectColor = VALIDATED_COLOR;
-
-							for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
-							{
-								players[i].transform.GetChild(iChild).gameObject.SetActive(false);
-							}
-
-							chosenCharactersNames[i] = images[characterIndex[i]].name;
+							players[i].transform.GetChild(iChild).gameObject.SetActive(true);
 						}
 					}
+					else
+					{
+						players[i].GetComponent<Outline>().effectColor = VALIDATED_COLOR;
+
+						for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
+						{
+							players[i].transform.GetChild(iChild).gameObject.SetActive(false);
+						}
+
+						chosenCharactersNames[i] = images[characterIndex[i]].name;
+					}
 				}
-				else
-				{
-					pressedValidation[i] = false;
-				}
+			}
+			else
+			{
+				pressedValidation[i] = false;
 			}
 		}
 
