@@ -39,11 +39,11 @@ public class NewCharactersSelection : MonoBehaviour
 	/// </summary>
 	List<string[]> validationAxisNames = new List<string[]>()
 	{
-		new string[1]
+		new string[]
 		{
 			"Attack1Player1"
 		},
-		new string[1]
+		new string[]
 		{
 			"Attack1Player2"
 		}
@@ -52,7 +52,7 @@ public class NewCharactersSelection : MonoBehaviour
 	/// <summary>
 	/// Si les joueurs ont appuyé sur un bouton
 	/// </summary>
-	bool[] pressed = new bool[]
+	bool[] pressedValidation = new bool[]
 	{
 		false,
 		false
@@ -81,13 +81,13 @@ public class NewCharactersSelection : MonoBehaviour
 			{
 				if (Input.GetAxis(axisName) > 0)
 				{
-					pressed[i] = true;
+					pressedValidation[i] = true;
 				}
 				else
 				{
-					if (pressed[i])
+					if (pressedValidation[i])
 					{
-						pressed[i] = false;
+						pressedValidation[i] = false;
 
 						if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
 						{
@@ -110,6 +110,17 @@ public class NewCharactersSelection : MonoBehaviour
 					}
 				}
 			}
+		}
+
+		if (players[0].GetComponent<Outline>().effectColor == VALIDATED_COLOR && players[1].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
+		{
+			GameObject.Find("Countdown").GetComponent<Animator>().SetTrigger("Selected");
+			GameObject.Find("Countdown").GetComponent<Animator>().ResetTrigger("Interrupt");
+		}
+		else
+		{
+			GameObject.Find("Countdown").GetComponent<Animator>().ResetTrigger("Selected");
+			GameObject.Find("Countdown").GetComponent<Animator>().SetTrigger("Interrupt");
 		}
 	}
 }
