@@ -1,4 +1,10 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ */
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -35,6 +41,14 @@ public class SpawnPlayers : MonoBehaviour
 			}
 
 			Instantiate(player).name = "Player" + (i + 1);
+			
+			foreach (Texture2D image in Resources.LoadAll<Texture2D>("Choices"))
+			{
+				if (image.name.Replace("Choice", string.Empty) == CharactersSelection.chosenCharactersNames[i])
+				{
+					GameObject.Find("healthbarPlayer" + (i + 1)).transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(image, new Rect(Vector2.zero, new Vector2(image.width, image.height)), new Vector2(0.5f, 0.5f));
+				}
+			}
 		}
 	}
 }

@@ -111,61 +111,60 @@ public class CharactersSelection : MonoBehaviour
 	{
 		for (int i = 0; i <= 1; i++)
 		{
-			if (Input.GetAxis("HorizontalPlayer" + (i + 1)) < 0)
+			if (players[i].GetComponent<Outline>().effectColor != VALIDATED_COLOR)
 			{
-				if (!pressedLeft[i])
+				if (Input.GetAxis("HorizontalPlayer" + (i + 1)) < 0)
 				{
-					pressedLeft[i] = true;
-
-					if (characterIndex[i] > 0)
+					if (!pressedLeft[i])
 					{
-						characterIndex[i]--;
-					}
-					else
-					{
-						characterIndex[i] = images.Count - 1;
-					}
+						pressedLeft[i] = true;
 
-					players[i].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
-					players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
+						if (characterIndex[i] > 0)
+						{
+							characterIndex[i]--;
+						}
+						else
+						{
+							characterIndex[i] = images.Count - 1;
+						}
+
+						players[i].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
+						players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
+					}
 				}
-			}
-			else if (Input.GetAxis("HorizontalPlayer" + (i + 1)) > 0)
-			{
-				if (!pressedRight[i])
+				else if (Input.GetAxis("HorizontalPlayer" + (i + 1)) > 0)
 				{
-					pressedRight[i] = true;
-
-					if (characterIndex[i] < images.Count - 1)
+					if (!pressedRight[i])
 					{
-						characterIndex[i]++;
-					}
-					else
-					{
-						characterIndex[i] = 0;
-					}
+						pressedRight[i] = true;
 
-					players[i].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
-					players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
+						if (characterIndex[i] < images.Count - 1)
+						{
+							characterIndex[i]++;
+						}
+						else
+						{
+							characterIndex[i] = 0;
+						}
+
+						players[i].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
+						players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
+					}
 				}
-			}
-			else
-			{
-				pressedLeft[i] = false;
-				pressedRight[i] = false;
+				else
+				{
+					pressedLeft[i] = false;
+					pressedRight[i] = false;
+				}
 			}
 
 			foreach (string axisName in validationAxisNames[i])
 			{
 				if (Input.GetAxis(axisName) > 0)
 				{
-					pressedValidation[i] = true;
-				}
-				else
-				{
-					if (pressedValidation[i])
+					if (!pressedValidation[i])
 					{
-						pressedValidation[i] = false;
+						pressedValidation[i] = true;
 
 						if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
 						{
@@ -188,6 +187,10 @@ public class CharactersSelection : MonoBehaviour
 							chosenCharactersNames[i] = images[characterIndex[i]].name;
 						}
 					}
+				}
+				else
+				{
+					pressedValidation[i] = false;
 				}
 			}
 		}

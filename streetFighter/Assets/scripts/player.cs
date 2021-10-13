@@ -260,13 +260,13 @@ public class player : MonoBehaviour
 				}
 
 				if (attack2Input > 0)
-                {
+				{
 					anim.SetBool("AttackKick", true);
-                }
-                else
-                {
+				}
+				else
+				{
 					anim.SetBool("AttackKick", false);
-                }
+				}
 				// Saut
 				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
 				{
