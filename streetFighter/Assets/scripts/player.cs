@@ -22,7 +22,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Objet qui détecte le contact avec le sol
 	/// </summary>
-	GroundSensor groundSensor;
+	groundSensor groundSensor;
 
 	/// <summary>
 	/// Composant RigidBody du personnage
@@ -162,7 +162,7 @@ public class player : MonoBehaviour
 		// Initialisation des variables
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
-		groundSensor = GetComponentInChildren<GroundSensor>();
+		groundSensor = GetComponentInChildren<groundSensor>();
 
 		if (name == "Player1")
 		{

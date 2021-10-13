@@ -27,7 +27,7 @@ public class PickUpObject : MonoBehaviour
     /// <summary>
     /// Objet qui détecte le contact avec le sol
     /// </summary>
-    GroundSensor groundSensor;
+    groundSensor groundSensor;
 
     /// <summary>
     /// Composant RigidBody du personnage

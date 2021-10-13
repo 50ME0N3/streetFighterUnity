@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dc053ac2e26204aa7cd3f61b17318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsWindow: {fileID: 0}
   Pause: {fileID: 2077555352}
 --- !u!1 &299797101
 GameObject:
@@ -3132,7 +3131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dc053ac2e26204aa7cd3f61b17318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsWindow: {fileID: 0}
   Pause: {fileID: 1355999783}
 --- !u!222 &5027967331839356573
 CanvasRenderer:
@@ -3673,7 +3671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dc053ac2e26204aa7cd3f61b17318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsWindow: {fileID: 0}
   Pause: {fileID: 1355999783}
 --- !u!222 &5027967333351565405
 CanvasRenderer:

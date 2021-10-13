@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundSensor : MonoBehaviour
+public class groundSensor : MonoBehaviour
 {
 	/// <summary>
 	/// Si le joueur touche le sol
