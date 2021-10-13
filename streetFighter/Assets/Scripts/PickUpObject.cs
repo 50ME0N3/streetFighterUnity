@@ -229,7 +229,7 @@ public class PickUpObject : MonoBehaviour
             }
             else
             {
-                if(applyEffect == 2)
+                if(applyEffect == 2)     
                 {
                     myAnimation.SetBool("estToucherVitesse", true);
                     // -Cours plus vite 
