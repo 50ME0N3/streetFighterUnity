@@ -7,7 +7,7 @@ public class KenPunch : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			DoDamage.Hit(collision, damagePunch, new Vector2(4, 8), gameObject);
+			MakeDamage.Hit(collision, damagePunch, new Vector2(4, 8), gameObject);
 		}
 	}
 }
