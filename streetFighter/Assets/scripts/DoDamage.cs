@@ -42,7 +42,7 @@ public class DoDamage : MonoBehaviour
 				collider.GetComponent<player>().healthBar.takeDamage(damage);
 			}
 
-			collider.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
+			collider.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y); 
 		}
 	}
 }
