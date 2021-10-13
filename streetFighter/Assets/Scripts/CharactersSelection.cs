@@ -113,17 +113,9 @@ public class CharactersSelection : MonoBehaviour
 		{
 			if (Input.GetAxis("HorizontalPlayer" + (i + 1)) < 0)
 			{
-				pressedLeft[i] = true;
-			}
-			else if (Input.GetAxis("HorizontalPlayer" + (i + 1)) > 0)
-			{
-				pressedRight[i] = true;
-			}
-			else
-			{
-				if (pressedLeft[i])
+				if (!pressedLeft[i])
 				{
-					pressedLeft[i] = false;
+					pressedLeft[i] = true;
 
 					if (characterIndex[i] > 0)
 					{
@@ -135,10 +127,14 @@ public class CharactersSelection : MonoBehaviour
 					}
 
 					players[i].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
+					players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
 				}
-				else if (pressedRight[i])
+			}
+			else if (Input.GetAxis("HorizontalPlayer" + (i + 1)) > 0)
+			{
+				if (!pressedRight[i])
 				{
-					pressedRight[i] = false;
+					pressedRight[i] = true;
 
 					if (characterIndex[i] < images.Count - 1)
 					{
@@ -150,9 +146,13 @@ public class CharactersSelection : MonoBehaviour
 					}
 
 					players[i].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
+					players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
 				}
-
-				players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
+			}
+			else
+			{
+				pressedLeft[i] = false;
+				pressedRight[i] = false;
 			}
 
 			foreach (string axisName in validationAxisNames[i])
