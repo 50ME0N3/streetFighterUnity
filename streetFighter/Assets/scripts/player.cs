@@ -122,6 +122,11 @@ public class player : MonoBehaviour
 	string attack1Axis;
 
 	/// <summary>
+	/// Appui sur la touche d'attaque 2
+	/// </summary>
+	string attack2Axis;
+
+	/// <summary>
 	/// Appui sur la touche de chute rapide
 	/// </summary>
 	string fastFallAxis;
@@ -173,6 +178,7 @@ public class player : MonoBehaviour
 		jumpAxis = "Jump" + name;
 		horizontalAxis = "Horizontal" + name;
 		attack1Axis = "Attack1" + name;
+		attack2Axis = "Attack2" + name;
 		fastFallAxis = "FastFall" + name;
 	}
 
@@ -182,6 +188,7 @@ public class player : MonoBehaviour
 		float jumpInput = Input.GetAxis(jumpAxis);
 		float direction = Input.GetAxis(horizontalAxis);
 		float attack1Input = Input.GetAxis(attack1Axis);
+		float attack2Input = Input.GetAxis(attack2Axis);
 		float fastFallInput = Input.GetAxis(fastFallAxis);
 
 		bool invincibleKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
@@ -242,12 +249,24 @@ public class player : MonoBehaviour
 			if (!GameObject.Find("Player2").GetComponent<player>().dead)
 			{
 				#region Actions
-				// Attaque
+				// Attaque1
 				if (attack1Input > 0)
 				{
-					anim.SetBool("Attack", true);
+					anim.SetBool("AttackPunch", true);
+				}
+				else
+				{
+					anim.SetBool("AttackPunch", false);
 				}
 
+				if (attack2Input > 0)
+                {
+					anim.SetBool("AttackKick", true);
+                }
+                else
+                {
+					anim.SetBool("AttackKick", false);
+                }
 				// Saut
 				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
 				{
