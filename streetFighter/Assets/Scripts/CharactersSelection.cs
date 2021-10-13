@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class CharactersSelection : MonoBehaviour
 {
+	#region Global Variables
 	/// <summary>
 	/// Noms des personnages sélectionnés
 	/// </summary>
@@ -25,7 +26,7 @@ public class CharactersSelection : MonoBehaviour
 	Color32 VALIDATED_COLOR = new Color32(0, 255, 0, 255);
 
 	/// <summary>
-	/// Couleur de base des bordures des personnages
+	/// Couleur par défaut des bordures des personnages
 	/// </summary>
 	Color32 defaultColor;
 
@@ -66,7 +67,7 @@ public class CharactersSelection : MonoBehaviour
 	};
 
 	/// <summary>
-	/// Si les joueurs ont appuyé sur un bouton de gauche
+	/// Si les joueurs ont appuyé sur le bouton de gauche
 	/// </summary>
 	bool[] pressedLeft = new bool[2]
 	{
@@ -75,7 +76,7 @@ public class CharactersSelection : MonoBehaviour
 	};
 
 	/// <summary>
-	/// Si les joueurs ont appuyé sur un bouton de droite
+	/// Si les joueurs ont appuyé sur le bouton de droite
 	/// </summary>
 	bool[] pressedRight = new bool[2]
 	{
@@ -83,11 +84,15 @@ public class CharactersSelection : MonoBehaviour
 		false
 	};
 
+	/// <summary>
+	/// Index des personnages choisis dans la liste
+	/// </summary>
 	int[] characterIndex = new int[2]
 	{
 		0,
 		0
 	};
+	#endregion
 
 	void Start()
 	{
@@ -97,6 +102,7 @@ public class CharactersSelection : MonoBehaviour
 		countdown = GameObject.Find("Countdown").GetComponent<Animator>();
 		chosenCharactersNames = new string[2];
 
+		// Importation des images
 		foreach (Texture2D image in Resources.LoadAll<Texture2D>("Choices"))
 		{
 			images.Add(Sprite.Create(image, new Rect(Vector2.zero, new Vector2(image.width, image.height)), new Vector2(0.5f, 0.5f)));
@@ -111,99 +117,126 @@ public class CharactersSelection : MonoBehaviour
 
 	void Update()
 	{
+		// Boucle pour les deux joueurs
 		for (int i = 0; i <= 1; i++)
 		{
-			if (players[i].GetComponent<Outline>().effectColor != VALIDATED_COLOR)
+			CharacterChange(i);
+
+			Validation(i);
+		}
+
+		Countdown();
+	}
+
+	/// <summary>
+	/// Change le personnage du joueur
+	/// </summary>
+	/// <param name="iPlayer">Index du joueur</param>
+	void CharacterChange(int iPlayer)
+	{
+		if (players[iPlayer].GetComponent<Outline>().effectColor != VALIDATED_COLOR)
+		{
+			if (Input.GetAxis("HorizontalPlayer" + (iPlayer + 1)) < 0)
 			{
-				if (Input.GetAxis("HorizontalPlayer" + (i + 1)) < 0)
+				if (!pressedLeft[iPlayer])
 				{
-					if (!pressedLeft[i])
+					pressedLeft[iPlayer] = true;
+
+					if (characterIndex[iPlayer] > 0)
 					{
-						pressedLeft[i] = true;
-
-						if (characterIndex[i] > 0)
-						{
-							characterIndex[i]--;
-						}
-						else
-						{
-							characterIndex[i] = images.Count - 1;
-						}
-
-						players[i].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
-						players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
-					}
-				}
-				else if (Input.GetAxis("HorizontalPlayer" + (i + 1)) > 0)
-				{
-					if (!pressedRight[i])
-					{
-						pressedRight[i] = true;
-
-						if (characterIndex[i] < images.Count - 1)
-						{
-							characterIndex[i]++;
-						}
-						else
-						{
-							characterIndex[i] = 0;
-						}
-
-						players[i].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
-						players[i].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[i]];
-					}
-				}
-				else
-				{
-					pressedLeft[i] = false;
-					pressedRight[i] = false;
-				}
-			}
-
-			bool validationKeyDown = false;
-
-			foreach (string axisName in validationAxisNames[i])
-			{
-				if (Input.GetAxis(axisName) > 0)
-				{
-					validationKeyDown = true;
-				}
-			}
-
-			if (validationKeyDown)
-			{
-				if (!pressedValidation[i])
-				{
-					pressedValidation[i] = true;
-
-					if (players[i].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
-					{
-						players[i].GetComponent<Outline>().effectColor = defaultColor;
-
-						for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
-						{
-							players[i].transform.GetChild(iChild).gameObject.SetActive(true);
-						}
+						characterIndex[iPlayer]--;
 					}
 					else
 					{
-						players[i].GetComponent<Outline>().effectColor = VALIDATED_COLOR;
-
-						for (int iChild = 1; iChild < players[i].transform.childCount; iChild++)
-						{
-							players[i].transform.GetChild(iChild).gameObject.SetActive(false);
-						}
-
-						chosenCharactersNames[i] = images[characterIndex[i]].name;
+						characterIndex[iPlayer] = images.Count - 1;
 					}
+
+					players[iPlayer].transform.GetChild(1).GetComponent<Animator>().SetTrigger("Move");
+					players[iPlayer].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[iPlayer]];
+				}
+			}
+			else if (Input.GetAxis("HorizontalPlayer" + (iPlayer + 1)) > 0)
+			{
+				if (!pressedRight[iPlayer])
+				{
+					pressedRight[iPlayer] = true;
+
+					if (characterIndex[iPlayer] < images.Count - 1)
+					{
+						characterIndex[iPlayer]++;
+					}
+					else
+					{
+						characterIndex[iPlayer] = 0;
+					}
+
+					players[iPlayer].transform.GetChild(2).GetComponent<Animator>().SetTrigger("Move");
+					players[iPlayer].transform.GetChild(0).GetComponent<Image>().sprite = images[characterIndex[iPlayer]];
 				}
 			}
 			else
 			{
-				pressedValidation[i] = false;
+				pressedLeft[iPlayer] = false;
+				pressedRight[iPlayer] = false;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Valide le choix du joueur
+	/// </summary>
+	/// <param name="iPlayer">Index du joueur</param>
+	void Validation(int iPlayer)
+	{
+		bool validationKeyDown = false;
+
+		foreach (string axisName in validationAxisNames[iPlayer])
+		{
+			if (Input.GetAxis(axisName) > 0)
+			{
+				validationKeyDown = true;
 			}
 		}
 
+		if (validationKeyDown)
+		{
+			if (!pressedValidation[iPlayer])
+			{
+				pressedValidation[iPlayer] = true;
+
+				if (players[iPlayer].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
+				{
+					players[iPlayer].GetComponent<Outline>().effectColor = defaultColor;
+
+					for (int iChild = 1; iChild < players[iPlayer].transform.childCount; iChild++)
+					{
+						players[iPlayer].transform.GetChild(iChild).gameObject.SetActive(true);
+					}
+				}
+				else
+				{
+					players[iPlayer].GetComponent<Outline>().effectColor = VALIDATED_COLOR;
+
+					for (int iChild = 1; iChild < players[iPlayer].transform.childCount; iChild++)
+					{
+						players[iPlayer].transform.GetChild(iChild).gameObject.SetActive(false);
+					}
+
+					chosenCharactersNames[iPlayer] = images[characterIndex[iPlayer]].name;
+				}
+			}
+		}
+		else
+		{
+			pressedValidation[iPlayer] = false;
+		}
+	}
+
+	/// <summary>
+	/// Lancement du compte à rebours
+	/// </summary>
+	void Countdown()
+	{
 		if (players[0].GetComponent<Outline>().effectColor == VALIDATED_COLOR && players[1].GetComponent<Outline>().effectColor == VALIDATED_COLOR)
 		{
 			countdown.SetTrigger("Selected");

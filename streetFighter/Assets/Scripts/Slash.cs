@@ -11,7 +11,7 @@ public class Slash : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			DoDamage.Hit(collision, 10, new Vector2(4, 8), gameObject);
+			MakeDamage.Hit(collision, 10, new Vector2(4, 8), gameObject);
 		}
 	}
 }

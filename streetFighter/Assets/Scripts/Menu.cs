@@ -9,14 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-	public GameObject settingsWindow;
-
 	public static bool gameIsPaused = false;
 
 	public GameObject Pause;
 
 	void Update()
 	{
+		// Pause
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(gameIsPaused == true)
@@ -30,33 +29,25 @@ public class Menu : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Relance une partie depuis l'écran de sélection des personnages
+	/// </summary>
 	public void StartButton()
 	{
 		SceneManager.LoadScene("Character Selection");
 	}
-
-	public void SettingsButton()
-	{
-		settingsWindow.SetActive(true);
-	}   
-
-	public void ClosedSettingsWindows()
-	{
-		settingsWindow.SetActive(false);
-	}
 	
+	/// <summary>
+	/// Quitte le jeu
+	/// </summary>
 	public void QuitButton()
 	{
 		Application.Quit();
 	}
 
-	public void ReturnToGame()
-	{
-		Pause.SetActive(false);
-		Time.timeScale = 1;
-		gameIsPaused = false;
-	}
-
+	/// <summary>
+	/// Ouvre le menu de pause
+	/// </summary>
 	public void Paused()
 	{
 		Pause.SetActive(true);
@@ -65,6 +56,19 @@ public class Menu : MonoBehaviour
 		GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
 	}
 
+	/// <summary>
+	/// Ferme le menu de pause
+	/// </summary>
+	public void ReturnToGame()
+	{
+		Pause.SetActive(false);
+		Time.timeScale = 1;
+		gameIsPaused = false;
+	}
+
+	/// <summary>
+	/// retour au menu principal
+	/// </summary>
 	public void BackMainMenu()
 	{
 		Pause.SetActive(false);

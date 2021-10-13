@@ -27,7 +27,7 @@ public class PickUpObject : MonoBehaviour
     /// <summary>
     /// Objet qui détecte le contact avec le sol
     /// </summary>
-    groundSensor groundSensor;
+    GroundSensor groundSensor;
 
     /// <summary>
     /// Composant RigidBody du personnage
@@ -204,7 +204,7 @@ public class PickUpObject : MonoBehaviour
             if (player1)
             {
                 healthBar = GameObject.FindGameObjectWithTag("SliderP1").GetComponent<Healthbar>();
-                healthBar.heal(50);
+                healthBar.Heal(50);
 
                 player1 = false;
                 player2 = false;
@@ -212,7 +212,7 @@ public class PickUpObject : MonoBehaviour
             else if (player2)
             {
                 healthBar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
-                healthBar.heal(50);
+                healthBar.Heal(50);
 
                 player1 = false;
                 player2 = false;

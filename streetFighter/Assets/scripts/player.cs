@@ -22,7 +22,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Objet qui détecte le contact avec le sol
 	/// </summary>
-	groundSensor groundSensor;
+	GroundSensor groundSensor;
 
 	/// <summary>
 	/// Composant RigidBody du personnage
@@ -162,7 +162,7 @@ public class player : MonoBehaviour
 		// Initialisation des variables
 		rgbd = gameObject.GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator>();
-		groundSensor = GetComponentInChildren<groundSensor>();
+		groundSensor = GetComponentInChildren<GroundSensor>();
 
 		if (name == "Player1")
 		{
@@ -218,7 +218,7 @@ public class player : MonoBehaviour
 
 			if (infiniteRegen)
 			{
-				healthBar.heal(1);
+				healthBar.Heal(1);
 
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\n";
 			}
@@ -239,10 +239,10 @@ public class player : MonoBehaviour
 		// Régénère a l'infini
 		if (infiniteRegen)
 		{
-			healthBar.heal(1);
+			healthBar.Heal(1);
 		}
 
-		health = healthBar.getHealth();
+		health = healthBar.GetHealth();
 
 		if (health > 0)
 		{

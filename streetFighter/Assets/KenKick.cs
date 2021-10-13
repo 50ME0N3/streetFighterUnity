@@ -9,7 +9,7 @@ public class KenKick : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			DoDamage.Hit(collision, damageKick, new Vector2(4, 8), gameObject);
+			MakeDamage.Hit(collision, damageKick, new Vector2(4, 8), gameObject);
 		}
 	}
 }
