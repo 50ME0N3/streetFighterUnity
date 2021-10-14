@@ -143,6 +143,11 @@ public class player : MonoBehaviour
 	/// Si le joueur est mort
 	/// </summary>
 	bool dead = false;
+
+	/// <summary>
+	/// Si le joueur a activé la chute rapide
+	/// </summary>
+	bool isFastFalling = false;
 	#endregion
 
 	/// <summary>
@@ -258,6 +263,7 @@ public class player : MonoBehaviour
 					anim.SetBool("AttackPunch", false);
 				}
 
+				// Attaque 2
 				if (attack2Input > 0)
 				{
 					anim.SetBool("AttackKick", true);
@@ -272,6 +278,7 @@ public class player : MonoBehaviour
 				{
 					rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
 					anim.SetBool("Grounded", false);
+					isFastFalling = false;
 				}
 
 				if (groundSensor.Grounded)
@@ -281,12 +288,17 @@ public class player : MonoBehaviour
 				else
 				{
 					anim.SetBool("Grounded", false);
+				}
 
-					// Chute rapide
-					if (fastFallInput > 0 && rgbd.velocity.y <= 0)
-					{
-						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
-					}
+				// Chute rapide
+				if ((!groundSensor.Grounded || jumpInput > 0) && fastFallInput > 0)
+				{
+					isFastFalling = true;
+				}
+
+				if (isFastFalling && rgbd.velocity.y <= 0)
+				{
+					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
 				}
 				#endregion
 				anim.SetFloat("AirSpeed", rgbd.velocity.y);
@@ -347,28 +359,38 @@ public class player : MonoBehaviour
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
-				// Affiche le joueur gagnant et augmente son score
+				// Affiche le joueur gagnant du round et augmente son score
 				if (name[name.Length - 1] == '1')
 				{
 					ShowRound.score[1]++;
 					GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the round";
 				}
 				else
 				{
 					ShowRound.score[0]++;
 					GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
 				}
 
+				// Affichage du gagnant de la partie
 				if (ShowRound.round == ShowRound.MAX_ROUND)
 				{
 					GameObject.Find("ButtonNextRound").SetActive(false);
+					
+					if (ShowRound.score[0] > ShowRound.score[1])
+					{
+						GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the match";
+					}
+					else
+					{
+						GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the match";
+					}
 				}
 			}
 		}
 
-		const float WAIT_TIME = 3;
+		const float WAIT_TIME = 1;
 
 		if (dead)
 		{
