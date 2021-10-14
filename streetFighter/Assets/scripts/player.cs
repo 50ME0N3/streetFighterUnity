@@ -50,22 +50,27 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	public float speed = 1f;
+	const float SPEED = 1f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
 	/// </summary>
-	float jumpHeight = 11;
+	const float JUMP_HEIGHT = 1000;
 
 	/// <summary>
 	/// Vitesse de chute rapide
 	/// </summary>
-	float fastFallSpeed = 1.3f;
+	const float FAST_FALL_SPEED = 1.3f;
 
 	/// <summary>
 	/// Recul des attaques subies
 	/// </summary>
 	public Vector2 knockback = Vector2.zero;
+
+	/// <summary>
+	/// Nombre de victoires du joueur
+	/// </summary>
+	public int score = 0;
 	#endregion
 
 	#region Cheats Enabled
@@ -155,7 +160,6 @@ public class player : MonoBehaviour
 	/// </summary>
 	bool end = false;
 	#endregion
-
 
 	void Start()
 	{
@@ -249,7 +253,7 @@ public class player : MonoBehaviour
 			if (!GameObject.Find("Player2").GetComponent<player>().dead)
 			{
 				#region Actions
-				// Attaque1
+				// Attaque 1
 				if (attack1Input > 0)
 				{
 					anim.SetBool("AttackPunch", true);
@@ -267,11 +271,13 @@ public class player : MonoBehaviour
 				{
 					anim.SetBool("AttackKick", false);
 				}
+
 				// Saut
 				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
 				{
-					rgbd.velocity = new Vector2(rgbd.velocity.x, jumpHeight);
+					rgbd.AddForce(Vector2.up * JUMP_HEIGHT);
 					anim.SetBool("Grounded", false);
+					Debug.Log(groundSensor.Grounded);
 				}
 
 				if (groundSensor.Grounded)
@@ -285,14 +291,14 @@ public class player : MonoBehaviour
 					// Chute rapide
 					if (fastFallInput > 0 && rgbd.velocity.y <= 0)
 					{
-						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * fastFallSpeed);
+						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
 					}
 				}
 				#endregion
 				anim.SetFloat("AirSpeed", rgbd.velocity.y);
 
 				const int PLAYER_TAG_INDEX = 2;
-				#region Course
+				#region Run
 				if (direction > 0)
 				{
 					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
@@ -302,7 +308,7 @@ public class player : MonoBehaviour
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
-						rgbd.velocity += new Vector2(direction * speed, 0);
+						rgbd.velocity += new Vector2(direction * SPEED, 0);
 					}
 
 					wasMoving = true;
@@ -316,7 +322,7 @@ public class player : MonoBehaviour
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
-						rgbd.velocity += new Vector2(direction * speed, 0);
+						rgbd.velocity += new Vector2(direction * SPEED, 0);
 					}
 
 					wasMoving = true;
@@ -350,10 +356,12 @@ public class player : MonoBehaviour
 				// Sélectionne le joueur tué
 				if (name[name.Length - 1] == '1')
 				{
+					GameObject.Find("Player2").GetComponent<player>().score++;
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
 				}
 				else
 				{
+					GameObject.Find("Player1").GetComponent<player>().score++;
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
 				}
 			}
