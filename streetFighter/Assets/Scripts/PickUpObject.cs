@@ -12,6 +12,7 @@ public class PickUpObject : MonoBehaviour
     randomSpawner randomSpawner;
     KenKick scriptKenKick;
     KenPunch scriptKenPunch;
+    player player;
     bool player1 = false;
     bool player2 = false;
 
@@ -223,7 +224,7 @@ public class PickUpObject : MonoBehaviour
             if(applyEffect == 1)
             {
                 myAnimation.SetBool("estToucherPower", true);
-                // -Fait plus de dégats
+                // -Fait plus de dégats  
                 //scriptKenKick.damageKick = 30;
                 //scriptKenPunch.damagePunch = 25;
             }
@@ -233,6 +234,7 @@ public class PickUpObject : MonoBehaviour
                 {
                     myAnimation.SetBool("estToucherVitesse", true);
                     // -Cours plus vite 
+                    //player.speed = 10f;
                 }
             }
         }
@@ -242,8 +244,3 @@ public class PickUpObject : MonoBehaviour
         myAnimation = GetComponent<Animator>();
     } 
 }
-
-
-
-   
-

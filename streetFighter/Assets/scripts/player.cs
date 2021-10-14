@@ -50,7 +50,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	float speed = 1f;
+	public float speed = 1f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
