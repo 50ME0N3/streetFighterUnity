@@ -206,6 +206,9 @@ TextureImporter:
   - first:
       213: -8723824693249287960
     second: chun-li_3
+  - first:
+      213: 1462276325588883382
+    second: chun-li_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -681,7 +684,7 @@ TextureImporter:
         width: 42
         height: 79
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,7 +705,7 @@ TextureImporter:
         width: 72
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -723,7 +726,7 @@ TextureImporter:
         width: 60
         height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -744,7 +747,7 @@ TextureImporter:
         width: 41
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -752,6 +755,27 @@ TextureImporter:
       bones: []
       spriteID: 8e8581c89afbee680800000000000000
       internalID: -8723824693249287960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chun-li_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 283
+        width: 80
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b75036129c0b4410800000000000000
+      internalID: 1462276325588883382
       vertices: []
       indices: 
       edges: []

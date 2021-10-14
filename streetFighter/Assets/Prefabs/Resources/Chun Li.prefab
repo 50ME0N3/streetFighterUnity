@@ -280,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   knockback: {x: 0, y: 0}
+  score: 0
   instantDeath: 0
 --- !u!50 &9141324637162205322
 Rigidbody2D:

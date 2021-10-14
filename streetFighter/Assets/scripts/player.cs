@@ -310,7 +310,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
@@ -324,7 +324,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
@@ -335,7 +335,7 @@ public class player : MonoBehaviour
 				}
 				else if (wasMoving)
 				{
-					anim.SetInteger("AnimState", 0);
+					anim.SetBool("moving", false);
 					wasMoving = false;
 				}
 				#endregion
@@ -355,7 +355,7 @@ public class player : MonoBehaviour
 			{
 				dead = true;
 				deathTime = Time.time;
-				anim.SetTrigger("Death");
+				anim.SetBool("DEAD", true);
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
