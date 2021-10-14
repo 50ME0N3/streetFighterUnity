@@ -57,6 +57,15 @@ public class Menu : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Commence le round suivant
+	/// </summary>
+	public void NextRound()
+	{
+		ShowRound.round++;
+		SceneManager.LoadScene("Battle");
+	}
+
+	/// <summary>
 	/// Ferme le menu de pause
 	/// </summary>
 	public void ReturnToGame()

@@ -55,7 +55,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Hauteur de saut du personnage
 	/// </summary>
-	const float JUMP_HEIGHT = 1;
+	const float JUMP_HEIGHT = 10;
 
 	/// <summary>
 	/// Vitesse de chute rapide
@@ -66,11 +66,6 @@ public class player : MonoBehaviour
 	/// Recul des attaques subies
 	/// </summary>
 	public Vector2 knockback = Vector2.zero;
-
-	/// <summary>
-	/// Nombre de victoires du joueur
-	/// </summary>
-	public int score = 0;
 	#endregion
 
 	#region Cheats Enabled
@@ -352,18 +347,23 @@ public class player : MonoBehaviour
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
-				// Sélectionne le joueur tué
+				// Affiche le joueur gagnant et augmente son score
 				if (name[name.Length - 1] == '1')
 				{
-					GameObject.Find("Player2").GetComponent<player>().score++;
-					GameObject.Find("ScorePlayer2" + name).GetComponent<Text>().text = GameObject.Find("Player2").GetComponent<player>().score.ToString();
+					ShowRound.score[1]++;
+					GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
 				}
 				else
 				{
-					GameObject.Find("Player1").GetComponent<player>().score++;
-					GameObject.Find("ScorePlayer1" + name).GetComponent<Text>().text = GameObject.Find("Player1").GetComponent<player>().score.ToString();
+					ShowRound.score[0]++;
+					GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
+				}
+
+				if (ShowRound.round == ShowRound.MAX_ROUND)
+				{
+					GameObject.Find("ButtonNextRound").SetActive(false);
 				}
 			}
 		}
