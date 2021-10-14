@@ -178,6 +178,7 @@ public class PickUpObject : MonoBehaviour
         // Quand le joueur touche la pi�ce 
         if (collision.CompareTag("Player"))
         {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
             PickUp(collision);
 
             StartCoroutine(CoinDestroy());
@@ -185,6 +186,7 @@ public class PickUpObject : MonoBehaviour
             IEnumerator CoinDestroy()
             {
                 yield return new WaitForSeconds(0.4f);
+                gameObject.GetComponent<CircleCollider2D>().enabled = true;
                 gameObject.SetActive(false);
             }
         }
@@ -200,6 +202,7 @@ public class PickUpObject : MonoBehaviour
         {
             // Fait l'animation
             myAnimation.SetBool("estToucher", true);
+            myAnimation.SetBool("animHeal", true);
             // -Rajoute de la vie
 
             if (player1)

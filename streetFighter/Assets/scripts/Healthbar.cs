@@ -24,8 +24,10 @@ public class Healthbar : MonoBehaviour
 	/// </summary>
 	public Image fill;
 
-	// Met les PV du joueur au max
-	public void SetMaxHealth(int health)
+    
+
+    // Met les PV du joueur au max
+    public void SetMaxHealth(int health)
 	{
 		slider.maxValue = health;
 		slider.value = health;
@@ -51,7 +53,7 @@ public class Healthbar : MonoBehaviour
 	{
 		slider.value += hp;
 		fill.color = gradient.Evaluate(slider.normalizedValue);
-	}
+    }
 
 	/// <summary>
 	/// Retourne le nombre de points de vie
