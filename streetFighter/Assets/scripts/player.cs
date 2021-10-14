@@ -55,7 +55,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Hauteur de saut du personnage
 	/// </summary>
-	const float JUMP_HEIGHT = 10;
+	const float JUMP_HEIGHT = 6;
 
 	/// <summary>
 	/// Vitesse de chute rapide
