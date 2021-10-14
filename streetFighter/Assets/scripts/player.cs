@@ -55,7 +55,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Hauteur de saut du personnage
 	/// </summary>
-	const float JUMP_HEIGHT = 1000;
+	const float JUMP_HEIGHT = 1;
 
 	/// <summary>
 	/// Vitesse de chute rapide
@@ -275,9 +275,8 @@ public class player : MonoBehaviour
 				// Saut
 				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
 				{
-					rgbd.AddForce(Vector2.up * JUMP_HEIGHT);
+					rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
 					anim.SetBool("Grounded", false);
-					Debug.Log(groundSensor.Grounded);
 				}
 
 				if (groundSensor.Grounded)
@@ -357,11 +356,13 @@ public class player : MonoBehaviour
 				if (name[name.Length - 1] == '1')
 				{
 					GameObject.Find("Player2").GetComponent<player>().score++;
+					GameObject.Find("ScorePlayer2" + name).GetComponent<Text>().text = GameObject.Find("Player2").GetComponent<player>().score.ToString();
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
 				}
 				else
 				{
 					GameObject.Find("Player1").GetComponent<player>().score++;
+					GameObject.Find("ScorePlayer1" + name).GetComponent<Text>().text = GameObject.Find("Player1").GetComponent<player>().score.ToString();
 					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
 				}
 			}
