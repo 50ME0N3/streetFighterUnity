@@ -18,6 +18,8 @@ public class randomSpawner : MonoBehaviour
     private Semaphore sem;
     private int timeWaitCoin = 10;
 
+   
+
     private void Update()
     {
 

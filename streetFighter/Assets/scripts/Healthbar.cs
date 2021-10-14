@@ -23,17 +23,17 @@ public class Healthbar : MonoBehaviour
 	/// Jauge
 	/// </summary>
 	public Image fill;
-
     
 
     // Met les PV du joueur au max
     public void SetMaxHealth(int health)
 	{
-		slider.maxValue = health;
+        
+        slider.maxValue = health;
 		slider.value = health;
 
 		fill.color = gradient.Evaluate(1f);
-	}
+    }
 
 	/// <summary>
 	/// Modifie les PV du joueur en fonction de la variable reçue

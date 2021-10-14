@@ -8,15 +8,18 @@ public class PickUpObject : MonoBehaviour
 {
     
     Animator myAnimation;
+    Animator animationTexte;
+    public GameObject textePowerUp;
+    public GameObject coin;
     public float multiplier = 2f;
     randomSpawner randomSpawner;
     KenKick scriptKenKick;
     KenPunch scriptKenPunch;
     player player;
+    private float timeWait = 1.5f;
     bool player1 = false;
     bool player2 = false;
-
-
+    
     #region Global Variables
     #region Components
 
@@ -156,8 +159,7 @@ public class PickUpObject : MonoBehaviour
     /// </summary>
     bool end = false;
     #endregion
-
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Récupère quel joueur touche la pièce
@@ -196,14 +198,14 @@ public class PickUpObject : MonoBehaviour
     {
         // Apply effect to the player :
         int applyEffect = Random.Range(0, 3);
-        
+
         Debug.Log(applyEffect);
         if (applyEffect == 0)
         {
             // Fait l'animation
             myAnimation.SetBool("estToucher", true);
-            myAnimation.SetBool("animHeal", true);
-            // -Rajoute de la vie
+
+            // -Rajoute de la vie selon le joueur qui a toucher la pièce 
 
             if (player1)
             {
@@ -221,6 +223,9 @@ public class PickUpObject : MonoBehaviour
                 player1 = false;
                 player2 = false;
             }
+            textePowerUp.SetActive(true);
+            animationTexte.SetBool("animHeal", true);
+            Invoke("stopAnim", timeWait);
         }
         else
         {
@@ -244,6 +249,12 @@ public class PickUpObject : MonoBehaviour
     }
     private void Start()
     {
-        myAnimation = GetComponent<Animator>();
+        myAnimation = coin.GetComponent<Animator>();
+        animationTexte = textePowerUp.GetComponent<Animator>();
     } 
+
+    private void stopAnim()
+    {
+        textePowerUp.SetActive(false);
+    }
 }
