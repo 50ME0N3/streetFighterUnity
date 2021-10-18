@@ -148,17 +148,17 @@ public class player : MonoBehaviour
 	/// Si le joueur a activé la chute rapide
 	/// </summary>
 	bool isFastFalling = false;
+
+	/// <summary>
+	/// Si le jeu est fini et que le menu de fin s'est affiché
+	/// </summary>
+	bool end = false;
 	#endregion
 
 	/// <summary>
 	/// Moment où le joueur est mort
 	/// </summary>
 	float deathTime;
-
-	/// <summary>
-	/// Si le jeu est fini et que le menu de fin s'est affiché
-	/// </summary>
-	bool end = false;
 	#endregion
 
 	void Start()
