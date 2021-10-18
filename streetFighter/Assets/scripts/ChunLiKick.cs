@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ChunLiKick : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public byte kbx;
+	public byte kby;
+	public byte damageKick = 20;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			MakeDamage.Hit(collision, damageKick, new Vector2(kbx, kby), gameObject);
+		}
+	}
 }
