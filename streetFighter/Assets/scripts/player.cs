@@ -408,7 +408,18 @@ public class player : MonoBehaviour
 					IEnumerator goMainMenu()
 					{
 						yield return new WaitForSeconds(10);
-						SceneManager.LoadScene("Title Screen");
+
+						ShowRound.round++;
+
+						if (ShowRound.round < ShowRound.MAX_ROUND)
+						{
+							SceneManager.LoadScene("Battle");
+						}
+						else
+						{
+							SceneManager.LoadScene("Title Screen");
+						}
+
 					}
 				}
 			}
