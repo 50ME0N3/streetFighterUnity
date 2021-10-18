@@ -45,12 +45,12 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse maximale de course atteignable
 	/// </summary>
-	const float MAX_SPEED = 2.5f;
+	const float MAX_SPEED = 1.5f;
 
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	const float SPEED = 1f;
+	const float SPEED = 0.5f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
