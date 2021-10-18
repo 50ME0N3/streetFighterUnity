@@ -1,3 +1,9 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan, Grégoire
+ * Description : Gère le system de round
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 

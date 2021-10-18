@@ -1,6 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Antoine
+ * Description : Détecte quand un joueur en attaque un autre et applique les dégas
  */
 
 using UnityEngine;

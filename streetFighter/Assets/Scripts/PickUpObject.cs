@@ -1,3 +1,9 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Gabriel
+ * Description : Fonctionement de la piece 
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

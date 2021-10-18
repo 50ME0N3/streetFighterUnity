@@ -1,6 +1,7 @@
 ﻿/* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Gabriel
+ * Description : Fais apparaitre une pièce aléatoirement si une piece a été atrapée
  */
 
 using System.Collections;
