@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2905522399852138306}
   - component: {fileID: 3167199976211775605}
-  - component: {fileID: 3583343258100974687}
+  - component: {fileID: 962552421750352001}
   m_Layer: 0
   m_Name: HItboxPunch
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8091576, y: 0.208911}
   m_EdgeRadius: 0
---- !u!114 &3583343258100974687
+--- !u!114 &962552421750352001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,10 +67,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1285519695075947871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ce976a41b3c98499baf33383219438, type: 3}
+  m_Script: {fileID: 11500000, guid: b1c9b41b28952fb4b8a301730dfeb388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePunch: 15
+  kbx: 4
+  kby: 3
+  damagePunch: 10
 --- !u!1 &3239141645012197847
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +158,7 @@ GameObject:
   - component: {fileID: 127970341553028921}
   - component: {fileID: 9141324637162205322}
   m_Layer: 0
-  m_Name: Chun Li
+  m_Name: Chun-Li
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481942765298826128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: -1, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 2329281473322259690}
@@ -327,8 +329,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4405758233923543868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.012, y: 0.012, z: 0.39999998}
+  m_LocalPosition: {x: 0, y: 0.478, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.39999998}
   m_Children: []
   m_Father: {fileID: 3104385530788726539}
   m_RootOrder: 2
@@ -373,8 +375,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 7aa7f19a2093cfa47ac1d2a69ea4455b, type: 3}
-  m_Color: {r: 1, g: 0.2509804, b: 0.2509804, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 151afcaed50bd814bb82a805544d27e7, type: 3}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -394,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6184087287868183675}
   - component: {fileID: 6977845994788302254}
-  - component: {fileID: 1115785037807901324}
+  - component: {fileID: 7903326135879368236}
   m_Layer: 0
   m_Name: HItboxKick
   m_TagString: Untagged
@@ -442,7 +444,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2779399, y: 0.33945078}
   m_EdgeRadius: 0
---- !u!114 &1115785037807901324
+--- !u!114 &7903326135879368236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,7 +453,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7585616893903922025}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b93ff5a26f900840b2b1f0d70cbd6d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e80c009b0dda674db5b140f9328d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageKick: 20
+  kbx: 1
+  kby: 8
+  damageKick: 25

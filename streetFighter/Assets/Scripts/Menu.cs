@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Menu : MonoBehaviour
 		{
 			if(gameIsPaused == true)
 			{
-				ReturnToGame();
+				Resume();
 			}
 			else
 			{
@@ -35,6 +36,11 @@ public class Menu : MonoBehaviour
 	/// </summary>
 	public void StartButton()
 	{
+		// Remise à zéro du score et du round
+		ShowRound.round = 1;
+		ShowRound.score[0] = 0;
+		ShowRound.score[1] = 0;
+
 		SceneManager.LoadScene("Character Selection");
 	}
 	
@@ -51,10 +57,17 @@ public class Menu : MonoBehaviour
 	/// </summary>
 	public void Paused()
 	{
+		// Affiche le menu de pause
 		Pause.SetActive(true);
 		Time.timeScale = 0;
 		gameIsPaused = true;
 		GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
+
+		// Le score et le round sont masqués
+		foreach (Text text in GameObject.Find("Round").GetComponentsInChildren<Text>())
+		{
+			text.enabled = false;
+		}
 	}
 
 	/// <summary>
@@ -69,11 +82,19 @@ public class Menu : MonoBehaviour
 	/// <summary>
 	/// Ferme le menu de pause
 	/// </summary>
-	public void ReturnToGame()
+	public void Resume()
 	{
+		// Masque le menu de pause
 		Pause.SetActive(false);
 		Time.timeScale = 1;
 		gameIsPaused = false;
+		GameObject.Find("Round").transform.GetChild(1).gameObject.SetActive(true);
+
+		// Le score et le round sont affichés
+		foreach (Text text in GameObject.Find("Round").GetComponentsInChildren<Text>())
+		{
+			text.enabled = true;
+		}
 	}
 
 	/// <summary>
@@ -81,8 +102,6 @@ public class Menu : MonoBehaviour
 	/// </summary>
 	public void BackMainMenu()
 	{
-		Pause.SetActive(false);
-		Time.timeScale = 1;
 		gameIsPaused = false;
 		SceneManager.LoadScene("Title Screen");
 	}

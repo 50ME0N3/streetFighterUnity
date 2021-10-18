@@ -25,7 +25,7 @@ public class SpawnPlayers : MonoBehaviour
 			CharactersSelection.chosenCharactersNames = new string[]
 			{
 				"Ken",
-				"Chun Li"
+				"Chun-Li"
 			};
 		}
 

@@ -21,7 +21,7 @@ public class MakeDamage : MonoBehaviour
 		Transform player = collider.gameObject.transform;
 
 		// Si l'attaquant est a gauche de la cible
-		if (hitBoxObject.transform.position.x < player.position.x)
+		if (hitBoxObject.transform.parent.position.x < player.position.x)
 		{
 			// Inflige les dégâts à la cible
 			if (hitBoxObject.GetComponentInParent<player>().instantDeath)

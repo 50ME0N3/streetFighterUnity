@@ -46,12 +46,12 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse maximale de course atteignable
 	/// </summary>
-	const float MAX_SPEED = 2.5f;
+	const float MAX_SPEED = 1.5f;
 
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	const float SPEED = 1f;
+	const float SPEED = 0.5f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
@@ -149,17 +149,17 @@ public class player : MonoBehaviour
 	/// Si le joueur a activé la chute rapide
 	/// </summary>
 	bool isFastFalling = false;
+
+	/// <summary>
+	/// Si le jeu est fini et que le menu de fin s'est affiché
+	/// </summary>
+	bool end = false;
 	#endregion
 
 	/// <summary>
 	/// Moment où le joueur est mort
 	/// </summary>
 	float deathTime;
-
-	/// <summary>
-	/// Si le jeu est fini et que le menu de fin s'est affiché
-	/// </summary>
-	bool end = false;
 	#endregion
 
 	void Start()
@@ -311,7 +311,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
@@ -325,7 +325,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
@@ -336,7 +336,7 @@ public class player : MonoBehaviour
 				}
 				else if (wasMoving)
 				{
-					anim.SetInteger("AnimState", 0);
+					anim.SetBool("moving", false);
 					wasMoving = false;
 				}
 				#endregion
@@ -356,7 +356,7 @@ public class player : MonoBehaviour
 			{
 				dead = true;
 				deathTime = Time.time;
-				anim.SetTrigger("Death");
+				anim.SetBool("DEAD", true);
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
@@ -409,7 +409,18 @@ public class player : MonoBehaviour
 					IEnumerator goMainMenu()
 					{
 						yield return new WaitForSeconds(10);
-						SceneManager.LoadScene("Title Screen");
+
+						ShowRound.round++;
+
+						if (ShowRound.round < ShowRound.MAX_ROUND)
+						{
+							SceneManager.LoadScene("Battle");
+						}
+						else
+						{
+							SceneManager.LoadScene("Title Screen");
+						}
+
 					}
 				}
 			}
