@@ -70,9 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c9b41b28952fb4b8a301730dfeb388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kbx: 0
-  kby: 0
-  damagePunch: 15
+  kbx: 4
+  kby: 3
+  damagePunch: 10
 --- !u!1 &3239141645012197847
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481942765298826128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: -1, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 2329281473322259690}
@@ -456,3 +456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e80c009b0dda674db5b140f9328d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kbx: 1
+  kby: 8
+  damageKick: 25
