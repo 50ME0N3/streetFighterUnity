@@ -259,104 +259,106 @@ public class player : MonoBehaviour
 
 		health = healthBar.Health;
 
-		if (health > 0 && !GameObject.Find("Timer").GetComponent<Timer>().ended)
+		if (!end)
 		{
-			if (!GameObject.Find("Player2").GetComponent<player>().dead)
+			if (health > 0 && !GameObject.Find("Timer").GetComponent<Timer>().tie)
 			{
-				#region Actions
-				// Attaque 1
-				if (attack1Input > 0)
+				if (!GameObject.Find("Player2").GetComponent<player>().dead)
 				{
-					anim.SetBool("AttackPunch", true);
-				}
-				else
-				{
-					anim.SetBool("AttackPunch", false);
-				}
+					#region Actions
+					// Attaque 1
+					if (attack1Input > 0)
+					{
+						anim.SetBool("AttackPunch", true);
+					}
+					else
+					{
+						anim.SetBool("AttackPunch", false);
+					}
 
-				// Attaque 2
-				if (attack2Input > 0)
-				{
-					anim.SetBool("AttackKick", true);
-				}
-				else
-				{
-					anim.SetBool("AttackKick", false);
-				}
+					// Attaque 2
+					if (attack2Input > 0)
+					{
+						anim.SetBool("AttackKick", true);
+					}
+					else
+					{
+						anim.SetBool("AttackKick", false);
+					}
 
-				// Saut
-				if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
-				{
-					rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
-					anim.SetBool("Grounded", false);
-					isFastFalling = false;
-				}
+					// Saut
+					if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
+					{
+						rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
+						anim.SetBool("Grounded", false);
+						isFastFalling = false;
+					}
 
-				// Chute rapide
-				if ((!groundSensor.Grounded || jumpInput > 0) && fastFallInput > 0)
-				{
-					isFastFalling = true;
-				}
+					// Chute rapide
+					if ((!groundSensor.Grounded || jumpInput > 0) && fastFallInput > 0)
+					{
+						isFastFalling = true;
+					}
 
-				if (isFastFalling && rgbd.velocity.y <= 0)
-				{
-					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
-				}
-				#endregion
-				anim.SetFloat("AirSpeed", rgbd.velocity.y);
+					if (isFastFalling && rgbd.velocity.y <= 0)
+					{
+						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
+					}
+					#endregion
 
-				const int PLAYER_TAG_INDEX = 2;
-				#region Run
-				if (direction > 0)
-				{
-					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
-					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
-					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
-					anim.SetBool("moving", true);
+					const int PLAYER_TAG_INDEX = 2;
+					#region Run
+					if (direction > 0)
+					{
+						transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
+						gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
+						gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
+						anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
 						rgbd.velocity += new Vector2(direction * speed, 0);
 					}
 
-					wasMoving = true;
-				}
-				else if (direction < 0)
-				{
-					transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
-					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
-					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
-					anim.SetBool("moving", true);
+						wasMoving = true;
+					}
+					else if (direction < 0)
+					{
+						transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+						gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
+						gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
+						anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
 						rgbd.velocity += new Vector2(direction * speed, 0);
 					}
 
-					wasMoving = true;
-				}
-				else if (wasMoving)
-				{
-					anim.SetBool("moving", false);
-					wasMoving = false;
-				}
-				#endregion
+						wasMoving = true;
+					}
+					else if (wasMoving)
+					{
+						anim.SetBool("moving", false);
+						wasMoving = false;
+					}
+					#endregion
 
-				// Éjection du personnage
-				if (knockback != Vector2.zero)
-				{
-					rgbd.velocity = knockback;
-					knockback = Vector2.zero;
+					// Éjection du personnage
+					if (knockback != Vector2.zero)
+					{
+						rgbd.velocity = knockback;
+						knockback = Vector2.zero;
+					}
 				}
 			}
-		}
-		else
-		{
-			// Mort du joueur
-			if (!dead)
+			else
 			{
-				anim.SetBool("DEAD", true);
-				Lose();
+				// Mort du joueur
+				if (!dead)
+				{
+					anim.SetBool("DEAD", true);
+					Lose();
+				}
 			}
 		}
 
@@ -409,6 +411,8 @@ public class player : MonoBehaviour
 		dead = true;
 		deathTime = Time.time;
 
+		GameObject.Find("Timer").GetComponent<Timer>().ended = true;
+
 		GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
 		// Affiche le joueur gagnant du round et augmente son score
@@ -426,6 +430,10 @@ public class player : MonoBehaviour
 				GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
 				GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
 			}
+		}
+		else
+		{
+			GameObject.Find("Timer").GetComponent<Timer>().tie = true;
 		}
 
 		// Affichage du gagnant de la partie
@@ -452,6 +460,14 @@ public class player : MonoBehaviour
 		else if (tie)
 		{
 			GameObject.Find("Winner").GetComponent<Text>().text = "Tie";
+		}
+
+		foreach (AnimatorControllerParameter parameter in GetComponent<Animator>().parameters)
+		{
+			if (parameter.name != "DEAD")
+			{
+				GetComponent<Animator>().SetBool(parameter.name, false);
+			}
 		}
 	}
 }

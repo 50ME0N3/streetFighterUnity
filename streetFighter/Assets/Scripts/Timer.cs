@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
 	float startTime = 0;
 
 	public bool ended = false;
+	public bool tie = false;
 
 	void Start()
 	{
@@ -46,8 +47,6 @@ public class Timer : MonoBehaviour
 
 				if (seconds == 0)
 				{
-					ended = true;
-
 					player player1 = GameObject.Find("Player1").GetComponent<player>();
 					player player2 = GameObject.Find("Player2").GetComponent<player>();
 
