@@ -188,6 +188,7 @@ public class PickUpObject : MonoBehaviour
 
             chunLi = CharactersSelection.chosenCharactersNames[int.Parse(collision.gameObject.name[collision.gameObject.name.Length - 1].ToString()) - 1] == "Chun-Li";
 
+
             if (!chunLi)
             {
                 scriptKenKick = collision.gameObject.GetComponentInChildren<KenKick>(true);
