@@ -46,7 +46,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse maximale de course atteignable
 	/// </summary>
-	const float MAX_SPEED = 1.5f;
+	const float MAX_SPEED = 2;
 
 	/// <summary>
 	/// Vitesse de course du personnage
@@ -186,7 +186,7 @@ public class player : MonoBehaviour
 		attack2Axis = "Attack2" + name;
 		fastFallAxis = "FastFall" + name;
 	}
-	
+
 	void Update()
 	{
 		#region Inputs
@@ -247,9 +247,19 @@ public class player : MonoBehaviour
 			healthBar.Heal(1);
 		}
 
-		health = healthBar.GetHealth();
+		// Détection du sol
+		if (groundSensor.Grounded)
+		{
+			anim.SetBool("Grounded", true);
+		}
+		else
+		{
+			anim.SetBool("Grounded", false);
+		}
 
-		if (health > 0)
+		health = healthBar.Health;
+
+		if (health > 0 && !GameObject.Find("Timer").GetComponent<Timer>().ended)
 		{
 			if (!GameObject.Find("Player2").GetComponent<player>().dead)
 			{
@@ -280,15 +290,6 @@ public class player : MonoBehaviour
 					rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
 					anim.SetBool("Grounded", false);
 					isFastFalling = false;
-				}
-
-				if (groundSensor.Grounded)
-				{
-					anim.SetBool("Grounded", true);
-				}
-				else
-				{
-					anim.SetBool("Grounded", false);
 				}
 
 				// Chute rapide
@@ -354,40 +355,8 @@ public class player : MonoBehaviour
 			// Mort du joueur
 			if (!dead)
 			{
-				dead = true;
-				deathTime = Time.time;
 				anim.SetBool("DEAD", true);
-
-				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
-
-				// Affiche le joueur gagnant du round et augmente son score
-				if (name[name.Length - 1] == '1')
-				{
-					ShowRound.score[1]++;
-					GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the round";
-				}
-				else
-				{
-					ShowRound.score[0]++;
-					GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
-				}
-
-				// Affichage du gagnant de la partie
-				if (ShowRound.round == ShowRound.MAX_ROUND)
-				{
-					GameObject.Find("ButtonNextRound").SetActive(false);
-					
-					if (ShowRound.score[0] > ShowRound.score[1])
-					{
-						GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the match";
-					}
-					else
-					{
-						GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the match";
-					}
-				}
+				Lose();
 			}
 		}
 
@@ -428,6 +397,61 @@ public class player : MonoBehaviour
 			{
 				GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
 			}
+		}
+	}
+
+	/// <summary>
+	/// Le joueur perd la partie
+	/// </summary>
+	/// <param name="tie"><see langword="sealed"/>S'il y a une égalité</param>
+	public void Lose(bool tie = false)
+	{
+		dead = true;
+		deathTime = Time.time;
+
+		GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
+
+		// Affiche le joueur gagnant du round et augmente son score
+		if (!tie)
+		{
+			if (name[name.Length - 1] == '1')
+			{
+				ShowRound.score[1]++;
+				GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
+				GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the round";
+			}
+			if (name[name.Length - 1] == '2')
+			{
+				ShowRound.score[0]++;
+				GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
+				GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
+			}
+		}
+
+		// Affichage du gagnant de la partie
+		if (ShowRound.round == ShowRound.MAX_ROUND)
+		{
+			GameObject.Find("ButtonNextRound").SetActive(false);
+
+			if (!tie)
+			{
+				if (ShowRound.score[0] > ShowRound.score[1])
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the match";
+				}
+				else
+				{
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the match";
+				}
+			}
+			else
+			{
+				GameObject.Find("Winner").GetComponent<Text>().text = "The match ended in a tie";
+			}
+		}
+		else if (tie)
+		{
+			GameObject.Find("Winner").GetComponent<Text>().text = "Tie";
 		}
 	}
 }
