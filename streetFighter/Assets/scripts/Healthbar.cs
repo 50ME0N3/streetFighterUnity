@@ -24,17 +24,24 @@ public class Healthbar : MonoBehaviour
 	/// Jauge
 	/// </summary>
 	public Image fill;
-    
 
-    // Met les PV du joueur au max
-    public void SetMaxHealth(int health)
+	/// <summary>
+	/// Retourne le nombre de points de vie
+	/// </summary>
+	/// <returns>Les PV du joueur</returns>
+	public int Health => Convert.ToInt32(slider.value);
+
+	/// <summary>
+	/// Met les PV du joueur au max
+	/// </summary>
+	/// <param name="health">Points de vie max</param>
+	public void SetMaxHealth(int health)
 	{
-        
-        slider.maxValue = health;
+		slider.maxValue = health;
 		slider.value = health;
 
 		fill.color = gradient.Evaluate(1f);
-    }
+	}
 
 	/// <summary>
 	/// Modifie les PV du joueur en fonction de la variable reçue
@@ -54,14 +61,5 @@ public class Healthbar : MonoBehaviour
 	{
 		slider.value += hp;
 		fill.color = gradient.Evaluate(slider.normalizedValue);
-    }
-
-	/// <summary>
-	/// Retourne le nombre de points de vie
-	/// </summary>
-	/// <returns>Les PV du joueur</returns>
-	public int GetHealth()
-	{
-		return Convert.ToInt32(slider.value);
 	}
 }
