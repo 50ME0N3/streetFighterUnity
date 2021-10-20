@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Grégoire, Antoine
  */
 
 using UnityEngine;
@@ -25,7 +25,7 @@ public class SpawnPlayers : MonoBehaviour
 			CharactersSelection.chosenCharactersNames = new string[]
 			{
 				"Ken",
-				"Chun Li"
+				"Chun-Li"
 			};
 		}
 

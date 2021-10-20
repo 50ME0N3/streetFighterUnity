@@ -1,6 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Description : Pas utiliser (evite un srash du jeux lorsque ont utilise le HeevyBandit)
  */
 
 using UnityEngine;

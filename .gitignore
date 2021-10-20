@@ -2,6 +2,7 @@
 [Tt]emp/
 [Oo]bj/
 Assets/AssetStoreTools*
+streetFighter/UserSettings/EditorUserSettings.asset
 
 # Visual Studio cache directory
 .vs/

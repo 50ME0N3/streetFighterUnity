@@ -1,6 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Antoine
+ * Description : Détecte quand un joueur en attaque un autre et applique les dégas
  */
 
 using UnityEngine;
@@ -20,7 +21,7 @@ public class MakeDamage : MonoBehaviour
 		Transform player = collider.gameObject.transform;
 
 		// Si l'attaquant est a gauche de la cible
-		if (hitBoxObject.transform.position.x < player.position.x)
+		if (hitBoxObject.transform.parent.position.x < player.position.x)
 		{
 			// Inflige les dégâts à la cible
 			if (hitBoxObject.GetComponentInParent<player>().instantDeath)

@@ -1,6 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Rémy
+ * Description : Sélection du personnages
  */
 
 using System.Collections.Generic;

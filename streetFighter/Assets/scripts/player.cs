@@ -1,6 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
+ * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Description : Script relatiffe a tout ce qui touche au deplacement du joueur 
  */
 
 using System.Collections;
@@ -45,12 +46,12 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse maximale de course atteignable
 	/// </summary>
-	const float MAX_SPEED = 2.5f;
+	const float MAX_SPEED = 1.5f;
 
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	const float SPEED = 1f;
+	const float SPEED = 0.5f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
@@ -66,11 +67,6 @@ public class player : MonoBehaviour
 	/// Recul des attaques subies
 	/// </summary>
 	public Vector2 knockback = Vector2.zero;
-
-	/// <summary>
-	/// Nombre de victoires du joueur
-	/// </summary>
-	public int score = 0;
 	#endregion
 
 	#region Cheats Enabled
@@ -148,17 +144,22 @@ public class player : MonoBehaviour
 	/// Si le joueur est mort
 	/// </summary>
 	bool dead = false;
+
+	/// <summary>
+	/// Si le joueur a activé la chute rapide
+	/// </summary>
+	bool isFastFalling = false;
+
+	/// <summary>
+	/// Si le jeu est fini et que le menu de fin s'est affiché
+	/// </summary>
+	bool end = false;
 	#endregion
 
 	/// <summary>
 	/// Moment où le joueur est mort
 	/// </summary>
 	float deathTime;
-
-	/// <summary>
-	/// Si le jeu est fini et que le menu de fin s'est affiché
-	/// </summary>
-	bool end = false;
 	#endregion
 
 	void Start()
@@ -263,6 +264,7 @@ public class player : MonoBehaviour
 					anim.SetBool("AttackPunch", false);
 				}
 
+				// Attaque 2
 				if (attack2Input > 0)
 				{
 					anim.SetBool("AttackKick", true);
@@ -277,6 +279,7 @@ public class player : MonoBehaviour
 				{
 					rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
 					anim.SetBool("Grounded", false);
+					isFastFalling = false;
 				}
 
 				if (groundSensor.Grounded)
@@ -286,12 +289,17 @@ public class player : MonoBehaviour
 				else
 				{
 					anim.SetBool("Grounded", false);
+				}
 
-					// Chute rapide
-					if (fastFallInput > 0 && rgbd.velocity.y <= 0)
-					{
-						rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
-					}
+				// Chute rapide
+				if ((!groundSensor.Grounded || jumpInput > 0) && fastFallInput > 0)
+				{
+					isFastFalling = true;
+				}
+
+				if (isFastFalling && rgbd.velocity.y <= 0)
+				{
+					rgbd.velocity = new Vector2(rgbd.velocity.x, rgbd.velocity.y * FAST_FALL_SPEED);
 				}
 				#endregion
 				anim.SetFloat("AirSpeed", rgbd.velocity.y);
@@ -303,7 +311,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = true;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
@@ -317,7 +325,7 @@ public class player : MonoBehaviour
 					transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).GetComponent<SpriteRenderer>().flipX = false;
 					gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
-					anim.SetInteger("AnimState", 2);
+					anim.SetBool("moving", true);
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
@@ -328,7 +336,7 @@ public class player : MonoBehaviour
 				}
 				else if (wasMoving)
 				{
-					anim.SetInteger("AnimState", 0);
+					anim.SetBool("moving", false);
 					wasMoving = false;
 				}
 				#endregion
@@ -348,27 +356,42 @@ public class player : MonoBehaviour
 			{
 				dead = true;
 				deathTime = Time.time;
-				anim.SetTrigger("Death");
+				anim.SetBool("DEAD", true);
 
 				GameObject.Find("Canvas").transform.GetChild(3).gameObject.SetActive(true);
 
-				// Sélectionne le joueur tué
+				// Affiche le joueur gagnant du round et augmente son score
 				if (name[name.Length - 1] == '1')
 				{
-					GameObject.Find("Player2").GetComponent<player>().score++;
-					GameObject.Find("ScorePlayer2" + name).GetComponent<Text>().text = GameObject.Find("Player2").GetComponent<player>().score.ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won";
+					ShowRound.score[1]++;
+					GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the round";
 				}
 				else
 				{
-					GameObject.Find("Player1").GetComponent<player>().score++;
-					GameObject.Find("ScorePlayer1" + name).GetComponent<Text>().text = GameObject.Find("Player1").GetComponent<player>().score.ToString();
-					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won";
+					ShowRound.score[0]++;
+					GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
+					GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
+				}
+
+				// Affichage du gagnant de la partie
+				if (ShowRound.round == ShowRound.MAX_ROUND)
+				{
+					GameObject.Find("ButtonNextRound").SetActive(false);
+					
+					if (ShowRound.score[0] > ShowRound.score[1])
+					{
+						GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the match";
+					}
+					else
+					{
+						GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the match";
+					}
 				}
 			}
 		}
 
-		const float WAIT_TIME = 3;
+		const float WAIT_TIME = 1;
 
 		if (dead)
 		{
@@ -386,7 +409,18 @@ public class player : MonoBehaviour
 					IEnumerator goMainMenu()
 					{
 						yield return new WaitForSeconds(10);
-						SceneManager.LoadScene("Title Screen");
+
+						ShowRound.round++;
+
+						if (ShowRound.round < ShowRound.MAX_ROUND)
+						{
+							SceneManager.LoadScene("Battle");
+						}
+						else
+						{
+							SceneManager.LoadScene("Title Screen");
+						}
+
 					}
 				}
 			}
