@@ -1,3 +1,9 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Antoine
+ * Description : Coup de poing de Chun-Li
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,9 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Antoine
+ * Description : Coup de poing de Ken
+ */
+
 using UnityEngine;
 
 public class KenPunch : MonoBehaviour

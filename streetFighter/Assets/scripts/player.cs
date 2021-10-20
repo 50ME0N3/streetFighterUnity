@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
- * Description : Script relatiffe a tout ce qui touche au deplacement du joueur 
+ * Description : Script relatif a tout ce qui touche au déplacement du joueur 
  */
 
 using System.Collections;
@@ -85,6 +85,11 @@ public class player : MonoBehaviour
 	/// Si le vol illimité est activé
 	/// </summary>
 	bool illimitedFly = false;
+
+	/// <summary>
+	/// Si le timer illimité est activé
+	/// </summary>
+	public bool resetTime = false;
 	#endregion
 
 	#region Cheat Keys
@@ -103,6 +108,11 @@ public class player : MonoBehaviour
 	/// Touche activant le vol illimité
 	/// </summary>
 	const KeyCode ILLIMITED_FLY_KEY = KeyCode.Alpha3;
+
+	/// <summary>
+	/// Touche activant le timer illimité
+	/// </summary>
+	const KeyCode INFINITE_TIME = KeyCode.Alpha4;
 	#endregion
 
 	#region Axis
@@ -199,10 +209,11 @@ public class player : MonoBehaviour
 		bool invincibleKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
 		bool suddenDeathKeyDown = Input.GetKeyDown(INSTANT_DEATH_KEY);
 		bool flyKeyDown = Input.GetKeyDown(ILLIMITED_FLY_KEY);
+		bool resetTimeDown = Input.GetKeyDown(INFINITE_TIME);
 		#endregion
 
 		// Activation/Désactivation des cheats
-		if (invincibleKeyDown || suddenDeathKeyDown || flyKeyDown)
+		if (invincibleKeyDown || suddenDeathKeyDown || flyKeyDown || resetTimeDown)
 		{
 			if (invincibleKeyDown)
 			{
@@ -217,6 +228,11 @@ public class player : MonoBehaviour
 			if (flyKeyDown)
 			{
 				illimitedFly = !illimitedFly;
+			}
+
+			if (resetTimeDown)
+			{
+				resetTime = !resetTime;
 			}
 
 			GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
@@ -236,6 +252,11 @@ public class player : MonoBehaviour
 			if (illimitedFly)
 			{
 				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly\n";
+			}
+
+			if (resetTime)
+			{
+				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Time\n";
 			}
 
 			GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');

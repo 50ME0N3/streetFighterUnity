@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Gabriel
- * Description : Gestion des bouton des menus
+ * Description : Gestion des boutons des menus
  */
 
 using UnityEngine;

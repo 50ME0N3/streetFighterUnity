@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Gabriel
- * Description : Fonctionement de la piece, détecte qui l'a touché, déclenche et applique les différent pouvoirs, gère les animations de la pièce et des power Up.
+ * Description : Fonctionnement de la pièce, détecte qui l'a touchée, déclenche et applique les différents pouvoirs, gère les animations de la pièce et des power ups.
  */
 
 using System.Collections;

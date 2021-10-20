@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Jordan
- * Description : Controlle le zoom de la caméras
+ * Description : Controle le zoom de la caméra
  */
 
 using UnityEngine;
