@@ -20,11 +20,6 @@ public class randomSpawner : MonoBehaviour
     private int timeWaitCoin = 10;
 
    
-
-    private void Update()
-    {
-
-    }
     private void Start()
     {
         lastCreation = DateTime.Now;

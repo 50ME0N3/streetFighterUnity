@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Grégoire, Rémy
+ * Authors : Gabriel, Grégoire, Rémy
  * Description : Detecte si le joueur est près d'une echelle
  */
 

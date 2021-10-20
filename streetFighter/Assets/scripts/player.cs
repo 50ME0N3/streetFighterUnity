@@ -1,6 +1,6 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy
+ * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
  * Description : Script relatiffe a tout ce qui touche au deplacement du joueur 
  */
 
@@ -51,7 +51,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Vitesse de course du personnage
 	/// </summary>
-	const float SPEED = 0.5f;
+	public float speed = 0.5f;
 
 	/// <summary>
 	/// Hauteur de saut du personnage
@@ -315,7 +315,7 @@ public class player : MonoBehaviour
 
 					if (rgbd.velocity.x < MAX_SPEED)
 					{
-						rgbd.velocity += new Vector2(direction * SPEED, 0);
+						rgbd.velocity += new Vector2(direction * speed, 0);
 					}
 
 					wasMoving = true;
@@ -329,7 +329,7 @@ public class player : MonoBehaviour
 
 					if (rgbd.velocity.x > -MAX_SPEED)
 					{
-						rgbd.velocity += new Vector2(direction * SPEED, 0);
+						rgbd.velocity += new Vector2(direction * speed, 0);
 					}
 
 					wasMoving = true;

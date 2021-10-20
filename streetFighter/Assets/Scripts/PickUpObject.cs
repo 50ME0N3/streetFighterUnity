@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Gabriel
- * Description : Fonctionement de la piece 
+ * Description : Fonctionement de la piece, détecte qui l'a touché, déclenche et applique les différent pouvoirs, gère les animations de la pièce et des power Up.
  */
 
 using System.Collections;
@@ -9,23 +9,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
+using System;
 
 public class PickUpObject : MonoBehaviour
 {
-
-
     Animator myAnimation;
     Animator animationTexte;
+
     public GameObject textePowerUp;
     public GameObject coin;
-    public float multiplier = 2f;
+    public GameObject damagePlayer1;
+    public GameObject damagePlayer2;
+    public GameObject speedPlayer1;
+    public GameObject speedPlayer2;
+
     randomSpawner randomSpawner;
+    player player;
     KenKick scriptKenKick;
     KenPunch scriptKenPunch;
-    player player;
+    ChunLiKick scriptLiKick;
+    ChunLiPunch scriptLiPunch;
+
+    public float multiplier = 2f;
+    bool chunLi = false;
+    int applyEffect;
     private float timeWait = 1.5f;
+    private float timeWaitPowerUp = 8f;
     bool player1 = false;
     bool player2 = false;
+
+    
     
     #region Global Variables
     #region Components
@@ -169,46 +182,68 @@ public class PickUpObject : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Récupère quel joueur touche la pièce
-        if (collision.name == "Player1")
-        {
-            player1 = true;
-            player2 = false;
-        }
-        else
-        {
-            if (collision.name == "Player2")
-            {
-                player2 = true;
-                player1 = false;
-            }
-        }
-
-        // Quand le joueur touche la pi�ce 
         if (collision.CompareTag("Player"))
         {
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            PickUp(collision);
+            player = collision.gameObject.GetComponentInChildren<player>();
 
-            StartCoroutine(CoinDestroy());
-            // attend 0.7 seconde pour detruire la pi�ce
-            IEnumerator CoinDestroy()
+            chunLi = CharactersSelection.chosenCharactersNames[int.Parse(collision.gameObject.name[collision.gameObject.name.Length - 1].ToString()) - 1] == "Chun-Li";
+
+            if (!chunLi)
             {
-                yield return new WaitForSeconds(0.4f);
-                gameObject.GetComponent<CircleCollider2D>().enabled = true;
-                gameObject.SetActive(false);
+                scriptKenKick = collision.gameObject.GetComponentInChildren<KenKick>(true);
+                scriptKenPunch = collision.gameObject.GetComponentInChildren<KenPunch>(true);
             }
+            else
+            {
+                scriptLiKick = collision.gameObject.GetComponentInChildren<ChunLiKick>(true);
+                scriptLiPunch = collision.gameObject.GetComponentInChildren<ChunLiPunch>(true);
+            }
+            
+            
+
+            // Récupère quel joueur touche la pièce
+            if (collision.name == "Player1")
+            {
+                player1 = true;
+                player2 = false;
+
+            }
+            else
+            {
+                if (collision.name == "Player2")
+                {
+                    player2 = true;
+                    player1 = false;
+
+                }
+            }
+
+            // Quand le joueur touche la pi�ce 
+            
+                gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                PickUp(collision);
+
+                StartCoroutine(CoinDestroy());
+                // attend 0.7 seconde pour detruire la pi�ce
+                IEnumerator CoinDestroy()
+                {
+                    yield return new WaitForSeconds(0.4f);
+                    gameObject.GetComponent<CircleCollider2D>().enabled = true;
+                    gameObject.SetActive(false);
+                }
+            
         }
+        
     }
 
     void PickUp(Collider2D Player)
     {
         // Apply effect to the player :
-        int applyEffect = Random.Range(0, 3);
-
-        Debug.Log(applyEffect);
+        applyEffect = UnityEngine.Random.Range(0, 3);
+        
         if (applyEffect == 0)
         {
+            timeWait = 1.5f;
             // Fait l'animation
             myAnimation.SetBool("estToucher", true);
 
@@ -233,23 +268,65 @@ public class PickUpObject : MonoBehaviour
             textePowerUp.SetActive(true);
             animationTexte.SetBool("animHeal", true);
             Invoke("stopAnim", timeWait);
+            Invoke("stopPowerUp", timeWaitPowerUp);
         }
         else
         {
             if(applyEffect == 1)
             {
+                timeWait = 1.8f;
                 myAnimation.SetBool("estToucherPower", true);
                 // -Fait plus de dégats  
-                //scriptKenKick.damageKick = 30;
-                //scriptKenPunch.damagePunch = 25;
+                if (player1)
+                {
+                    damagePlayer1.SetActive(true);
+                }
+                else
+                {
+                    damagePlayer2.SetActive(true);
+                }
+
+                if (chunLi)
+                {
+                    scriptLiKick.damageKick *= 2;
+                    scriptLiPunch.damagePunch *= 2;
+                }
+                else
+                {
+                    scriptKenKick.damageKick *= 2;
+                    scriptKenPunch.damagePunch *=2;
+                }
+
+                textePowerUp.SetActive(true);
+                animationTexte.SetBool("animDamage", true);
+                Invoke("stopAnim", timeWait);
+                Invoke("stopPowerUp", timeWaitPowerUp);
             }
             else
             {
+                timeWait = 1.9f;
                 if(applyEffect == 2)     
                 {
                     myAnimation.SetBool("estToucherVitesse", true);
                     // -Cours plus vite 
                     //player.speed = 10f;
+
+                    if (player1)
+                    {
+                        speedPlayer1.SetActive(true);
+                    }
+                    else
+                    {
+                        speedPlayer2.SetActive(true);
+                    }
+
+                    player.speed *= 6;
+
+
+                    textePowerUp.SetActive(true);
+                    animationTexte.SetBool("animSpeed", true);
+                    Invoke("stopAnim", timeWait);
+                    Invoke("stopPowerUp", timeWaitPowerUp);
                 }
             }
         }
@@ -258,10 +335,36 @@ public class PickUpObject : MonoBehaviour
     {
         myAnimation = coin.GetComponent<Animator>(); 
         animationTexte = textePowerUp.GetComponent<Animator>();
-
     } 
     private void stopAnim()
     {
-        textePowerUp.SetActive(false);
+        animationTexte.SetBool("animDamage", false);
+        animationTexte.SetBool("animHeal", false);
+        animationTexte.SetBool("animSpeed", false);
+    }
+
+    private void stopPowerUp()
+    {
+        if(applyEffect == 1 && chunLi == true)
+        {
+            scriptLiKick.damageKick /= 2;
+            scriptLiPunch.damagePunch /= 2;
+        }
+        else if(applyEffect == 1 && chunLi == false)
+        {
+            scriptKenKick.damageKick /= 2;
+            scriptKenPunch.damagePunch /= 2;
+        }
+        else if(applyEffect == 2)
+        {
+            player.speed = 0.5f;
+        }
+
+        damagePlayer1.SetActive(false);
+        damagePlayer2.SetActive(false);
+        speedPlayer1.SetActive(false);
+        speedPlayer2.SetActive(false);
+        
+        
     }
 }
