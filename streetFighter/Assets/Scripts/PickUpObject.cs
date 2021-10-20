@@ -1,3 +1,8 @@
+/* Project name : CFPT SMASH 
+* Authors : Gabriel
+*/+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +11,8 @@ using UnityEngine.Animations;
 
 public class PickUpObject : MonoBehaviour
 {
-    
+
+
     Animator myAnimation;
     Animator animationTexte;
     public GameObject textePowerUp;
@@ -249,10 +255,10 @@ public class PickUpObject : MonoBehaviour
     }
     private void Start()
     {
-        myAnimation = coin.GetComponent<Animator>();
+        myAnimation = coin.GetComponent<Animator>(); 
         animationTexte = textePowerUp.GetComponent<Animator>();
-    } 
 
+    } 
     private void stopAnim()
     {
         textePowerUp.SetActive(false);

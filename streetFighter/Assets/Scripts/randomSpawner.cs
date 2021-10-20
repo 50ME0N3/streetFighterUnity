@@ -1,7 +1,7 @@
-﻿/* Project name : streetFighterUnity 
- * Date : 13.09.2021
- * Authors : Jordan, Grégoire, Antoine, Rémy, Gabriel
- */
+﻿/* Project name : CFPT SMASH 
+* Authors : Gabriel
+*/
+
 
 using System.Collections;
 using UnityEngine;
