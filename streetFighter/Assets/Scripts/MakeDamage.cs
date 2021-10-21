@@ -20,8 +20,17 @@ public class MakeDamage : MonoBehaviour
 		// Position du joueur
 		Transform player = collider.gameObject.transform;
 
-		// Si l'attaquant est a gauche de la cible
-		if (hitBoxObject.transform.parent.position.x < player.position.x)
+		Damage(collider, damage, knockback, hitBoxObject.gameObject, hitBoxObject.transform.parent.position.x < player.position.x);
+
+		/// <summary>
+		/// Lance le coup
+		/// </summary>
+		/// <param name="collider">Hit box de la cible</param>
+		/// <param name="damage">Dégâts de l'attaque</param>
+		/// <param name="knockback">Éjection</param>
+		/// <param name="hitBoxObject">Coup</param>
+		/// <param name="left">Si l'attaquant est à gauche de la cible</param>
+		void Damage(Collider2D collider, byte damage, Vector2 knockback, GameObject hitBoxObject, bool left)
 		{
 			// Inflige les dégâts à la cible
 			if (hitBoxObject.GetComponentInParent<player>().instantDeath)
@@ -34,22 +43,14 @@ public class MakeDamage : MonoBehaviour
 			}
 
 			// Donne du recul à la cible
-			collider.GetComponent<player>().knockback = knockback;
-		}
-		else
-		{
-			// Inflige les dégâts à la cible
-			if (hitBoxObject.GetComponentInParent<player>().instantDeath)
+			if (left)
 			{
-				collider.GetComponent<player>().healthBar.TakeDamage(100);
+				collider.GetComponent<player>().knockback = knockback;
 			}
 			else
 			{
-				collider.GetComponent<player>().healthBar.TakeDamage(damage);
+				collider.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y);
 			}
-
-			// Donne du recul à la cible
-			collider.GetComponent<player>().knockback = new Vector2(-knockback.x, knockback.y); 
 		}
 	}
 }

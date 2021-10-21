@@ -206,61 +206,22 @@ public class player : MonoBehaviour
 		float attack2Input = Input.GetAxis(attack2Axis);
 		float fastFallInput = Input.GetAxis(fastFallAxis);
 
-		bool invincibleKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
-		bool suddenDeathKeyDown = Input.GetKeyDown(INSTANT_DEATH_KEY);
-		bool flyKeyDown = Input.GetKeyDown(ILLIMITED_FLY_KEY);
+		bool infiniteRegenKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
+		bool instantDeathKeyDown = Input.GetKeyDown(INSTANT_DEATH_KEY);
+		bool illimitedFlyKeyDown = Input.GetKeyDown(ILLIMITED_FLY_KEY);
 		bool resetTimeDown = Input.GetKeyDown(INFINITE_TIME);
 		#endregion
 
-		// Activation/Désactivation des cheats
-		if (invincibleKeyDown || suddenDeathKeyDown || flyKeyDown || resetTimeDown)
-		{
-			if (invincibleKeyDown)
-			{
-				infiniteRegen = !infiniteRegen;
-			}
+		#region Cheats
+		GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
 
-			if (suddenDeathKeyDown)
-			{
-				instantDeath = !instantDeath;
-			}
+		EnableCheats(ref infiniteRegen, infiniteRegenKeyDown, "Infinite Regeneration");
+		EnableCheats(ref instantDeath, instantDeathKeyDown, "Instant Death");
+		EnableCheats(ref illimitedFly, illimitedFlyKeyDown, "Illimited Fly");
+		EnableCheats(ref resetTime, resetTimeDown, "Infinite Time");
 
-			if (flyKeyDown)
-			{
-				illimitedFly = !illimitedFly;
-			}
-
-			if (resetTimeDown)
-			{
-				resetTime = !resetTime;
-			}
-
-			GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
-
-			if (infiniteRegen)
-			{
-				healthBar.Heal(1);
-
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Regeneration\n";
-			}
-
-			if (instantDeath)
-			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Instant Death\n";
-			}
-
-			if (illimitedFly)
-			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Illimited Fly\n";
-			}
-
-			if (resetTime)
-			{
-				GameObject.Find("Cheat").GetComponent<Text>().text += "Infinite Time\n";
-			}
-
-			GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');
-		}
+		GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');
+		#endregion
 
 		// Régénère a l'infini
 		if (infiniteRegen)
@@ -327,8 +288,9 @@ public class player : MonoBehaviour
 					}
 					#endregion
 
-					const int PLAYER_TAG_INDEX = 2;
 					#region Run
+					const int PLAYER_TAG_INDEX = 2;
+
 					if (direction > 0)
 					{
 						transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
@@ -336,10 +298,10 @@ public class player : MonoBehaviour
 						gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, 1);
 						anim.SetBool("moving", true);
 
-					if (rgbd.velocity.x < MAX_SPEED)
-					{
-						rgbd.velocity += new Vector2(direction * speed, 0);
-					}
+						if (rgbd.velocity.x < MAX_SPEED)
+						{
+							rgbd.velocity += new Vector2(direction * speed, 0);
+						}
 
 						wasMoving = true;
 					}
@@ -350,10 +312,10 @@ public class player : MonoBehaviour
 						gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition = new Vector3(gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.x, gameObject.transform.GetChild(PLAYER_TAG_INDEX).transform.localPosition.y, -1);
 						anim.SetBool("moving", true);
 
-					if (rgbd.velocity.x > -MAX_SPEED)
-					{
-						rgbd.velocity += new Vector2(direction * speed, 0);
-					}
+						if (rgbd.velocity.x > -MAX_SPEED)
+						{
+							rgbd.velocity += new Vector2(direction * speed, 0);
+						}
 
 						wasMoving = true;
 					}
@@ -424,6 +386,27 @@ public class player : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Activation/Désactivation des cheats
+	/// </summary>
+	/// <param name="cheat">Booléen du cheat</param>
+	/// <param name="cheatKeyDown">Touche d'activation du cheat</param>
+	/// <param name="name">Nom du cheat à afficher</param>
+	void EnableCheats(ref bool cheat, bool cheatKeyDown, string name)
+	{
+		if (cheatKeyDown)
+		{
+			// Activation / Désactivation
+			cheat = !cheat;
+
+			if (cheat)
+			{
+				// Affichage
+				GameObject.Find("Cheat").GetComponent<Text>().text += name + "\n";
+			}
+		}
+	}
+
+	/// <summary>
 	/// Le joueur perd la partie
 	/// </summary>
 	/// <param name="tie"><see langword="sealed"/>S'il y a une égalité</param>
@@ -489,10 +472,10 @@ public class player : MonoBehaviour
 	}
 
 	/// <summary>
-    /// Display the winner
-    /// </summary>
-    /// <param name="playerIndex"> index of the player array</param>
-    /// <param name="displayPlayer"> display planer number</param>
+	/// Affiche le gagnant
+	/// </summary>
+	/// <param name="playerIndex">Index du joueur dans l'array des personnages</param>
+	/// <param name="displayPlayer">Numéro du joueur</param>
 	private void ShowWinner(int playerIndex, int displayPlayer)
 	{
 		ShowRound.score[playerIndex]++;
