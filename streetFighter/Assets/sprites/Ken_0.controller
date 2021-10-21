@@ -192,31 +192,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Grounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AttackKick
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AttackPunch
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: DEAD
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -300,10 +300,10 @@ AnimatorStateMachine:
     m_Position: {x: 310, y: 470, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8914918425220704697}
-    m_Position: {x: 70, y: 690, z: 0}
+    m_Position: {x: 80, y: 760, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 208148588507063251}
-    m_Position: {x: -210, y: 680, z: 0}
+    m_Position: {x: -200, y: 760, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8956365574266756568}
     m_Position: {x: 310, y: 380, z: 0}
@@ -315,7 +315,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 330, y: 320, z: 0}
   m_EntryPosition: {x: 90, y: 320, z: 0}
-  m_ExitPosition: {x: 320, y: 600, z: 0}
+  m_ExitPosition: {x: 340, y: 600, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4123349800914338245}
 --- !u!1101 &1756138870464144940
@@ -353,9 +353,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: moving
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: AttackKick
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5255094285586291876}
@@ -610,9 +607,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: AttackPunch
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: moving
     m_EventTreshold: 0
