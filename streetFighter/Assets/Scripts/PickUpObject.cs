@@ -181,17 +181,19 @@ public class PickUpObject : MonoBehaviour
     bool end = false;
     #endregion
     
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Traite le code que si c'est un joueur qui touche la pièce 
         if (collision.CompareTag("Player"))
         {
             player = collision.gameObject.GetComponentInChildren<player>();
 
-            // Récupère le skin avec lequel le joueur touche la pièce  
+            // Récupère si le personnage avec le quelle le joueur touche la pièce est Chun Li ou Ken 
             chunLi = CharactersSelection.chosenCharactersNames[int.Parse(collision.gameObject.name[collision.gameObject.name.Length - 1].ToString()) - 1] == "Chun-Li";
 
 
-            // Applique le script au bon skin  
+            // Applique le script au bon personnage  
             if (!chunLi)
             {
                 scriptKenKick = collision.gameObject.GetComponentInChildren<KenKick>(true);
@@ -209,21 +211,19 @@ public class PickUpObject : MonoBehaviour
                 player1 = true;
                 player2 = false;
             }
-            else
-            {
-                if (collision.name == "Player2")
+            else if (collision.name == "Player2")
                 {
                     player2 = true;
                     player1 = false;
                 }
-            }
+            
 
-            // Quand le joueur touche la pi�ce
+                // Quand le joueur touche la pièce les colision de la pièce sont désactiver pour eviter que le joueur touche deux fois la pièce 
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
                 PickUp(collision);
 
                 StartCoroutine(CoinDestroy());
-                // attend 0.4 seconde pour désactiver la pi�ce
+                // attend 0.4 seconde pour désactiver la pi�ce et réactiver la collision de la pièce 
                 IEnumerator CoinDestroy()
                 {
                     yield return new WaitForSeconds(0.4f);
@@ -235,50 +235,50 @@ public class PickUpObject : MonoBehaviour
         
     }
 
+    #region Méthodes crées
+    /// <summary>
+    /// Méthodes qui applique les pouvoirs aléatoirement au joueur
+    /// </summary>
+	/// <param name="Player"></param>
     void PickUp(Collider2D Player)
     {
-        // Nombre aléatoire pour prednre aléatoirement les pouvoirs et les appliqué
+        // Nombre aléatoire pour prendre aléatoirement les pouvoirs et les appliqué
         applyEffect = UnityEngine.Random.Range(0, 3);
         
-        if (applyEffect == 0)
+        if (applyEffect == 0)// Rajoute 50 pv de vie
         {
             timeWait = 1.5f;
             // Fait l'animation
             myAnimation.SetBool("estToucher", true);
 
             // -Rajoute de la vie selon le joueur qui a toucher la pièce 
-
             if (player1)
             {
-                healthBar = GameObject.FindGameObjectWithTag("SliderP1").GetComponent<Healthbar>();
-                healthBar.Heal(50);
+                healPlayer("SliderP1");
 
                 player1 = false;
                 player2 = false;
             }
             else if (player2)
             {
-                healthBar = GameObject.FindGameObjectWithTag("SliderP2").GetComponent<Healthbar>();
-                healthBar.Heal(50);
+                healPlayer("SliderP2");
 
                 player1 = false;
                 player2 = false;
             }
 
             // Joue les animation 
-            textePowerUp.SetActive(true);
-            animationTexte.SetBool("animHeal", true);
+            makeAnim("animHeal");
             // Arrête les animations et les pouvoirs
-            Invoke("stopAnim", timeWait);
-            Invoke("stopPowerUp", timeWaitPowerUp);
+            stopAnimAndPower(timeWait, timeWaitPowerUp);
         }
         else
         {
-            if(applyEffect == 1)
+            if(applyEffect == 1) // -Fait plus de dégats 
             {
                 timeWait = 1.8f;
                 myAnimation.SetBool("estToucherPower", true);
-                // -Fait plus de dégats  
+                 
                 if (player1)
                 {
                     damagePlayer1.SetActive(true);
@@ -296,24 +296,21 @@ public class PickUpObject : MonoBehaviour
                 else
                 {
                     scriptKenKick.damageKick *= 2;
-                    scriptKenPunch.damagePunch *=2;
+                    scriptKenPunch.damagePunch *= 2;
                 }
                 // Joue les animation 
-                textePowerUp.SetActive(true);
-                animationTexte.SetBool("animDamage", true);
+                makeAnim("animDamage");
                 // Arrête les animations et les pouvoirs
-                Invoke("stopAnim", timeWait);
-                Invoke("stopPowerUp", timeWaitPowerUp);
+                stopAnimAndPower(timeWait, timeWaitPowerUp);
             }
             else
             {
-                timeWait = 1.9f;
-                if(applyEffect == 2)     
+                
+                if(applyEffect == 2)// -Cours plus vite 
                 {
+                    timeWait = 1.9f;
                     myAnimation.SetBool("estToucherVitesse", true);
-                    // -Cours plus vite 
-                    //player.speed = 10f;
-
+                    
                     if (player1)
                     {
                         speedPlayer1.SetActive(true);
@@ -326,20 +323,53 @@ public class PickUpObject : MonoBehaviour
                     player.speed *= 6;
 
                     // Joue les animation 
-                    textePowerUp.SetActive(true);
-                    animationTexte.SetBool("animSpeed", true);
+                    makeAnim("animSpeed");
                     // Arrête les animations et les pouvoirs
-                    Invoke("stopAnim", timeWait);
-                    Invoke("stopPowerUp", timeWaitPowerUp);
+                    stopAnimAndPower(timeWait,timeWaitPowerUp);
                 }
             }
         }
     }
+
+    
+
+    /// <summary>
+    /// Appel les méthode d'arret d'animation et de pouvoirs après un certains temp (deuxième paramètre entre parenthèse)
+    /// </summary>
+    private void stopAnimAndPower(float timeWait, float timeWaitPowerUp)
+    {
+        Invoke("stopAnim", timeWait);
+        Invoke("stopPowerUp", timeWaitPowerUp);
+    }
+    /// <summary>
+    /// Active l'objet qui affiche l'animation et joue l'animation 
+    /// </summary>
+    private void makeAnim(string nameAnim)
+    {
+        textePowerUp.SetActive(true);
+        animationTexte.SetBool(nameAnim, true);
+    }
+    /// <summary>
+    /// Prend la healthBar su joueur qui a toucher la pièce et appel la fonction qui rajoute 50 pv( chaque joueur on 100pv au maximum)
+    /// </summary>
+    private void healPlayer(string slider)
+    {
+        healthBar = GameObject.FindGameObjectWithTag(slider).GetComponent<Healthbar>();
+        healthBar.Heal(50);
+    }
+
+    /// <summary>
+    /// Méthodes au start
+    /// </summary>
     private void Start()
     {
         myAnimation = coin.GetComponent<Animator>(); 
         animationTexte = textePowerUp.GetComponent<Animator>();
-    } 
+    }
+
+    /// <summary>
+    /// Arrête toute les animation texte active 
+    /// </summary>
     private void stopAnim()
     {
         animationTexte.SetBool("animDamage", false);
@@ -347,6 +377,9 @@ public class PickUpObject : MonoBehaviour
         animationTexte.SetBool("animSpeed", false);
     }
 
+    /// <summary>
+    /// Stop tout les power up en les remettant a la valeur initial
+    /// </summary>
     private void stopPowerUp()
     {
         // Remet les valeur de dégat et de vitesse a leur valeur initial
@@ -364,12 +397,11 @@ public class PickUpObject : MonoBehaviour
         {
             player.speed = 0.5f;
         }
-        // Affiche en dessous de l'image du joueur les power up actif
+        // Désactive en dessous de l'image du joueur les power up 
         damagePlayer1.SetActive(false);
         damagePlayer2.SetActive(false);
         speedPlayer1.SetActive(false);
         speedPlayer2.SetActive(false);
-        
-        
     }
+    #endregion
 }
