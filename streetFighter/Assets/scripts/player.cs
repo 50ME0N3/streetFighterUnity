@@ -97,7 +97,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Touche activant la régénération infinie
 	/// </summary>
-	const KeyCode INFINITE_REGEN_KEY = KeyCode.Alpha1;
+	const KeyCode INFINITE_REGEN_KEY = KeyCode.Alpha6;
 
 	/// <summary>
 	/// Touche activant la mort instantanée
@@ -112,7 +112,7 @@ public class player : MonoBehaviour
 	/// <summary>
 	/// Touche activant le timer illimité
 	/// </summary>
-	const KeyCode INFINITE_TIME = KeyCode.Alpha4;
+	const KeyCode INFINITE_TIME = KeyCode.Alpha0;
 	#endregion
 
 	#region Axis
