@@ -13,6 +13,7 @@ using System;
 
 public class PickUpObject : MonoBehaviour
 {
+    // Initialisation des variables 
     Animator myAnimation;
     Animator animationTexte;
 
@@ -186,9 +187,11 @@ public class PickUpObject : MonoBehaviour
         {
             player = collision.gameObject.GetComponentInChildren<player>();
 
+            // Récupère le skin avec lequel le joueur touche la pièce  
             chunLi = CharactersSelection.chosenCharactersNames[int.Parse(collision.gameObject.name[collision.gameObject.name.Length - 1].ToString()) - 1] == "Chun-Li";
 
 
+            // Applique le script au bon skin  
             if (!chunLi)
             {
                 scriptKenKick = collision.gameObject.GetComponentInChildren<KenKick>(true);
@@ -199,15 +202,12 @@ public class PickUpObject : MonoBehaviour
                 scriptLiKick = collision.gameObject.GetComponentInChildren<ChunLiKick>(true);
                 scriptLiPunch = collision.gameObject.GetComponentInChildren<ChunLiPunch>(true);
             }
-            
-            
 
             // Récupère quel joueur touche la pièce
             if (collision.name == "Player1")
             {
                 player1 = true;
                 player2 = false;
-
             }
             else
             {
@@ -215,17 +215,15 @@ public class PickUpObject : MonoBehaviour
                 {
                     player2 = true;
                     player1 = false;
-
                 }
             }
 
-            // Quand le joueur touche la pi�ce 
-            
+            // Quand le joueur touche la pi�ce
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
                 PickUp(collision);
 
                 StartCoroutine(CoinDestroy());
-                // attend 0.7 seconde pour detruire la pi�ce
+                // attend 0.4 seconde pour désactiver la pi�ce
                 IEnumerator CoinDestroy()
                 {
                     yield return new WaitForSeconds(0.4f);
@@ -239,7 +237,7 @@ public class PickUpObject : MonoBehaviour
 
     void PickUp(Collider2D Player)
     {
-        // Apply effect to the player :
+        // Nombre aléatoire pour prednre aléatoirement les pouvoirs et les appliqué
         applyEffect = UnityEngine.Random.Range(0, 3);
         
         if (applyEffect == 0)
@@ -266,8 +264,11 @@ public class PickUpObject : MonoBehaviour
                 player1 = false;
                 player2 = false;
             }
+
+            // Joue les animation 
             textePowerUp.SetActive(true);
             animationTexte.SetBool("animHeal", true);
+            // Arrête les animations et les pouvoirs
             Invoke("stopAnim", timeWait);
             Invoke("stopPowerUp", timeWaitPowerUp);
         }
@@ -297,9 +298,10 @@ public class PickUpObject : MonoBehaviour
                     scriptKenKick.damageKick *= 2;
                     scriptKenPunch.damagePunch *=2;
                 }
-
+                // Joue les animation 
                 textePowerUp.SetActive(true);
                 animationTexte.SetBool("animDamage", true);
+                // Arrête les animations et les pouvoirs
                 Invoke("stopAnim", timeWait);
                 Invoke("stopPowerUp", timeWaitPowerUp);
             }
@@ -323,9 +325,10 @@ public class PickUpObject : MonoBehaviour
 
                     player.speed *= 6;
 
-
+                    // Joue les animation 
                     textePowerUp.SetActive(true);
                     animationTexte.SetBool("animSpeed", true);
+                    // Arrête les animations et les pouvoirs
                     Invoke("stopAnim", timeWait);
                     Invoke("stopPowerUp", timeWaitPowerUp);
                 }
@@ -346,6 +349,7 @@ public class PickUpObject : MonoBehaviour
 
     private void stopPowerUp()
     {
+        // Remet les valeur de dégat et de vitesse a leur valeur initial
         if(applyEffect == 1 && chunLi == true)
         {
             scriptLiKick.damageKick /= 2;
@@ -360,7 +364,7 @@ public class PickUpObject : MonoBehaviour
         {
             player.speed = 0.5f;
         }
-
+        // Affiche en dessous de l'image du joueur les power up actif
         damagePlayer1.SetActive(false);
         damagePlayer2.SetActive(false);
         speedPlayer1.SetActive(false);

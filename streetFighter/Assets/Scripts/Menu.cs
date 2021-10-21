@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
 	void Update()
 	{
 		// Pause
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Alpha8))
 		{
 			if(gameIsPaused == true)
 			{

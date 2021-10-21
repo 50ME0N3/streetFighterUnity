@@ -13,6 +13,7 @@ using UnityEngine.UI;
 
 public class randomSpawner : MonoBehaviour
 {
+    // Initialisation des variables 
     public GameObject ItemPrefab;
     public float Radius = 1;
     public static DateTime lastCreation;
@@ -46,6 +47,7 @@ public class randomSpawner : MonoBehaviour
 
     public void SpawnObjectAtRandom()
     {
+        // Spawn aléatoire de la pièce slon trois espace diffèrent 
         int randomPosition = UnityEngine.Random.Range(0, 3);
         if(randomPosition == 0)
         {
