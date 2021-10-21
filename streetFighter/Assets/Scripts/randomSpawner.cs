@@ -20,11 +20,10 @@ public class randomSpawner : MonoBehaviour
     private Semaphore sem;
     private int timeWaitCoin = 10;
 
-   
+   // Méthode qui se lance au start
     private void Start()
     {
         lastCreation = DateTime.Now;
-        sem = new Semaphore(0, 1);
 
         Invoke("SpawnObjectAtRandom", timeWaitCoin);
     }
@@ -37,42 +36,48 @@ public class randomSpawner : MonoBehaviour
             // Remove power up object 
             // attend 0.3 seconde pour detruire la pi�ce
             
-            sem.WaitOne(3);
 
                 Invoke("SpawnObjectAtRandom", timeWaitCoin);
                 sem.Release();         
             
         }
     }
-
+    /// <summary>
+    /// tire aléatoirement entre plusieur plage de position aléatoires
+    /// </summary>
+	/// <param name="Player"></param>
     public void SpawnObjectAtRandom()
     {
         // Spawn aléatoire de la pièce slon trois espace diffèrent 
         int randomPosition = UnityEngine.Random.Range(0, 3);
         if(randomPosition == 0)
         {
-            Vector3 randomPos = new Vector3(UnityEngine.Random.Range(-3.097f, -2.512f), UnityEngine.Random.Range(-0.845f, -0.776f));
-            ItemPrefab.transform.position = randomPos;
-            ItemPrefab.SetActive(true);
+            newPos((-3.097f), (-2.512f), (-0.845f), (-0.776f));
         }
         else
         {
             if(randomPosition == 1)
             {
-                Vector3 randomPos = new Vector3(UnityEngine.Random.Range(0.155f, 0.597f), UnityEngine.Random.Range(-0.953f, -0.879f));
-                ItemPrefab.transform.position = randomPos;
-                ItemPrefab.SetActive(true);
+                newPos((-0.155f), (0.597f), (-0.953f), (-0.879f));
             }
             else
             {
                 if(randomPosition == 2)
                 {
-                    Vector3 randomPos = new Vector3(UnityEngine.Random.Range(2.1f, 3.147f), UnityEngine.Random.Range(-1.095f, -0.938f));
-                    ItemPrefab.transform.position = randomPos;
-                    ItemPrefab.SetActive(true);
+                    newPos((2.1f), (3.147f), (-1.095f), (-0.938f));
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Méthodes qui créer une nouvel position et l'applique a la pièce
+    /// </summary>
+    private void newPos(float x1, float x2, float y1, float y2)
+    {
+        Vector3 randomPos = new Vector3(UnityEngine.Random.Range(x1, x2), UnityEngine.Random.Range(y1, y2));
+        ItemPrefab.transform.position = randomPos;
+        ItemPrefab.SetActive(true);
     }
 
     private void OnDrawGizmos()
