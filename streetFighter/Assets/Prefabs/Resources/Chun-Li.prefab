@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 5672625775860872763}
   - component: {fileID: 127970341553028921}
   - component: {fileID: 9141324637162205322}
+  - component: {fileID: 4735138063833876323}
   m_Layer: 0
   m_Name: Chun-Li
   m_TagString: Player
@@ -281,8 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
-  MAX_SPEED: 1.5
-  SPEED: 0.5
+  speed: 0.5
   knockback: {x: 0, y: 0}
   instantDeath: 0
 --- !u!50 &9141324637162205322
@@ -306,6 +306,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!61 &4735138063833876323
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481942765298826128}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.04002558}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.46, y: 0.77}
+    newSize: {x: 0.46, y: 0.77}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.24994886}
+  m_EdgeRadius: 0
 --- !u!1 &4405758233923543868
 GameObject:
   m_ObjectHideFlags: 0

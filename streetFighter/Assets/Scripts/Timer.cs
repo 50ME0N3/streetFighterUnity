@@ -1,3 +1,9 @@
+/* Project name : streetFighterUnity 
+ * Date : 13.09.2021
+ * Authors : Jordan
+ * Description : Gère la durée du round
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +24,15 @@ public class Timer : MonoBehaviour
 	/// </summary>
 	float startTime = 0;
 
+	/// <summary>
+	/// Si le round est terminé
+	/// </summary>
 	public bool ended = false;
+
+	/// <summary>
+	/// s'il y a une égalité
+	/// </summary>
+	public bool tie = false;
 
 	void Start()
 	{
@@ -46,8 +60,6 @@ public class Timer : MonoBehaviour
 
 				if (seconds == 0)
 				{
-					ended = true;
-
 					player player1 = GameObject.Find("Player1").GetComponent<player>();
 					player player2 = GameObject.Find("Player2").GetComponent<player>();
 
@@ -70,6 +82,11 @@ public class Timer : MonoBehaviour
 			{
 				text.color = new Color32(50, 50, 50, 255);
 			}
+		}
+
+		if (GameObject.Find("Player1").GetComponent<player>().resetTime)
+		{
+			startTime = Time.time;
 		}
 	}
 }

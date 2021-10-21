@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Jordan, Rémy
- * Description : Lance le jeu si les deux joueurs on choisi un personnages
+ * Description : Lance le jeu si les deux joueurs ont choisi leurs personnages
  */
 
 using UnityEngine;

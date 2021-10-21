@@ -1,7 +1,7 @@
 /* Project name : streetFighterUnity 
  * Date : 13.09.2021
  * Authors : Jordan, Remy
- * Description : Gère la selection des boutons
+ * Description : Gère la sélection des boutons
  */
 
 using UnityEngine;
