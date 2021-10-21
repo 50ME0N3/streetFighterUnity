@@ -441,15 +441,11 @@ public class player : MonoBehaviour
 		{
 			if (name[name.Length - 1] == '1')
 			{
-				ShowRound.score[1]++;
-				GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[1].ToString();
-				GameObject.Find("Winner").GetComponent<Text>().text = "Player 2 has won the round";
+				ShowWinner(1, 2);
 			}
 			if (name[name.Length - 1] == '2')
 			{
-				ShowRound.score[0]++;
-				GameObject.Find("ScorePlayer1").GetComponent<Text>().text = ShowRound.score[0].ToString();
-				GameObject.Find("Winner").GetComponent<Text>().text = "Player 1 has won the round";
+				ShowWinner(0, 1);
 			}
 		}
 		else
@@ -490,5 +486,17 @@ public class player : MonoBehaviour
 				GetComponent<Animator>().SetBool(parameter.name, false);
 			}
 		}
+	}
+
+	/// <summary>
+    /// Display the winner
+    /// </summary>
+    /// <param name="playerIndex"> index of the player array</param>
+    /// <param name="displayPlayer"> display planer number</param>
+	private void ShowWinner(int playerIndex, int displayPlayer)
+	{
+		ShowRound.score[playerIndex]++;
+		GameObject.Find("ScorePlayer2").GetComponent<Text>().text = ShowRound.score[playerIndex].ToString();
+		GameObject.Find("Winner").GetComponent<Text>().text = "Player " + displayPlayer + " has won the round";
 	}
 }
