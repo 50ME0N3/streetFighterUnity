@@ -69,52 +69,6 @@ public class player : MonoBehaviour
 	public Vector2 knockback = Vector2.zero;
 	#endregion
 
-	#region Cheats Enabled
-
-	/// <summary>
-	/// Si la régénération infinie est activée
-	/// </summary>
-	bool infiniteRegen = false;
-
-	/// <summary>
-	/// Si la mort instantanée est activée
-	/// </summary>
-	public bool instantDeath = false;
-
-	/// <summary>
-	/// Si le vol illimité est activé
-	/// </summary>
-	bool illimitedFly = false;
-
-	/// <summary>
-	/// Si le timer illimité est activé
-	/// </summary>
-	public bool resetTime = false;
-	#endregion
-
-	#region Cheat Keys
-
-	/// <summary>
-	/// Touche activant la régénération infinie
-	/// </summary>
-	const KeyCode INFINITE_REGEN_KEY = KeyCode.Alpha6;
-
-	/// <summary>
-	/// Touche activant la mort instantanée
-	/// </summary>
-	const KeyCode INSTANT_DEATH_KEY = KeyCode.Alpha2;
-
-	/// <summary>
-	/// Touche activant le vol illimité
-	/// </summary>
-	const KeyCode ILLIMITED_FLY_KEY = KeyCode.Alpha3;
-
-	/// <summary>
-	/// Touche activant le timer illimité
-	/// </summary>
-	const KeyCode INFINITE_TIME = KeyCode.Alpha0;
-	#endregion
-
 	#region Axis
 
 	/// <summary>
@@ -205,29 +159,7 @@ public class player : MonoBehaviour
 		float attack1Input = Input.GetAxis(attack1Axis);
 		float attack2Input = Input.GetAxis(attack2Axis);
 		float fastFallInput = Input.GetAxis(fastFallAxis);
-
-		bool infiniteRegenKeyDown = Input.GetKeyDown(INFINITE_REGEN_KEY);
-		bool instantDeathKeyDown = Input.GetKeyDown(INSTANT_DEATH_KEY);
-		bool illimitedFlyKeyDown = Input.GetKeyDown(ILLIMITED_FLY_KEY);
-		bool resetTimeDown = Input.GetKeyDown(INFINITE_TIME);
 		#endregion
-
-		#region Cheats
-		GameObject.Find("Cheat").GetComponent<Text>().text = string.Empty;
-
-		EnableCheats(ref infiniteRegen, infiniteRegenKeyDown, "Infinite Regeneration");
-		EnableCheats(ref instantDeath, instantDeathKeyDown, "Instant Death");
-		EnableCheats(ref illimitedFly, illimitedFlyKeyDown, "Illimited Fly");
-		EnableCheats(ref resetTime, resetTimeDown, "Infinite Time");
-
-		GameObject.Find("Cheat").GetComponent<Text>().text = GameObject.Find("Cheat").GetComponent<Text>().text.Trim('\n');
-		#endregion
-
-		// Régénère a l'infini
-		if (infiniteRegen)
-		{
-			healthBar.Heal(1);
-		}
 
 		// Détection du sol
 		if (groundSensor.Grounded)
@@ -269,7 +201,7 @@ public class player : MonoBehaviour
 					}
 
 					// Saut
-					if ((groundSensor.Grounded || illimitedFly) && jumpInput > 0)
+					if ((groundSensor.Grounded) && jumpInput > 0)
 					{
 						rgbd.velocity = new Vector2(rgbd.velocity.x, JUMP_HEIGHT);
 						anim.SetBool("Grounded", false);
@@ -381,27 +313,6 @@ public class player : MonoBehaviour
 			else
 			{
 				GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
-			}
-		}
-	}
-
-	/// <summary>
-	/// Activation/Désactivation des cheats
-	/// </summary>
-	/// <param name="cheat">Booléen du cheat</param>
-	/// <param name="cheatKeyDown">Touche d'activation du cheat</param>
-	/// <param name="name">Nom du cheat à afficher</param>
-	void EnableCheats(ref bool cheat, bool cheatKeyDown, string name)
-	{
-		if (cheatKeyDown)
-		{
-			// Activation / Désactivation
-			cheat = !cheat;
-
-			if (cheat)
-			{
-				// Affichage
-				GameObject.Find("Cheat").GetComponent<Text>().text += name + "\n";
 			}
 		}
 	}

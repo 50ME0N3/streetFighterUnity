@@ -84,10 +84,5 @@ public class Timer : MonoBehaviour
 				text.color = new Color32(50, 50, 50, 255);
 			}
 		}
-
-		if (GameObject.Find("Player1").GetComponent<player>().resetTime)
-		{
-			startTime = Time.time;
-		}
 	}
 }
