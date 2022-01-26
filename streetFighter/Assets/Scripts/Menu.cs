@@ -103,6 +103,7 @@ public class Menu : MonoBehaviour
 	public void BackMainMenu()
 	{
 		gameIsPaused = false;
+		Time.timeScale = 1;
 		SceneManager.LoadScene("Title Screen");
 	}
 }
